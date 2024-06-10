@@ -1,0 +1,177 @@
+
+/* * {
+    outline: red dotted 2px;
+  } */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+/* Start of Header */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: salmon;
+    color: #fff;
+}
+
+.logo-container {
+    width: 50px;
+    height: 50px;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.company-name {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: salmon;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: rgb(247, 159, 150);
+}
+
+/* End of Header */
+
+/* Start of Sidebar */
+
+.hamburger-menu {
+    
+    position: fixed;
+    top: 80px;
+    left: 10px;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: pink;
+    margin: 5px 0;
+}
+
+.sidebar {
+    position: fixed;
+    top: 70px; /* Adjusted to be below the header */
+    left: 0; /* Hide sidebar by default */
+    width: 200px;
+    height: calc(100% - 50px); /* Adjusted to account for the header height */
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.sidebar.hidden {
+    left: -240px; /* Sidebar is hidden */
+}
+.sidebar .menu {
+    margin-top: 10%;
+    padding: 0;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+    width: 100%; 
+}
+
+.sidebar ul li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: 15px;
+    outline: solid pink;
+    border-radius: 30px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #555;
+}
+
+/* End of Sidebar */
+
+.content {
+    outline: solid salmon;
+    margin-left: 250px;
+    margin-right: 10px;
+    text-align: center;
+
+    
+}
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        left: -100%;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}
