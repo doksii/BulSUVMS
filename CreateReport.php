@@ -66,10 +66,10 @@ if ($_SESSION['role'] !== 'admin') {
                 <label for="student_search_by">Search by:</label><br>
                 <select id="student_search_by" name="student_search_by" required>
                     <option value="student_number">Student Number</option>
-                    <option value="name">Name</option>
+                    <!-- <option value="name">Name</option> -->
                 </select><br><br>
 
-                <label for="student_query">Student:</label><br>
+                <label for="student_query">Student Number:</label><br>
                 <input type="text" id="student_query" name="student_query" required><br><br>
 
                 <label for="violation">Violation:</label><br>
@@ -77,7 +77,20 @@ if ($_SESSION['role'] !== 'admin') {
                     <option value="Light Offenses: Littering or distribution of unauthorized printed material">Light Offenses: Littering or distribution of unauthorized printed material</option>
                     <option value="Light Offenses: Vandalism or unauthorized posting of printed materials">Light Offenses: Vandalism or unauthorized posting of printed materials</option>
                     <option value="Light Offenses: Disturbance or disruption of the educational environment, classes or any education related programs or activities">Light Offenses: Disturbance or disruption of the educational environment, classes or any education related programs or activities</option>
-                    <option value="Light Offenses: Unauthorized solicitation of funds or selling of any ticket">Grave Offenses: Physical/verbal/sexual/mental/emotional abuse, threat, harassment, cyber bullying, hazing, coercion and/or other conduct that threatens or endangers the health or safety of any person</option>
+                    <option value="Light Offenses: Unauthorized solicitation of funds or selling of any ticket">Light Offenses: Unauthorized solicitation of funds or selling of any ticket</option>
+                    <option value="Less Grave Offenses: Smoking, gambling or being under the influence of alcohol within the university premises">Less Grave Offenses: Smoking, gambling or being under the influence of alcohol within the university premises</option>
+                    <option value="Less Grave Offenses: Malicious or unfounded accusation towards any member of the academic community">Less Grave Offenses: Malicious or unfounded accusation towards any member of the academic community</option>
+                    <option value="Less Grave Offenses: Deception, Impersonation, or Fraud">Less Grave Offenses: Deception, Impersonation, or Fraud</option>
+                    <option value="Less Grave Offenses: Disrespectful behavior in words and in deeds or refusal to comply with directions of the University officials and employees acting in the performance of their duties">Less Grave Offenses: Disrespectful behavior in words and in deeds or refusal to comply with directions of the University officials and employees acting in the performance of their duties</option>
+                    <option value="Less Grave Offenses: Damage or unauthorized presence in or use of University premises, facilities or property, in violation of posted signs, when closed, or after normal operating hours">Less Grave Offenses: Damage or unauthorized presence in or use of University premises, facilities or property, in violation of posted signs, when closed, or after normal operating hours</option>
+                    <option value="Grave Offenses: Theft, attempted theft, and/or unauthorized possession or use of property/services belonging to the University or a member of the University community">Grave Offenses: Theft, attempted theft, and/or unauthorized possession or use of property/services belonging to the University or a member of the University community</option>
+                    <option value="Grave Offenses: Indecency in any form of obscene or lewd behavior (necking, petting or torrid kissing or other sexual act) inside the university premises">Grave Offenses: Indecency in any form of obscene or lewd behavior (necking, petting or torrid kissing or other sexual act) inside the university premises</option>
+                    <option value="Grave Offenses: Physical/verbal/sexual/mental/emotional abuse, threat, harassment, cyber bullying, hazing, coercion and/or other conduct that threatens or endangers the health or safety of any person">Grave Offenses: Physical/verbal/sexual/mental/emotional abuse, threat, harassment, cyber bullying, hazing, coercion and/or other conduct that threatens or endangers the health or safety of any person</option>
+                    <option value="Grave Offenses: Possession, use, sale or purchase of any illegal drugs inside the university premises">Grave Offenses: Possession, use, sale or purchase of any illegal drugs inside the university premises</option>
+                    <option value="Grave Offenses: Carrying of firearms and other weapons within the University campuses and premises">Grave Offenses: Carrying of firearms and other weapons within the University campuses and premises</option>
+                    <option value="Dishonesty on Academic Pursuits: Academic misconduct: Cheating">Dishonesty on Academic Pursuits: Academic misconduct: Cheating</option>
+                    <option value="Dishonesty on Academic Pursuits: Academic misconduct: Plagiarism in theses, literary and creative works">Dishonesty on Academic Pursuits: Academic misconduct: Plagiarism in theses, literary and creative works</option>
+                    <option value="Dishonesty on Academic Pursuits: Falsification or forging of academic records and official documents">Dishonesty on Academic Pursuits: Falsification or forging of academic records and official documents</option>
                 </select><br><br>
                 <label for="no_of_offense">Number of Offenses:</label><br>
                 <select id="no_of_offense" name="no_of_offense" required>
