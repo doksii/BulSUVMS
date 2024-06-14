@@ -97,7 +97,7 @@ if ($_SESSION['role'] !== 'admin') {
                 <input type="text" id="action_taken" name="action_taken" required><br><br>
 
                 <!-- Hidden field to store the user ID -->
-                <input type="hidden" name="created_by" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : ''; ?>">
+                <input type="hidden" name="created_by" value="<?php echo $_SESSION['username']; ?>">
 
                 <input type="submit" value="Create Report">
             </form>
