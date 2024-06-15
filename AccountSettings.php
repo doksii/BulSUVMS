@@ -21,6 +21,25 @@ if ($_SESSION['role'] !== 'admin') {
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('status')) {
+                const status = urlParams.get('status');
+                if (status === 'success') {
+                    alert('Account updated successfully.');
+                } else if (status === 'error') {
+                    alert('There was an error updating your account. Please try again.');
+                } else if (status === 'password_mismatch') {
+                    alert('New passwords do not match. Please try again.');
+                } else if (status === 'incorrect_password') {
+                    alert('Current password is incorrect. Please try again.');
+                } else if (status === 'username_exists') {
+                    alert('The new username already exists. Please choose a different username.');
+                }
+            }
+        };
+    </script>
 </head>
 <body>
     <header class="header">
@@ -62,6 +81,24 @@ if ($_SESSION['role'] !== 'admin') {
             <!-- Content of the dashboard page goes here -->
             <h1>Welcome to the acc Settings!</h1>
             <p>This is a simple Settings page.</p>
+            <form id="accountSettingsForm" action="php/accountsettings_process.php" method="POST">
+                <label for="new_username">Username:</label>
+                <input type="text" id="new_username" name="new_username" value="<?php echo $_SESSION['username']; ?>"><br>
+
+                <label for="new_display_name">Display Name:</label>
+                <input type="text" id="new_display_name" name="new_display_name" value="<?php echo $_SESSION['display_name']; ?>"><br>
+
+                <label for="new_password">New Password:</label>
+                <input type="password" id="new_password" name="new_password"><br>
+
+                <label for="confirm_new_password">Confirm New Password:</label>
+                <input type="password" id="confirm_new_password" name="confirm_new_password"><br>
+
+                <label for="current_password">Current Password (for verification):</label>
+                <input type="password" id="current_password" name="current_password" required><br>
+
+                <input type="submit" value="Save Changes">
+            </form>
         </div>
     </div>
 

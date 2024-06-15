@@ -9,6 +9,7 @@ if (!isset($_SESSION['username'])) {
 // Check if the user has the appropriate role (e.g., 'admin')
 if ($_SESSION['super_admin'] !== 'yes') {
     // Redirect to a different page or show an error message
+    header("Location: Settings.php?status=failed");
     echo "Access denied. You do not have the necessary permissions to view this page.";
     exit();
 }
@@ -21,6 +22,23 @@ if ($_SESSION['super_admin'] !== 'yes') {
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('status')) {
+                const status = urlParams.get('status');
+                if (status === 'success') {
+                    alert('Account created successfully.');
+                } else if (status === 'error') {
+                    alert('There was an error creating the account. Please try again.');
+                } else if (status === 'duplicate') {
+                    alert('Username already exists. Please choose a different username.');
+                } else if (status === 'password_mismatch') {
+                    alert('There was an error creating the account. The password does not match. Please try again.');
+                }
+            }
+        };
+    </script>
 </head>
 <body>
     <header class="header">
@@ -62,6 +80,30 @@ if ($_SESSION['super_admin'] !== 'yes') {
             <!-- Content of the dashboard page goes here -->
             <h1>Welcome to the create acc!</h1>
             <p>This is a simple Settings page.</p>
+            <form action="php/createaccount_process.php" method="POST">
+                <label for="display_name">Display Name:</label>
+                <input type="text" id="display_name" name="display_name" required><br>
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
+
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required><br>
+
+                <label for="role">Role:</label>
+                <select id="role" name="role" required>
+                    <option value="admin">Admin</option>
+                    <option value="super_admin">Super Admin</option>
+                </select><br>
+
+                
+
+                <input type="submit" value="Create Account">
+            </form>
+
         </div>
     </div>
 

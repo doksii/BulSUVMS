@@ -21,6 +21,17 @@ if ($_SESSION['role'] !== 'admin') {
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('status')) {
+                const status = urlParams.get('status');
+                if (status === 'failed') {
+                    alert('Access denied. You do not have the necessary permissions to view this page.');
+                }
+            }
+        };
+    </script>
 </head>
 <body>
     <header class="header">
