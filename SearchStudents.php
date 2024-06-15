@@ -19,8 +19,9 @@ if ($_SESSION['role'] !== 'admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BulSUVMS</title>
-    <link rel="stylesheet" href="assets/styles.css">
-    <link rel="stylesheet" href="assets/css/MainStyle.css">
+    <link rel="stylesheet" href="assets\css\MainStyle.css">
+    <link rel="stylesheet" href="assets\css\search-students.css">
+
 </head>
 <body>
     <header class="header">
@@ -37,7 +38,7 @@ if ($_SESSION['role'] !== 'admin') {
         </div>
     </header>
     <div class="dashboard-container">
-        <div class="hamburger-menu" onclick="toggleSidebar()">
+    <div class="hamburger-menu" onclick="toggleSidebar()">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
@@ -51,7 +52,7 @@ if ($_SESSION['role'] !== 'admin') {
                     <li><a href="RecentReports.php">Recent Reports</a></li>
                     <li><a href="CreateReport.php">Create Report</a></li>
                     <p>Students</p>
-                    <li><a href="SearchStudents.php">Search Students</a></li>
+                    <li><a href="SearchStudents.php">List of Students</a></li>
                     <li><a href="AddStudents.php">Add Students</a></li>
                     <p>Option</p>
                     <li><a href="Settings.php">Settings</a></li>
@@ -59,12 +60,64 @@ if ($_SESSION['role'] !== 'admin') {
             </div>
         </div>
         <div class="content">
-            <!-- Content of the dashboard page goes here -->
-            <h1>Welcome to the SearchStudents!</h1>
-            <p>This is a simple SearchStudents page.</p>
+            <h1>Search Students</h1>
+            <input type="text" id="searchBar" onkeyup="filterTable()" placeholder="Search for students..">
+            <div class="scroll-container">
+                <table id="studentTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">Student Number</th>
+                            <th onclick="sortTable(1)">Name</th>
+                            <th onclick="sortTable(2)">Gender</th>
+                            <th onclick="sortTable(3)">Department</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Replace with your database credentials
+                        $servername = "localhost";
+                        $username = "root"; // default username for XAMPP
+                        $password = ""; // default password for XAMPP
+                        $dbname = "user_registered";
+                        // Create connection
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        // Check connection
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+
+                        // Fetch student records
+                        $sql = "SELECT id, student_number, name, gender, department FROM students";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            // Output data of each row
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr>
+                                        <td>" . $row["student_number"]. "</td>
+                                        <td>" . $row["name"]. "</td>
+                                        <td>" . $row["gender"]. "</td>
+                                        <td>" . $row["department"]. "</td>
+                                      </tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='4'>No students found</td></tr>";
+                        }
+
+                        // Close connection
+                        $conn->close();
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <div id="studentInfoContainer">
+                <!-- Student details and reports will be displayed here -->
+            </div>
         </div>
     </div>
 
+    <script src="assets/search-students.js"></script>
     <script src="assets/script.js"></script>
 </body>
 </html>

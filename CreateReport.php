@@ -25,7 +25,7 @@ if ($_SESSION['role'] !== 'admin') {
 <body>
     <header class="header">
         <div class="logo-container">
-            <img src="logo.png" alt="Company Logo" class="logo">
+            <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
         <div class="company-name">Company Name</div>
         <div class="dropdown">
@@ -51,7 +51,7 @@ if ($_SESSION['role'] !== 'admin') {
                     <li><a href="RecentReports.php">Recent Reports</a></li>
                     <li><a href="CreateReport.php">Create Report</a></li>
                     <p>Students</p>
-                    <li><a href="SearchStudents.php">Search Students</a></li>
+                    <li><a href="SearchStudents.php">List of Students</a></li>
                     <li><a href="AddStudents.php">Add Students</a></li>
                     <p>Option</p>
                     <li><a href="Settings.php">Settings</a></li>
@@ -100,7 +100,7 @@ if ($_SESSION['role'] !== 'admin') {
                     <option value="4th offense">4th Offense</option>
                     <option value="5th offense">5th Offense</option>
                 </select><br><br>
-                <label for="detailed_report">Detailed Report:</label><br>
+                <label for="detailed_report">Report Summary:</label><br>
                 <textarea id="detailed_report" name="detailed_report" rows="4" required></textarea><br><br>
 
                 <label for="date_of_violation">Date of Violation:</label><br>

@@ -19,8 +19,8 @@ if ($_SESSION['role'] !== 'admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BulSUVMS</title>
-    <link rel="stylesheet" href="assets/styles.css">
-    <link rel="stylesheet" href="assets/css/MainStyle.css">
+    <link rel="stylesheet" href="assets\css\MainStyle.css">
+    <link rel="stylesheet" href="assets\css\search-reports.css">
 </head>
 <body>
     <header class="header">
@@ -51,7 +51,7 @@ if ($_SESSION['role'] !== 'admin') {
                     <li><a href="RecentReports.php">Recent Reports</a></li>
                     <li><a href="CreateReport.php">Create Report</a></li>
                     <p>Students</p>
-                    <li><a href="SearchStudents.php">Search Students</a></li>
+                    <li><a href="SearchStudents.php">List of Students</a></li>
                     <li><a href="AddStudents.php">Add Students</a></li>
                     <p>Option</p>
                     <li><a href="Settings.php">Settings</a></li>
@@ -59,12 +59,63 @@ if ($_SESSION['role'] !== 'admin') {
             </div>
         </div>
         <div class="content">
-            <!-- Content of the dashboard page goes here -->
-            <h1>Welcome to the RecentReports!</h1>
-            <p>This is a simple RecentReports page.</p>
+            <h1>Recent Reports</h1>
+            <input type="text" id="searchBar" onkeyup="filterTable()" placeholder="Search for reports..">
+            <div class="scroll-container">
+                <table id="reportTable">
+                    <thead>
+                        <tr>
+                            <th>Incident no.</th>
+                            <th onclick="sortTable(1)">Student Name</th>
+                            <th onclick="sortTable(2)">violation</th>
+                            <th onclick="sortTable(3)">Date Created</th>
+                            <th onclick="sortTable(4)">Created By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Replace with your database credentials
+                        $servername = "localhost";
+                        $username = "root"; // default username for XAMPP
+                        $password = ""; // default password for XAMPP
+                        $dbname = "user_registered";
+                        // Create connection
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        // Check connection
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+
+                        // Fetch report records
+                        $sql = "SELECT id, student_name, violation, created_at, created_by FROM reports ORDER BY created_at DESC";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            // Output data of each row
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr>
+                                        <td>" . $row["id"]. "</td>
+                                        <td>" . $row["student_name"]. "</td>
+                                        <td>" . $row["violation"]. "</td>
+                                        <td>" . $row["created_at"]. "</td>
+                                        <td>" . $row["created_by"]. "</td>
+                                      </tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='7'>No reports found</td></tr>";
+                        }
+
+                        // Close connection
+                        $conn->close();
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
     <script src="assets/script.js"></script>
+    <script src="assets/search-reports.js"></script>
 </body>
 </html>

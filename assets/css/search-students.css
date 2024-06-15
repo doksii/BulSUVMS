@@ -1,0 +1,78 @@
+
+/* assets/search-students.css */
+
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent whole page from scrolling */
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent content from overflowing */
+}
+
+.scroll-container {
+    max-height: 60vh; /* Set max height for the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+#searchBar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+/* search-students.css */
+
+
+#studentInfoContainer {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+#studentInfoContainer h2 {
+    margin-top: 0;
+}
+
+#studentInfoContainer table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#studentInfoContainer table, th, td {
+    border: 1px solid black;
+}
+
+#studentInfoContainer th, td {
+    padding: 8px;
+    text-align: left;
+}
