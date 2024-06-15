@@ -60,31 +60,8 @@ if ($_SESSION['role'] !== 'admin') {
         </div>
         <div class="content">
             <!-- Content of the dashboard page goes here -->
-            <h1>Welcome to the AddStudents!</h1>
-            <p>This is a simple AddStudents page.</p>
-            <form action="php/addstudent_process.php" method="post">
-                <label for="name">Name: (Lastname, Firstname MI)</label><br>
-                <input type="text" id="name" name="name" required><br><br>
-
-                <label for="student_number">Student Number:</label><br>
-                <input type="text" id="student_number" name="student_number" required><br><br>
-
-                <label for="gender">Gender:</label><br>
-                <select id="gender" name="gender" required>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select><br><br>
-
-                <label for="department">Department:</label><br>
-                <select id="department" name="department" required>
-                    <option value="BIT">BIT Department</option>
-                    <option value="BSIT">BSIT Department</option>
-                    <option value="CPE">CPE Department</option>
-                </select><br><br>
-
-                <input type="submit" value="Add Student">
-            </form>
+            <h1>Welcome to the acc Settings!</h1>
+            <p>This is a simple Settings page.</p>
         </div>
     </div>
 

@@ -31,7 +31,7 @@ if ($_SESSION['role'] !== 'admin') {
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
-                <a href="#myaccount">View Profile</a>
+                <a href="AccountSettings.php"><?php echo $_SESSION['username']; ?></a>
                 <a href="php/logout.php">Logout</a>
             </div>
         </div>
@@ -110,7 +110,7 @@ if ($_SESSION['role'] !== 'admin') {
                 <input type="text" id="action_taken" name="action_taken" required><br><br>
 
                 <!-- Hidden field to store the user ID -->
-                <input type="hidden" name="created_by" value="<?php echo $_SESSION['username']; ?>">
+                <input type="hidden" name="created_by" value="<?php echo $_SESSION['display_name']; ?>">
 
                 <input type="submit" value="Create Report">
             </form>

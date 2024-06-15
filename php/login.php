@@ -19,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Password is correct, start a session
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $row['role']; // Add role to session
+            $_SESSION['display_name'] = $row['display_name'];
+            $_SESSION['super_admin'] = $row['super_admin'];
             // Redirect to dashboard.php (outside the php folder)
             header("Location: ../dashboard.php");
             exit(); // Ensure that script execution stops after redirection

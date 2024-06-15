@@ -31,7 +31,7 @@ if ($_SESSION['role'] !== 'admin') {
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
-                <a href="#myaccount">View Profile</a>
+                <a href="AccountSettings.php"><?php echo $_SESSION['username']; ?></a>
                 <a href="php/logout.php">Logout</a>
             </div>
         </div>
@@ -60,8 +60,11 @@ if ($_SESSION['role'] !== 'admin') {
         </div>
         <div class="content">
             <!-- Content of the dashboard page goes here -->
-            <h1>Welcome to the Settings!</h1>
-            <p>This is a simple Settings page.</p>
+            <h1>Settings</h1>
+            <div class="settings-buttons">
+                <button onclick="location.href='AccountSettings.php'">Account Settings</button>
+                <button onclick="location.href='CreateAccount.php'">Create Account</button>
+            </div>
         </div>
     </div>
 
