@@ -6,6 +6,17 @@
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('error')) {
+                const error = urlParams.get('error');
+                if (error === 'invalid_credentials') {
+                    alert('Invalid username or password. Please try again.');
+                }
+            }
+        };
+    </script>
 </head>
 <body>
     <div class="login-container">

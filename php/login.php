@@ -26,11 +26,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit(); // Ensure that script execution stops after redirection
         } else {
             // Invalid password
-            echo "Invalid username or password.";
+            header("Location: ../index.html?error=invalid_credentials");
+            exit();
         }
     } else {
         // Invalid username
-        echo "Invalid username or password.";
+        header("Location: ../index.html?error=invalid_credentials");
+        exit();
     }
 
     $stmt->close();
