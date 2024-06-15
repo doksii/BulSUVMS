@@ -2,12 +2,6 @@
 session_start();
 require_once 'db.php'; // Adjust path as per your file structure
 
-header('Content-Type: application/json');
-
-$response = [
-    'status' => 'error',
-    'message' => 'An unknown error occurred.',
-];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $student_search_by = $_POST['student_search_by'];
@@ -25,8 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif ($student_search_by == 'name') {
         $sql = "SELECT name FROM students WHERE name = ?";
     } else {
-        $response['message'] = "Invalid search criteria.";
-        echo json_encode($response);
+
         exit;
     }
 
@@ -62,5 +55,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 
-echo json_encode($response);
 ?>

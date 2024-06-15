@@ -21,6 +21,19 @@ if ($_SESSION['role'] !== 'admin') {
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('status')) {
+                const status = urlParams.get('status');
+                if (status === 'success') {
+                    alert('Student added successfully.');
+                } else if (status === 'error') {
+                    alert('There was an error adding the student. Student number already exist. Please try again.');
+                } 
+            }
+        };
+    </script>
 </head>
 <body>
     <header class="header">
