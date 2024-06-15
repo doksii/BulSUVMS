@@ -21,6 +21,21 @@ if ($_SESSION['role'] !== 'admin') {
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('status')) {
+                const status = urlParams.get('status');
+                if (status === 'success') {
+                    alert('Report created successfully.');
+                } else if (status === 'error') {
+                    alert('There was an error creating the report. Please try again.');
+                } else if (status === 'student_not_found') {
+                    alert('Student not found. Please check the student number.');
+                }
+            }
+        };
+    </script>
 </head>
 <body>
     <header class="header">
