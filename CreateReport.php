@@ -25,7 +25,7 @@ if ($_SESSION['role'] !== 'admin') {
     <style>
         /* Add some basic styling for the search box and results */
         #search-results {
-            border: .5px solid #ddd;
+            border: .2px solid #ddd;
             width: 500px;
             max-height: 100px;
             overflow-y: auto;
@@ -38,6 +38,12 @@ if ($_SESSION['role'] !== 'admin') {
         }
         .search-item:hover {
             background-color: #f0f0f0;
+        }
+        #student_search {
+            width: 500px;
+            padding: 5px;
+            box-sizing: border-box;
+
         }
     </style>
     <script>
@@ -122,10 +128,9 @@ if ($_SESSION['role'] !== 'admin') {
             <h1>Welcome to the CreateReport!</h1>
             <p>This is a simple CreateReport page.</p>
             <form action="php/createreport_process.php" method="post">
-                <p>Search Student:</p>
-                <label for="student_search" id="search_bar"></label>
-                <input type="text" id="student_search" name="student_search" autocomplete="off">
-                <div id="search-results"></div>
+                <label for="student_search">Search Student:</label><br>
+                <input type="text" id="student_search" name="student_search" autocomplete="off" placeholder="Name or Student number">
+                <div id="search-results"></div><br>
 
                 <input type="hidden" id="student_number" name="student_number">
 
