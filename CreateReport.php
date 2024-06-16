@@ -21,7 +21,51 @@ if ($_SESSION['role'] !== 'admin') {
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Add some basic styling for the search box and results */
+        #search-results {
+            border: .5px solid #ddd;
+            width: 500px;
+            max-height: 100px;
+            overflow-y: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .search-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .search-item:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
     <script>
+        $(document).ready(function() {
+            $('#student_search').on('input', function() {
+                let query = $(this).val();
+                if (query.length > 0) {
+                    $.ajax({
+                        url: 'php/search_students.php',
+                        method: 'POST',
+                        data: {query: query},
+                        success: function(data) {
+                            $('#search-results').html(data);
+                        }
+                    });
+                } else {
+                    $('#search-results').html('');
+                }
+            });
+
+            $(document).on('click', '.search-item', function() {
+                let studentNumber = $(this).data('student-number');
+                let studentName = $(this).text();
+                $('#student_search').val(studentName);
+                $('#student_number').val(studentNumber);
+                $('#search-results').html('');
+            });
+        });
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('status')) {
@@ -78,14 +122,12 @@ if ($_SESSION['role'] !== 'admin') {
             <h1>Welcome to the CreateReport!</h1>
             <p>This is a simple CreateReport page.</p>
             <form action="php/createreport_process.php" method="post">
-                <label for="student_search_by">Search by:</label><br>
-                <select id="student_search_by" name="student_search_by" required>
-                    <option value="student_number">Student Number</option>
-                    <!-- <option value="name">Name</option> -->
-                </select><br><br>
+                <p>Search Student:</p>
+                <label for="student_search" id="search_bar"></label>
+                <input type="text" id="student_search" name="student_search" autocomplete="off">
+                <div id="search-results"></div>
 
-                <label for="student_query">Student Number:</label><br>
-                <input type="text" id="student_query" name="student_query" required><br><br>
+                <input type="hidden" id="student_number" name="student_number">
 
                 <label for="violation">Violation:</label><br>
                 <select id="violation" name="violation" required>

@@ -75,17 +75,7 @@ if ($_SESSION['role'] !== 'admin') {
                     <tbody>
                         <?php
                         // Replace with your database credentials
-                        $servername = "localhost";
-                        $username = "root"; // default username for XAMPP
-                        $password = ""; // default password for XAMPP
-                        $dbname = "user_registered";
-                        // Create connection
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-
-                        // Check connection
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
+                        require_once 'php/db.php'; // Adjust path as per your file structure
 
                         // Fetch student records
                         $sql = "SELECT id, student_number, name, gender, department FROM students";

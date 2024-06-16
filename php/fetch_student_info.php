@@ -1,15 +1,6 @@
 <?php
     // Replace with your database credentials
-    $servername = "localhost";
-    $username = "root"; // default username for XAMPP
-    $password = ""; // default password for XAMPP
-    $dbname = "user_registered";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+require_once 'db.php'; // Adjust path as per your file structure
     
     $student_number = $_GET['student_number']; // Assuming student_number is passed via GET parameter
     
