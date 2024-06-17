@@ -107,7 +107,7 @@ if ($_SESSION['role'] !== 'admin') {
         </div>
     </div>
 
-    <script src="assets/search-students.js"></script>
-    <script src="assets/script.js"></script>
+    <script src="js/search-students.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

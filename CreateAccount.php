@@ -107,6 +107,6 @@ if ($_SESSION['super_admin'] !== 'yes') {
         </div>
     </div>
 
-    <script src="assets/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

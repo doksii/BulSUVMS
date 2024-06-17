@@ -32,11 +32,21 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
                 const status = urlParams.get('status');
                 if (status === 'success') {
                     alert('User role updated successfully.');
+                } else if (status === 'delete_success') {
+                    alert('User account deleted successfully.');
                 } else if (status === 'error') {
                     alert('There was an error updating the user role. Please try again.');
+                } else if (status === 'password_error') {
+                    alert('Incorrect password. Please try again.');
                 }
             }
         };
+        function confirmDelete() {
+            if (confirm('Are you sure you want to delete the selected users?')) {
+                document.getElementById('updateForm').action = 'php/delete_users.php';
+                document.getElementById('updateForm').submit();
+            }
+        }
     </script>
 </head>
 <body>
@@ -77,56 +87,58 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
         </div>
         <div class="content">
             <h1>Manage Accounts</h1>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Display Name</th>
-                        <th>Role</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    // Fetch all users except the currently logged-in user
-                    $sql = "SELECT username, display_name, role, super_admin FROM users WHERE username != ?";
-                    $stmt = $conn->prepare($sql);
-                    if ($stmt) {
-                        $stmt->bind_param("s", $current_username);
-                        $stmt->execute();
-                        $result = $stmt->get_result();
+            <form method="POST" action="php/update_role.php" id="updateForm">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Username</th>
+                            <th>Display Name</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Fetch all users except the currently logged-in user
+                        $sql = "SELECT username, display_name, role, super_admin FROM users WHERE username != ?";
+                        $stmt = $conn->prepare($sql);
+                        if ($stmt) {
+                            $stmt->bind_param("s", $current_username);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
 
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>" . htmlspecialchars($row['username']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['display_name']) . "</td>";
-                                echo "<td>";
-                                echo "<form method='POST' action='php/update_role.php'>";
-                                echo "<input type='hidden' name='username' value='" . htmlspecialchars($row['username']) . "'>";
-                                echo "<select name='super_admin'>";
-                                echo "<option value='no'" . ($row['super_admin'] == 'no' ? " selected" : "") . ">Admin</option>";
-                                echo "<option value='yes'" . ($row['super_admin'] == 'yes' ? " selected" : "") . ">Super Admin</option>";
-                                echo "</select>";
-                                echo "</td>";
-                                echo "<td><button type='submit'>Update</button></td>";
-                                echo "</form>";
-                                echo "</tr>";
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td><input type='checkbox' name='delete_users[]' value='" . htmlspecialchars($row['username']) . "'></td>";
+                                    echo "<td>" . htmlspecialchars($row['username']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['display_name']) . "</td>";
+                                    echo "<td>";
+                                    echo "<select name='super_admin[" . htmlspecialchars($row['username']) . "]'>";
+                                    echo "<option value='no'" . ($row['super_admin'] == 'no' ? " selected" : "") . ">Admin</option>";
+                                    echo "<option value='yes'" . ($row['super_admin'] == 'yes' ? " selected" : "") . ">Super Admin</option>";
+                                    echo "</select>";
+                                    echo "</td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='4'>No users found</td></tr>";
                             }
-                        } else {
-                            echo "<tr><td colspan='4'>No users found</td></tr>";
-                        }
 
-                        $stmt->close();
-                    } else {
-                        echo "<tr><td colspan='4'>Query preparation failed: " . $conn->error . "</td></tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
+                            $stmt->close();
+                        } else {
+                            echo "<tr><td colspan='4'>Query preparation failed: " . $conn->error . "</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+                <input type="password" name="current_password" placeholder="Enter your password to confirm" required><br>
+                <button type="submit">Save Changes</button>
+            </form>
+            <button onclick="confirmDelete()">Delete Selected Users</button>
         </div>
     </div>
 
-    <script src="assets/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
