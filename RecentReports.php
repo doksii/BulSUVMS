@@ -21,6 +21,73 @@ if ($_SESSION['role'] !== 'admin') {
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets\css\MainStyle.css">
     <link rel="stylesheet" href="assets\css\search-reports.css">
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 700px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .popup button {
+            padding: 8px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            position: relative;
+            left: 90%;
+            /* transform: translateX(-50%); */
+        }
+        .popup::-webkit-scrollbar {
+            width: 8px;
+        }
+        .popup::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        .popup::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+    <script>
+        function viewReport(reportId) {
+            // Make an AJAX request to fetch the report details
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'php/get_report_details.php?id=' + reportId, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var report = JSON.parse(xhr.responseText);
+                    // Fill the pop-up with report details
+                    document.getElementById('popupStudentName').textContent = report.student_name;
+                    document.getElementById('popupViolation').textContent = report.violation;
+                    document.getElementById('popupOffenses').textContent = report.no_of_offense;
+                    document.getElementById('popupDetailedReport').textContent = report.detailed_report;
+                    document.getElementById('popupDate').textContent = report.date_of_violation;
+                    document.getElementById('popupActionTaken').textContent = report.action_taken;
+                    document.getElementById('popupCreatedBy').textContent = report.created_by;
+                    // Show the pop-up
+                    document.getElementById('reportPopup').style.display = 'block';
+                }
+            };
+            xhr.send();
+        }
+
+        function closePopup() {
+            document.getElementById('reportPopup').style.display = 'none';
+        }
+    </script>
 </head>
 <body>
     <header class="header">
@@ -70,6 +137,7 @@ if ($_SESSION['role'] !== 'admin') {
                             <th onclick="sortTable(2)">violation</th>
                             <th onclick="sortTable(3)">Date Created</th>
                             <th onclick="sortTable(4)">Created By</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,11 +154,12 @@ if ($_SESSION['role'] !== 'admin') {
                             while($row = $result->fetch_assoc()) {
                                 echo "<tr>
                                         <td>" . $row["id"]. "</td>
-                                        <td>" . $row["student_name"]. "</td>
-                                        <td>" . $row["violation"]. "</td>
-                                        <td>" . $row["created_at"]. "</td>
-                                        <td>" . $row["created_by"]. "</td>
-                                      </tr>";
+                                        <td>" . htmlspecialchars($row["student_name"]). "</td>
+                                        <td>" . htmlspecialchars($row["violation"]). "</td>
+                                        <td>" . htmlspecialchars($row["created_at"]). "</td>
+                                        <td>" . htmlspecialchars($row["created_by"]). "</td>
+                                        <td><button onclick='viewReport(" . $row["id"]. ")'>View</button></td>
+                                    </tr>";
                             }
                         } else {
                             echo "<tr><td colspan='7'>No reports found</td></tr>";
@@ -103,6 +172,17 @@ if ($_SESSION['role'] !== 'admin') {
                 </table>
             </div>
         </div>
+    </div>
+    <div id="reportPopup" class="popup">
+        <h2>Report Details</h2>
+        <p><strong>Student Name:</strong> <span id="popupStudentName"></span></p>
+        <p><strong>Violation:</strong> <span id="popupViolation"></span></p>
+        <p><strong>Number of Offenses:</strong> <span id="popupOffenses"></span></p>
+        <p><strong>Date of Violation:</strong> <span id="popupDate"></span></p>
+        <p><strong>Action Taken:</strong> <span id="popupActionTaken"></span></p>
+        <p><strong>Detailed Report:</strong> <span id="popupDetailedReport"></span></p>
+        <p><strong>Created By:</strong> <span id="popupCreatedBy"></span></p>
+        <button onclick="closePopup()">Close</button>
     </div>
 
     <script src="js/script.js"></script>
