@@ -21,6 +21,121 @@ if ($_SESSION['role'] !== 'admin') {
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets\css\MainStyle.css">
     <link rel="stylesheet" href="assets\css\search-students.css">
+    <style>
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-height: 100%;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        /* Style for the report table inside the modal */
+        .reports-table {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 5px;
+        }
+
+        #searchReports {
+            width: 98%;
+            padding: 10px;
+        }
+        
+    </style>
+    <script>
+        function viewStudent(studentNumber) {
+            // Fetch student and report information using AJAX
+            fetch(`php/fetch_student_info.php?student_number=${studentNumber}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Populate the modal with student information
+                    const studentInfo = `
+                        <p><strong>Student Name:</strong>${data.student.name}</p>
+                        <p><strong>Student Number:</strong> ${data.student.student_number}</p>
+                        <p><strong>Gender:</strong> ${data.student.gender}</p>
+                        <p><strong>Department:</strong> ${data.student.department}</p>
+                    `;
+                    document.getElementById('studentInfo').innerHTML = studentInfo;
+
+                    // Populate the modal with reports
+                    let reportsHTML = '<table><tr><th>Violation</th><th>No of Offenses</th><th>Detailed Report</th><th>Date of Violation</th><th>Action Taken</th></tr>';
+                    data.reports.forEach(report => {
+                        reportsHTML += `<tr><td>${report.violation}</td><td>${report.no_of_offense}</td><td>${report.detailed_report}</td><td>${report.date_of_violation}</td><td>${report.action_taken}</td></tr>`;
+                    });
+                    reportsHTML += '</table>';
+                    document.getElementById('reportsTable').innerHTML = reportsHTML;
+
+                    // Show the modal
+                    document.getElementById('studentModal').style.display = 'block';
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function closeModal() {
+            document.getElementById('studentModal').style.display = 'none';
+        }
+
+        function filterReports() {
+            const input = document.getElementById("searchReports");
+            const filter = input.value.toLowerCase();
+            const table = document.querySelector("#reportsTable table");
+            const tr = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < tr.length; i++) {
+                const tdArray = tr[i].getElementsByTagName("td");
+                let found = false;
+                for (let j = 0; j < tdArray.length; j++) {
+                    if (tdArray[j]) {
+                        if (tdArray[j].innerHTML.toLowerCase().indexOf(filter) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                tr[i].style.display = found ? "" : "none";
+            }
+        }
+    </script>
 
 </head>
 <body>
@@ -70,29 +185,30 @@ if ($_SESSION['role'] !== 'admin') {
                             <th onclick="sortTable(1)">Name</th>
                             <th onclick="sortTable(2)">Gender</th>
                             <th onclick="sortTable(3)">Department</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        // Replace with your database credentials
                         require_once 'php/db.php'; // Adjust path as per your file structure
 
                         // Fetch student records
-                        $sql = "SELECT id, student_number, name, gender, department FROM students";
+                        $sql = "SELECT student_number, name, gender, department FROM students";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
                             // Output data of each row
-                            while($row = $result->fetch_assoc()) {
+                            while ($row = $result->fetch_assoc()) {
                                 echo "<tr>
-                                        <td>" . $row["student_number"]. "</td>
-                                        <td>" . $row["name"]. "</td>
-                                        <td>" . $row["gender"]. "</td>
-                                        <td>" . $row["department"]. "</td>
-                                      </tr>";
+                                        <td>" . $row["student_number"] . "</td>
+                                        <td>" . $row["name"] . "</td>
+                                        <td>" . $row["gender"] . "</td>
+                                        <td>" . $row["department"] . "</td>
+                                        <td><button onclick=\"viewStudent('" . $row['student_number'] . "')\">View</button></td>
+                                    </tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='4'>No students found</td></tr>";
+                            echo "<tr><td colspan='5'>No students found</td></tr>";
                         }
 
                         // Close connection
@@ -100,9 +216,18 @@ if ($_SESSION['role'] !== 'admin') {
                         ?>
                     </tbody>
                 </table>
-            </div>
-            <div id="studentInfoContainer">
-                <!-- Student details and reports will be displayed here -->
+
+                <!-- Pop-up Modal -->
+                <div id="studentModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <div id="studentInfo"></div>
+                        <h3>Assiociated violations:</h3>
+                        <input type="text" id="searchReports" onkeyup="filterReports()" placeholder="Search for reports..">
+                        <div id="reportsTable" class="reports-table"></div><br><br>
+                        <button onclick="location.href='CreateReport.php'" class="modal-close-btn">Add report</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

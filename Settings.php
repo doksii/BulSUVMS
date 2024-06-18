@@ -27,7 +27,7 @@ if ($_SESSION['role'] !== 'admin') {
             if (urlParams.has('status')) {
                 const status = urlParams.get('status');
                 if (status === 'failed') {
-                    alert('Access denied. You do not have the necessary permissions to view this page. Only owner can access this page.');
+                    alert('Access denied. You do not have the necessary permissions to view this page.');
                 }
             }
         };
@@ -76,6 +76,7 @@ if ($_SESSION['role'] !== 'admin') {
                 <button onclick="location.href='AccountSettings.php'">Account Settings</button>
                 <button onclick="location.href='CreateAccount.php'">Create Account</button>
                 <button onclick="location.href='ManageAccounts.php'">Manage Accounts</button>
+                <button onclick="location.href='ManageStudents.php'">Manage Students</button>
             </div>
         </div>
     </div>
