@@ -25,6 +25,23 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
+    <style>
+        /* Basic CSS for layout */
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        th, td {
+            border: 3px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
     <script>
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);

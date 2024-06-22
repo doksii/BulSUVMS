@@ -25,7 +25,7 @@ if ($_SESSION['owner'] !== 'yes') {
     <style>
         /* Modal Styles */
         .scroll-container {
-            max-height: 70vh; /* Set max height for the container */
+            max-height: 60vh; /* Set max height for the container */
             overflow-y: auto; /* Enable vertical scrolling */
             margin-top: 20px;
             margin-bottom: 20px;
@@ -180,6 +180,42 @@ if ($_SESSION['owner'] !== 'yes') {
                 tr[i].style.display = found ? "" : "none";
             }
         }
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("studentTable");
+            switching = true;
+            dir = "asc"; 
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i+1].getElementsByTagName("TD")[n];
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount ++;      
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
     </script>
 
 </head>
@@ -221,15 +257,15 @@ if ($_SESSION['owner'] !== 'yes') {
         </div>
         <div class="content">
             <h2>Manage Students</h2>
-            <div class="scroll-container">
             <input type="text" id="searchBar" onkeyup="filterTable()" placeholder="Search for students..">
+            <div class="scroll-container">
                 <table id="studentTable">
                     <thead>
                         <tr>
-                            <th>Student Number</th>
-                            <th>Name</th>
-                            <th>Gender</th>
-                            <th>Department</th>
+                            <th onclick="sortTable(0)">Student Number</th>
+                            <th onclick="sortTable(1)">Name</th>
+                            <th onclick="sortTable(2)">Gender</th>
+                            <th onclick="sortTable(3)">Department</th>
                             <th>Select All<input type="checkbox" id="selectAllCheckbox" onchange="selectAllStudents()"></th>
                         </tr>
                     </thead>

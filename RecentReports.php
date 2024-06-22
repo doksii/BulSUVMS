@@ -22,6 +22,40 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="assets\css\MainStyle.css">
     <link rel="stylesheet" href="assets\css\search-reports.css">
     <style>
+        .content {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden; /* Prevent content from overflowing */
+        }
+
+        .scroll-container {
+            max-height: 60vh; /* Set max height for the container */
+            overflow-y: auto; /* Enable vertical scrolling */
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        #searchBar {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            
+        }
         .popup {
             display: none;
             position: fixed;
@@ -49,16 +83,6 @@ if ($_SESSION['role'] !== 'admin') {
             position: relative;
             left: 90%;
             /* transform: translateX(-50%); */
-        }
-        .popup::-webkit-scrollbar {
-            width: 8px;
-        }
-        .popup::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 4px;
-        }
-        .popup::-webkit-scrollbar-thumb:hover {
-            background: #555;
         }
     </style>
     <script>
