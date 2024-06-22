@@ -24,13 +24,40 @@ if ($_SESSION['owner'] !== 'yes') {
     <link rel="stylesheet" href="assets\css\search-students.css">
     <style>
         /* Modal Styles */
+        .content {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden; /* Prevent content from overflowing */
+        }
         .scroll-container {
             max-height: 60vh; /* Set max height for the container */
             overflow-y: auto; /* Enable vertical scrolling */
-            margin-top: 20px;
+            margin-top: 10px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             padding: 10px;
+            box-sizing: border-box;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+        #searchBar {
+            width: 98%;
+            padding: 10px;
+            margin-bottom: 10px;
             box-sizing: border-box;
         }
         .modal {
@@ -217,7 +244,6 @@ if ($_SESSION['owner'] !== 'yes') {
             }
         }
     </script>
-
 </head>
 <body>
     <header class="header">
@@ -297,8 +323,6 @@ if ($_SESSION['owner'] !== 'yes') {
                         ?>
                     </tbody>
                 </table>
-                
-
                 <!-- Modal -->
                 <div id="confirmationModal" class="modal">
                     <div class="modal-content">
