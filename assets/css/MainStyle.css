@@ -7,16 +7,34 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
 }
-
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+th {
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
 /* Start of Header */
 
 .header {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     background-color: salmon;
     color: #fff;
+    z-index: 1000;
 }
 
 .logo-container {
@@ -87,15 +105,15 @@ body {
 .hamburger-menu {
     
     position: fixed;
-    top: 80px;
-    left: 10px;
+    top: 20px;
+    left: 20px;
     cursor: pointer;
-    z-index: 999;
+    z-index: 0;
 }
 
 .bar {
-    width: 25px;
-    height: 3px;
+    width: 35px;
+    height: 5px;
     background-color: pink;
     margin: 5px 0;
 }
@@ -190,9 +208,7 @@ body {
     outline: solid salmon;
     margin-left: 250px;
     margin-right: 10px;
-    text-align: center;
-
-    
+    text-align: left;
 }
 
 
@@ -200,9 +216,16 @@ body {
     .sidebar {
         width: 100%;
         left: -100%;
+        padding: 0px;
     }
-
+    .sidebar.hidden {
+        left: 0px; /* Sidebar is hidden */
+    }
+    .hamburger-menu {
+        z-index: 1001;
+    }
     .content {
-        margin-left: 0;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }

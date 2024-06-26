@@ -5,7 +5,6 @@ if (!isset($_SESSION['username'])) {
     header("Location: index.html");
     exit();
 }
-
 // Check if the user has the appropriate role (e.g., 'admin')
 if ($_SESSION['role'] !== 'admin') {
     // Redirect to a different page or show an error message
@@ -18,6 +17,7 @@ if ($_SESSION['role'] !== 'admin') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets\img\BMCLogo.png" type="image/png">
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets\css\MainStyle.css">
     <link rel="stylesheet" href="assets\css\search-students.css">
@@ -36,7 +36,7 @@ if ($_SESSION['role'] !== 'admin') {
             padding: 10px;
             box-sizing: border-box;
         }
-        table {
+        /* table {
             width: 100%;
             border-collapse: collapse;
         }
@@ -50,7 +50,7 @@ if ($_SESSION['role'] !== 'admin') {
         th {
             background-color: #f2f2f2;
             cursor: pointer;
-        }
+        } */
         #searchBar {
             width: 100%;
             padding: 10px;
@@ -94,7 +94,7 @@ if ($_SESSION['role'] !== 'admin') {
             text-decoration: none;
             cursor: pointer;
         }
-        .modal-close-btn {
+        .modal-add-btn {
             position: absolute;
             bottom: 10px;
             right: 10px;
@@ -165,14 +165,13 @@ if ($_SESSION['role'] !== 'admin') {
             }
         }
     </script>
-
 </head>
 <body>
     <header class="header">
         <div class="logo-container">
-            <img src="logo.png" alt="Company Logo" class="logo">
+            <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
-        <div class="company-name">Company Name</div>
+        <div class="company-name">BulSU Meneses Violation Management System</div>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
@@ -254,7 +253,7 @@ if ($_SESSION['role'] !== 'admin') {
                         <h3>Assiociated violations:</h3>
                         <input type="text" id="searchReports" onkeyup="filterReports()" placeholder="Search for reports..">
                         <div id="reportsTable" class="reports-table"></div><br><br>
-                        <button onclick="location.href='CreateReport.php'" class="modal-close-btn">Add report</button>
+                        <button onclick="location.href='CreateReport.php'" class="modal-add-btn">Add report</button>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,6 @@ if (!isset($_SESSION['username'])) {
     header("Location: index.html");
     exit();
 }
-
 // Check if the user has the appropriate role (e.g., 'admin')
 if ($_SESSION['owner'] !== 'yes') {
     // Redirect to a different page or show an error message
@@ -14,7 +13,6 @@ if ($_SESSION['owner'] !== 'yes') {
     echo "Access denied. You do not have the necessary permissions to view this page. Only owner can access this page";
     exit();
 }
-
 $current_username = $_SESSION['username']; // Assuming username is stored in the session
 ?>
 <!DOCTYPE html>
@@ -22,12 +20,13 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets\img\BMCLogo.png" type="image/png">
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
     <style>
         /* Basic CSS for layout */
-        table {
+        /* table {
             width: 90%;
             margin: 20px auto;
             border-collapse: collapse;
@@ -40,7 +39,7 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
         }
         th {
             background-color: #f2f2f2;
-        }
+        } */
     </style>
     <script>
         window.onload = function() {
@@ -69,9 +68,9 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
 <body>
     <header class="header">
         <div class="logo-container">
-            <img src="logo.png" alt="Company Logo" class="logo">
+            <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
-        <div class="company-name">Company Name</div>
+        <div class="company-name">BulSU Meneses Violation Management System</div>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
@@ -155,7 +154,6 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
             <button onclick="confirmDelete()">Delete Selected Users</button>
         </div>
     </div>
-
     <script src="js/script.js"></script>
 </body>
 </html>

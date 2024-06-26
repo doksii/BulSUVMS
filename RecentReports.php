@@ -5,7 +5,6 @@ if (!isset($_SESSION['username'])) {
     header("Location: index.html");
     exit();
 }
-
 // Check if the user has the appropriate role (e.g., 'admin')
 if ($_SESSION['role'] !== 'admin') {
     // Redirect to a different page or show an error message
@@ -18,6 +17,7 @@ if ($_SESSION['role'] !== 'admin') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets\img\BMCLogo.png" type="image/png">
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets\css\MainStyle.css">
     <link rel="stylesheet" href="assets\css\search-reports.css">
@@ -28,7 +28,6 @@ if ($_SESSION['role'] !== 'admin') {
             box-sizing: border-box;
             overflow: hidden; /* Prevent content from overflowing */
         }
-
         .scroll-container {
             max-height: 60vh; /* Set max height for the container */
             overflow-y: auto; /* Enable vertical scrolling */
@@ -43,7 +42,7 @@ if ($_SESSION['role'] !== 'admin') {
             margin-bottom: 20px;
             box-sizing: border-box;
         }
-        table {
+        /* table {
             width: 100%;
             border-collapse: collapse;
         }
@@ -54,8 +53,7 @@ if ($_SESSION['role'] !== 'admin') {
         }
         th {
             background-color: #f2f2f2;
-            
-        }
+        } */
         .popup {
             display: none;
             position: fixed;
@@ -116,9 +114,9 @@ if ($_SESSION['role'] !== 'admin') {
 <body>
     <header class="header">
         <div class="logo-container">
-            <img src="logo.png" alt="Company Logo" class="logo">
+            <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
-        <div class="company-name">Company Name</div>
+        <div class="company-name">BulSU Meneses Violation Management System</div>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">

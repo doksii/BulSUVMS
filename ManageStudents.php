@@ -19,6 +19,7 @@ if ($_SESSION['owner'] !== 'yes') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets\img\BMCLogo.png" type="image/png">
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets\css\MainStyle.css">
     <link rel="stylesheet" href="assets\css\search-students.css">
@@ -39,7 +40,7 @@ if ($_SESSION['owner'] !== 'yes') {
             padding: 10px;
             box-sizing: border-box;
         }
-        table {
+        /* table {
             width: 100%;
             border-collapse: collapse;
         }
@@ -53,7 +54,7 @@ if ($_SESSION['owner'] !== 'yes') {
         th {
             background-color: #f2f2f2;
             cursor: pointer;
-        }
+        } */
         #searchBar {
             width: 98%;
             padding: 10px;
@@ -74,7 +75,6 @@ if ($_SESSION['owner'] !== 'yes') {
             justify-content: center;
             align-items: center;
         }
-
         .modal-content {
             background-color: #fefefe;
             margin: auto;
@@ -84,21 +84,18 @@ if ($_SESSION['owner'] !== 'yes') {
             max-width: 500px;
             position: relative;
         }
-
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
-
         .close:hover,
         .close:focus {
             color: black;
             text-decoration: none;
             cursor: pointer;
         }
-
         .modal-confirm-btn {
             background-color: #4CAF50;
             color: white;
@@ -108,11 +105,9 @@ if ($_SESSION['owner'] !== 'yes') {
             font-size: 16px;
             float: right;
         }
-
         .modal-confirm-btn:hover {
             background-color: #45a049;
         }
-
         .modal-cancel-btn {
             background-color: #f44336;
             color: white;
@@ -123,7 +118,6 @@ if ($_SESSION['owner'] !== 'yes') {
             position: relative;
             left: 30%;
         }
-
         .modal-cancel-btn:hover {
             background-color: #da190b;
         }
@@ -248,9 +242,9 @@ if ($_SESSION['owner'] !== 'yes') {
 <body>
     <header class="header">
         <div class="logo-container">
-            <img src="logo.png" alt="Company Logo" class="logo">
+            <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
-        <div class="company-name">Company Name</div>
+        <div class="company-name">BulSU Meneses Violation Management System</div>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
@@ -343,7 +337,6 @@ if ($_SESSION['owner'] !== 'yes') {
             <button onclick="confirmDelete()">Delete Selected Students</button>
         </div>
     </div>
-
     <script src="js/search-students.js"></script>
     <script src="js/script.js"></script>
 </body>
