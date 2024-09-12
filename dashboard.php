@@ -58,10 +58,18 @@ if ($_SESSION['role'] !== 'admin') {
                 </ul>
             </div>
         </div>
-        <div class="content">
-            <h1>Welcome, <?php echo $_SESSION['display_name']; ?>!</h1>
-            <h1>Welcome to the Dashboard!</h1>
-            <p>This is a simple dashboard page. new update</p>
+        <div class="dashboardContainer">
+            <div class="dashboardMessage">
+                <h2>Welcome back, <?php echo $_SESSION['display_name']; ?>!</h2>
+            </div>
+            <div class="dashboardContent">
+                <div class="left">
+                    <div class="tile1">Tile 1</div>
+                    <div class="tile2">Tile 2</div>
+                </div>
+                <div class="tile3">Tile 3</div>
+            </div>
+            
         </div>
     </div>
     <script src="js/script.js"></script>
