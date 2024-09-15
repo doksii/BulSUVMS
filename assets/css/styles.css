@@ -12,15 +12,17 @@ body {
 
 .login-container {
     width: 300px;
-    padding: 20px;
+    padding: 15px;
     border: 2px solid rgba(255, 255, 255, 0);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0);
     background-color: rgba(0, 0, 0, 0.5); 
     backdrop-filter: blur(2px); 
     position: absolute; 
-    top: 300px; 
+    top: 350px; 
+
 }
+
 h2 {
     text-align: left;
     color: white;
@@ -36,8 +38,13 @@ input[type="password"] {
     border: none; 
     border-radius: 5px; 
     background-color: transparent; 
-    box-sizing: border-box;
+    box-sizing: border-box; 
 }
+
+input::placeholder {
+    color:rgb(220, 213, 213);
+}
+
 button {
     display: block;
     width: 100%;
@@ -59,4 +66,24 @@ button:hover {
 #error-message {
     color: red;
     text-align: center;
+}
+
+input {
+    border: none;
+    border-bottom: 2px solid white; 
+    background: transparent; 
+    color: white; 
+    padding: 10px 0;
+    font-size: px;
+    width: 100%;
+}
+
+input::placeholder {
+    color: white; 
+    opacity: 1;   
+}
+
+input:focus {
+    outline: none; 
+    border-bottom: 2px solid lightgray; 
 }
