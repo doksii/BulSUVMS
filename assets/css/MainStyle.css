@@ -201,17 +201,70 @@ th {
     background-color: #45a049;
 }
 
-
-/* End of Settings */
-
 .content {
-    outline: solid salmon;
+    /* outline: solid salmon; */
     margin-left: 250px;
     margin-right: 10px;
     text-align: left;
 }
+/* End of Settings */
+/* start of dashboard */
 
+.dashboardContainer {
+    /* outline: solid salmon; */
+    margin-left: 250px;
+    margin-right: 10px;
+    margin-top: 50px;
+    text-align: left;
+}
+.dashboardMessage {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.dashboardContent {
+    display: flex;
+    height: 70vh; /* Full height of the viewport */
+}
+.container {
+    display: flex;
+    height: 100vh; /* Full height of the viewport */
+    background-color: #e2baba;
+}
 
+.left {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.tile1, .tile2 {
+    flex: 1;
+    margin: 5px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tile1, .tile2  {
+    margin: 5px;
+    background-color: beige;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tile3 {
+    margin: 5px;
+    width: 50%;
+    background-color: beige;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* end of dashboard */
 @media (max-width: 768px) {
     .sidebar {
         width: 100%;
@@ -228,4 +281,40 @@ th {
         margin-left: 10px;
         margin-right: 10px;
     }
+}
+.School
+{
+    position: relative;
+	margin: 10px;
+	overflow: hidden;
+}
+.School img
+{
+	width: 400px;
+	height: 240px;
+	object-fit: cover;
+	transition: transform 0.3s ease;
+    border:3px solid goldenrod;
+    border-radius: 10px;
+}
+.School:hover img
+{
+    transform: scale(1.2);
+}
+.credsinfo
+{
+    position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	padding: 20px;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+.School:hover .credsinfo
+{
+    opacity: 1;
 }
