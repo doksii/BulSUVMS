@@ -87,3 +87,24 @@ input:focus {
     outline: none; 
     border-bottom: 2px solid lightgray; 
 }
+
+.logo-container {
+    /* Adjust positioning if needed */
+    display: flex; /* Use Flexbox for positioning */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically if height is specified */
+    height: 150px; /* Set a height for vertical centering if needed */
+    margin: 20px 0; /* Adds vertical space around the logo container */
+    /* Optional: Border to visualize the container */
+    border: 1px solid #ddd; 
+}
+
+/* Styling for the logo image */
+.logo {
+    height: 200px; /* Set the height of the logo */
+    width: auto; /* Maintain aspect ratio */
+    /* Optional: Adjust width if needed */
+    /* width: 100px; */
+    /* Optional: Margin for additional spacing */
+    margin: 0; /* Adjust margins as needed */
+}
