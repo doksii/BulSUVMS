@@ -27,7 +27,11 @@ if ($_SESSION['role'] !== 'admin') {
         <div class="logo-container">
             <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
-        <div class="company-name">BulSU Meneses Violation Management System</div>
+        <div class="company-name">
+        <h1>BULACAN STATE UNIVERSITY MENESES</h1>
+        <div class="line"></div>
+        <h2>VIOLATION MANAGEMENT SYSTEM</h2>
+        </div>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
