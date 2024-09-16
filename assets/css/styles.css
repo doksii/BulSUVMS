@@ -88,3 +88,13 @@ input:focus {
     border-bottom: 2px solid lightgray; 
 }
 
+h1 {
+    font-family: 'Arial', sans-serif; 
+    font-size: 48px; 
+    color: white; 
+    text-align: center; 
+    letter-spacing: 7px;
+    text-shadow:-2px -2px 0 black, 2px -2px 0 black,  -2px 2px 0 black,  2px 2px 0 black;   
+    margin-top: -100px;
+    
+}
