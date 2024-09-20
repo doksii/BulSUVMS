@@ -8,11 +8,26 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url("../img/BMCLoginWP.jpg");
+    background-image: url("../img/BMCLoginWP.png");
     background-size: cover;
     background-position: center;
 }
+.LogInContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title-container {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+}
 
+.Logo {
+    margin-left: 20px;
+    margin-right: 20px;
+}
 .login-container {
     width: 330px;
     padding: 15px;
@@ -20,10 +35,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0);
     background-color: rgba(0, 0, 0, 0.5); 
-    backdrop-filter: blur(2px); 
-    position: absolute; 
-    top: 450px; 
-
+    backdrop-filter: blur(2px);
 }
 
 h2 {
@@ -93,11 +105,17 @@ input:focus {
 
 h1 {
     font-family: 'Arial', sans-serif; 
-    font-size: 48px; 
+    font-size: 40px; 
     color: white; 
     text-align: center; 
-    letter-spacing: 7px;
-    text-shadow:-2px -2px 0 black, 2px -2px 0 black,  -2px 2px 0 black,  2px 2px 0 black;   
-    margin-top: -100px;
+    color: #f8f8f8;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    text-shadow: 
+        1px 1px 2px #000, 
+        0 0 25px #080505, 
+        0 0 5px #333;  
     
 }
