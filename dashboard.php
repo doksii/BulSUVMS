@@ -28,9 +28,10 @@ if ($_SESSION['role'] !== 'admin') {
             <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
         <div class="company-name">
-        <h1>BULACAN STATE UNIVERSITY MENESES</h1>
-        <div class="line"></div>
-        <h2>VIOLATION MANAGEMENT SYSTEM</h2>
+            <div class="company-name-container">
+                <h1 class="company-name1">BULACAN STATE UNIVERSITY MENESES</h1>
+                <h2 class="company-name2">VIOLATION MANAGEMENT SYSTEM</h2>
+            </div>
         </div>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
