@@ -7,6 +7,7 @@
     padding: 0;
     box-sizing: border-box;
 } */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -26,6 +27,40 @@ th {
     background-color: #f2f2f2;
     cursor: pointer;
 }
+.FormContainer {
+    margin-top: 30px;
+    background-color: beige;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 6px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px; /* Adjust the width of the form as needed */
+  }
+  
+.FormContainer h2 {
+    text-align: center;
+  }
+  
+.FormContainer input, .FormContainer select, .FormContainer button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+.FormContainer input {
+      width: 94%
+  }
+.FormContainer button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+.FormContainer button:hover {
+    background-color: #0056b3;
+  }
+
 /* Start of Header */
 
 .header {
@@ -60,10 +95,13 @@ th {
     align-items: center;
     height: 90%;
 }
+
 .company-name-container {
     text-align: center;
 }
+
 .company-name1, .company-name2 {
+    margin: 0;
     color: #f8f8f8;
     font-family: 'Times New Roman', Times, serif;
     letter-spacing: 3px;
@@ -77,6 +115,7 @@ th {
 .company-name1 {
     font-size: 1.25rem;
 }
+
 .company-name2 {
     margin-top: 5px;
     flex-grow: 1;
@@ -90,6 +129,7 @@ th {
 }
 
 .dropbtn {
+    margin: 0;
     background-color: salmon;
     color: white;
     padding: 10px 20px;
@@ -168,8 +208,9 @@ th {
 .sidebar.hidden {
     left: -240px; /* Sidebar is hidden */
 }
+
 .sidebar .menu {
-    margin-top: 10%;
+    margin-top: 0;
     padding: 0;
 }
 
@@ -237,28 +278,22 @@ th {
     margin-right: 10px;
     text-align: left;
 }
+
 /* End of Settings */
 
 /* start of dashboard */
 
-.dashboardContainer {
+.MainContainer {
     /* outline: solid salmon; */
     margin-left: 250px;
     margin-right: 10px;
     margin-top: 50px;
     text-align: left;
 }
-.dashboardMessage {
-    font-family: Arial, Helvetica, sans-serif;
-}
+
 .dashboardContent {
     display: flex;
     height: 70vh; /* Full height of the viewport */
-}
-.container {
-    display: flex;
-    height: 100vh; /* Full height of the viewport */
-    background-color: #e2baba;
 }
 
 .left {
@@ -296,6 +331,162 @@ th {
 }
 
 /* end of dashboard */
+
+/* start of recent report */
+/* end of recent report */
+
+/* start of create report */
+
+.CreateReportContent {
+    padding: 0; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* This will center the form both vertically and horizontally */
+}
+
+.search-results {
+    border: .2px solid #ddd;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.search-item {
+    padding: 10px;
+    cursor: pointer;
+}
+.search-item:hover {
+    background-color: #f0f0f0;
+}
+
+.ReportFormContainer {
+    margin-top: 30px;
+    background-color: beige;
+    border-radius: 10px;
+    box-shadow: 6px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 950px; /* Adjust the width of the form as needed */
+}
+  
+.ReportFormContainer h2 {
+    text-align: center;
+}
+  
+.ReportFormContainer input, .ReportFormContainer select, .ReportFormContainer button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.ReportFormContainer input {
+      width: 96.5%
+}
+.ReportFormContainer button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    width: 100%
+}
+  
+.ReportFormContainer button:hover {
+    background-color: #0056b3;
+}
+
+.CreateReportForm {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 100%; /* Adjust width as necessary */
+    margin: auto;
+}
+
+.ReportForm {
+    display: flex;
+    justify-content: space-between; /* Ensures spacing between the two main sections */
+}
+
+.LeftSideForm {
+    flex-basis: 30%; /* Adjust based on your preference */
+    padding-right: 20px; /* Provides some spacing between the two sections */
+}
+
+.RightSideForm {
+    flex-basis: 68%; /* Takes the remaining space minus some for the gap */
+}
+
+.TwoFill {
+    display: flex;
+    width: 98%;
+    justify-content: space-between; /* Ensures spacing between the two main sections */
+}
+
+.Fill1 {
+    flex-basis: 50%; /* Adjust based on your preference */
+    padding-right: 20px; /* Provides some spacing between the two sections */
+}
+
+.Fill2 {
+    flex-basis: 50%; /* Takes the remaining space minus some for the gap */
+}
+
+.ReportBox {
+    height: 90px;
+}
+
+.LO, .LGO, .GO, .DAP{
+    text-align: left;
+}
+.LO {
+    background-color: rgba(255, 252, 127, 0.5);
+}
+.LGO {
+    background-color: rgb(255, 165, 0, 0.5);
+}
+.GO {
+    background-color: rgb(255, 0, 0, 0.5);
+}
+.DAP {
+    background-color: rgba(173, 216, 230, 0.5);
+}
+/* end of create report */
+
+/* start of list of student */
+/* end of list of student */
+
+/* start of add student */
+
+.AddStudentContent {
+    padding: 0; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* This will center the form both vertically and horizontally */
+}
+
+/* end of start student */
+
+/* start of create account */
+
+.CreateAccountContent {
+    padding: 0; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* This will center the form both vertically and horizontally */
+}
+
+/* end of create account */
+
+/* start of account setting */
+
+.AccountSettingContent {
+    padding: 0; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* This will center the form both vertically and horizontally */
+}
+
+/* end of account setting */
+
 @media (max-width: 768px) {
     .sidebar {
         width: 100%;

@@ -77,28 +77,33 @@ if ($_SESSION['role'] !== 'admin') {
                 </ul>
             </div>
         </div>
-        <div class="content">
+        <div class="MainContainer">
             <!-- Content of the dashboard page goes here -->
-            <h1>Welcome to the acc Settings!</h1>
-            <p>This is a simple Settings page.</p>
-            <form id="accountSettingsForm" action="php/accountsettings_process.php" method="POST">
-                <label for="new_username">Username:</label>
-                <input type="text" id="new_username" name="new_username" value="<?php echo $_SESSION['username']; ?>"><br>
+            <div class="WelcomeMessage">
+                <h2>Welcome to the Add Students <?php echo $_SESSION['display_name']; ?>!</h2>
+            </div>
+            <div class="AccountSettingContent">
+                <div class="FormContainer">
+                    <form id="accountSettingsForm" action="php/accountsettings_process.php" method="POST">
+                        <label for="new_username">Username:</label>
+                        <input type="text" id="new_username" name="new_username" value="<?php echo $_SESSION['username']; ?>">
 
-                <label for="new_display_name">Display Name:</label>
-                <input type="text" id="new_display_name" name="new_display_name" value="<?php echo $_SESSION['display_name']; ?>"><br>
+                        <label for="new_display_name">Display Name:</label>
+                        <input type="text" id="new_display_name" name="new_display_name" value="<?php echo $_SESSION['display_name']; ?>">
 
-                <label for="new_password">New Password:</label>
-                <input type="password" id="new_password" name="new_password"><br>
+                        <label for="new_password">New Password:</label>
+                        <input type="password" id="new_password" name="new_password" placeholder="Enter New Password">
 
-                <label for="confirm_new_password">Confirm New Password:</label>
-                <input type="password" id="confirm_new_password" name="confirm_new_password"><br>
+                        <label for="confirm_new_password">Confirm New Password:</label>
+                        <input type="password" id="confirm_new_password" name="confirm_new_password" placeholder="Enter New Password Again">
 
-                <label for="current_password">Current Password (for verification):</label>
-                <input type="password" id="current_password" name="current_password" required><br>
+                        <label for="current_password">Password (for verification):</label>
+                        <input type="password" id="current_password" name="current_password" placeholder="Enter Current Password" required>
 
-                <input type="submit" value="Save Changes">
-            </form>
+                        <button type="submit">Save Changes</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <script src="js/script.js"></script>

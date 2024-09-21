@@ -63,8 +63,8 @@ if ($_SESSION['role'] !== 'admin') {
                 </ul>
             </div>
         </div>
-        <div class="dashboardContainer">
-            <div class="dashboardMessage">
+        <div class="MainContainer">
+            <div class="WelcomeMessage">
                 <h2>Welcome back, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
             <div class="dashboardContent">
