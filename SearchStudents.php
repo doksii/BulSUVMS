@@ -22,41 +22,6 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="assets\css\MainStyle.css">
     <link rel="stylesheet" href="assets\css\search-students.css">
     <style>
-        .content {
-            flex: 1;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow: hidden; /* Prevent content from overflowing */
-        }
-        .scroll-container {
-            max-height: 60vh; /* Set max height for the container */
-            overflow-y: auto; /* Enable vertical scrolling */
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        /* table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-            cursor: pointer;
-        } */
-        #searchBar {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
         .modal {
             display: none;
             position: fixed;
@@ -207,9 +172,11 @@ if ($_SESSION['role'] !== 'admin') {
                 </ul>
             </div>
         </div>
-        <div class="content">
-            <h1>Search Students</h1>
-            <input type="text" id="searchBar" onkeyup="filterTable()" placeholder="Search for students..">
+        <div class="MainContainer">
+            <div class="WelcomeMessage">
+                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+            </div>
+            <input type="text" id="searchBar" class="searchBar" onkeyup="filterTable()" placeholder="Search for students..">
             <div class="scroll-container">
                 <table id="studentTable">
                     <thead>

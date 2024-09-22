@@ -106,8 +106,10 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
                 </ul>
             </div>
         </div>
-        <div class="content">
-            <h1>Manage Accounts</h1>
+        <div class="MainContainer">
+            <div class="WelcomeMessage">
+                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+            </div>
             <form method="POST" action="php/update_role.php" id="updateForm">
                 <table border="1">
                     <thead>

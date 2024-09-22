@@ -107,7 +107,7 @@ if ($_SESSION['role'] !== 'admin') {
         <div class="MainContainer">
             <!-- Content of the dashboard page goes here -->
             <div class="WelcomeMessage">
-                <h2>Welcome back, <?php echo $_SESSION['display_name']; ?>!</h2>
+                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
             <div class="CreateReportContent">
                 <div class="ReportFormContainer">

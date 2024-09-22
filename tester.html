@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Add overflow to the table container if necessary */
+.table-container {
+  max-height: 400px; /* You can adjust the height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Apply the sticky property to the table headers */
+table thead th {
+  position: sticky;
+  top: 0;
+  background-color: white; /* Optional: Set background color */
+  z-index: 1; /* Ensure the header stays on top */
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for effect */
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+    <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Incident No</th>
+              <th>Student Name</th>
+              <th>Violation</th>
+              <th>Date Created</th>
+              <th>Created By</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Table rows go here -->
+            <tr>
+              <td>3</td>
+              <td>Valdez, Andro Marc R.</td>
+              <td>Dishonesty on Academic Pursuits...</td>
+              <td>2024-06-14 09:47:40</td>
+              <td>andromarc</td>
+              <td><button>View</button></td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+      </div>
+      
+</body>
+</html>

@@ -22,26 +22,6 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="assets\css\MainStyle.css">
     <link rel="stylesheet" href="assets\css\search-reports.css">
     <style>
-        .content {
-            flex: 1;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow: hidden; /* Prevent content from overflowing */
-        }
-        .scroll-container {
-            max-height: 60vh; /* Set max height for the container */
-            overflow-y: auto; /* Enable vertical scrolling */
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        #searchBar {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
         /* table {
             width: 100%;
             border-collapse: collapse;
@@ -152,9 +132,11 @@ if ($_SESSION['role'] !== 'admin') {
                 </ul>
             </div>
         </div>
-        <div class="content">
-            <h1>Recent Reports</h1>
-            <input type="text" id="searchBar" onkeyup="filterTable()" placeholder="Search for reports..">
+        <div class="MainContainer">
+            <div class="WelcomeMessage">
+                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+            </div>
+            <input type="text" id="searchBar" class="searchBar" onkeyup="filterTable()" placeholder="Search for reports..">
             <div class="scroll-container">
                 <table id="reportTable">
                     <thead>
