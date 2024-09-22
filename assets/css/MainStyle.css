@@ -29,14 +29,14 @@ th, td {
 th {
     position: sticky;
     top: 0;
-    background-color: rgb(224, 176, 176); /* Optional: Set background color */
+    background-color: #F0A8D0; /* Optional: Set background color */
     z-index: 1; /* Ensure the header stays on top */
     padding: 10px;
 }
 
 .FormContainer {
     margin-top: 30px;
-    background-color: beige;
+    background-color: #D8CFC4;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 6px 4px 8px rgba(0, 0, 0, 0.1);
@@ -61,13 +61,13 @@ th {
 }
 
 .FormContainer button {
-    background-color: #007bff;
+    background-color: #333333;
     color: white;
     cursor: pointer;
 }
   
 .FormContainer button:hover {
-    background-color: #0056b3;
+    background-color: #4e4d4d;
 }
 
 .scroll-container {
@@ -93,8 +93,8 @@ th {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: salmon;
-    color: #fff;
+    background-color: #F0A8D0;
+    color: #333333;
     z-index: 1000;
 }
 
@@ -124,7 +124,7 @@ th {
 
 .company-name1, .company-name2 {
     margin: 0;
-    color: #f8f8f8;
+    color: #FFFFF0;
     font-family: 'Times New Roman', Times, serif;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -152,20 +152,24 @@ th {
 
 .dropbtn {
     margin: 0;
-    background-color: salmon;
+    background-color: #F0A8D0;
     color: white;
     padding: 10px 20px;
     font-size: 16px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    text-shadow: 
+        1px 1px 2px #000, 
+        0 0 25px #777, 
+        0 0 5px #333;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
     right: 0;
-    background-color: #f9f9f9;
+    background-color: #FFFFF0;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -187,7 +191,7 @@ th {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: rgb(247, 159, 150);
+    background-color: #F7B5CA;
 }
 
 /* End of Header */
@@ -216,8 +220,8 @@ th {
     left: 0; /* Hide sidebar by default */
     width: 200px;
     height: calc(100% - 50px); /* Adjusted to account for the header height */
-    background-color: #333;
-    color: #fff;
+    background-color: #333333;
+    color: #C0C0C0;
     padding: 20px;
     transition: left 0.3s ease;
     display: flex;
@@ -250,18 +254,18 @@ th {
 
 .sidebar ul li a {
     display: block;
-    color: #fff;
+    color: #FFFFF0;
     text-decoration: none;
     padding: 10px;
     padding-left: 25px;
     padding-right: 25px;
     margin: 15px;
-    outline: solid pink;
+    outline: solid #F0A8D0;
     border-radius: 30px;
 }
 
 .sidebar ul li a:hover {
-    background-color: #555;
+    background-color: #4e4d4d;
 }
 
 /* End of Sidebar */
@@ -276,9 +280,9 @@ th {
 }
 
 .settings-buttons button {
-    background-color: #4CAF50; /* Green */
+    background-color: #333333; /* Green */
     border: none;
-    color: white;
+    color: #FFFFF0;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -291,7 +295,7 @@ th {
 }
 
 .settings-buttons button:hover {
-    background-color: #45a049;
+    background-color: #4e4d4d;
 }
 
 .content {
@@ -335,7 +339,7 @@ th {
 
 .tile1, .tile2  {
     margin: 5px;
-    background-color: beige;
+    background-color: #D8CFC4;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -345,7 +349,7 @@ th {
 .tile3 {
     margin: 5px;
     width: 50%;
-    background-color: beige;
+    background-color: #D8CFC4;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -381,7 +385,7 @@ th {
 
 .ReportFormContainer {
     margin-top: 30px;
-    background-color: beige;
+    background-color: #D8CFC4;
     border-radius: 10px;
     box-shadow: 6px 4px 8px rgba(0, 0, 0, 0.1);
     width: 950px; /* Adjust the width of the form as needed */
@@ -403,19 +407,19 @@ th {
       width: 96.5%
 }
 .ReportFormContainer button {
-    background-color: #007bff;
+    background-color: #333333;
     color: white;
     cursor: pointer;
     width: 100%
 }
   
 .ReportFormContainer button:hover {
-    background-color: #0056b3;
+    background-color: #4e4d4d;
 }
 
 .CreateReportForm {
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: #D8CFC4;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
