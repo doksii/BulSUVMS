@@ -1,3 +1,8 @@
+<!-- TO BE REMOVE -->
+
+
+
+
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
@@ -280,7 +285,7 @@ if ($_SESSION['owner'] !== 'yes') {
                 </ul>
             </div>
         </div>
-        <div class="content">
+        <div class="MainContainer">
             <h2>Manage Students</h2>
             <input type="text" id="searchBar" onkeyup="filterTable()" placeholder="Search for students..">
             <div class="scroll-container">

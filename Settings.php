@@ -74,15 +74,21 @@ if ($_SESSION['role'] !== 'admin') {
                 </ul>
             </div>
         </div>
-        <div class="content">
+        <div class="MainContainer">
             <!-- Content of the dashboard page goes here -->
-            <h1>Settings</h1>
-            <div class="settings-buttons">
-                <button onclick="location.href='AccountSettings.php'">Account Settings</button>
-                <button onclick="location.href='CreateAccount.php'">Create Account</button>
-                <button onclick="location.href='ManageAccounts.php'">Manage Accounts</button>
-                <button onclick="location.href='ManageStudents.php'">Manage Students</button>
+            <div class="WelcomeMessage">
+                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
+            <div class="SettingsContent">
+                <div class="settings-buttons">
+                    <h2>Settings</h2>
+                    <button onclick="location.href='AccountSettings.php'">Account Settings</button>
+                    <button onclick="location.href='CreateAccount.php'">Create Account</button>
+                    <button onclick="location.href='ManageAccounts.php'">Manage Accounts</button>
+                    <!-- <button onclick="location.href='ManageStudents.php'">Manage Students</button> -->
+                </div>
+            </div>
+            
         </div>
     </div>
 
