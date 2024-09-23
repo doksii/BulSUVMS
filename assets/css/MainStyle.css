@@ -229,6 +229,7 @@ th {
     justify-content: center;
     align-items: center;
     text-align: center;
+    z-index: 1001;
 }
 
 .sidebar.hidden {
@@ -298,12 +299,6 @@ th {
     background-color: #4e4d4d;
 }
 
-.content {
-    /* outline: solid salmon; */
-    margin-left: 250px;
-    margin-right: 10px;
-    text-align: left;
-}
 
 /* End of Settings */
 
@@ -525,55 +520,26 @@ th {
 /* end of manage account */
 
 @media (max-width: 768px) {
+    
     .sidebar {
         width: 100%;
         left: -100%;
         padding: 0px;
     }
+
     .sidebar.hidden {
         left: 0px; /* Sidebar is hidden */
     }
+
     .hamburger-menu {
         z-index: 1001;
     }
-    .content {
+
+    .MainContainer {
+        /* outline: solid salmon; */
         margin-left: 10px;
         margin-right: 10px;
+        margin-top: 50px;
+        text-align: left;
     }
-}
-.School
-{
-    position: relative;
-	margin: 10px;
-	overflow: hidden;
-}
-.School img
-{
-	width: 400px;
-	height: 240px;
-	object-fit: cover;
-	transition: transform 0.3s ease;
-    border:3px solid goldenrod;
-    border-radius: 10px;
-}
-.School:hover img
-{
-    transform: scale(1.2);
-}
-.credsinfo
-{
-    position: absolute;
-	top: 0;
-	left: 0;
-	background-color: rgba(0, 0, 0, 0.5);
-	color: #fff;
-	padding: 20px;
-	width: 100%;
-	height: 100%;
-	opacity: 0;
-	transition: opacity 0.3s ease;
-}
-.School:hover .credsinfo
-{
-    opacity: 1;
 }
