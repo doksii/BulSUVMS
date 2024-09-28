@@ -6,7 +6,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 // Check if the user has the appropriate role (e.g., 'admin')
-if ($_SESSION['super_admin'] !== 'yes') {
+if ($_SESSION['owner'] !== 'yes') {
     // Redirect to a different page or show an error message
     header("Location: Settings.php?status=failed");
     echo "Access denied. You do not have the necessary permissions to view this page.";
