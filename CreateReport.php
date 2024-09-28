@@ -22,7 +22,22 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+    <style>
+        textarea {
+            resize: none; /* Prevent resizing of the box */
+            overflow-wrap: break-word; /* Ensures text wraps correctly */
+            white-space: pre-wrap; /* Preserves spaces and line breaks */
+            vertical-align: top; /* Aligns text to the top */
+            height: auto; /* You can adjust this based on your desired size */
+            width: 100%; /* Ensure the textarea occupies full width */
+            box-sizing: border-box; /* Ensures padding is included in the width */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 10px;
+        }
+    </style>
     <script>
         $(document).ready(function() {
             $('#student_search').on('input', function() {
@@ -164,7 +179,7 @@ if ($_SESSION['role'] !== 'admin') {
                                 <input type="text" id="action_taken" name="action_taken" required>
 
                                 <label for="detailed_report">Report Summary:</label>
-                                <input type="text" id="detailed_report" class="ReportBox" name="detailed_report" required></input>
+                                <textarea class="Summary" id="detailed_report" name="detailed_report" rows="5" cols="23"></textarea>
 
                                 <!-- Hidden field to store the user ID -->
                                 <input type="hidden" name="created_by" value="<?php echo $_SESSION['display_name']; ?>">
