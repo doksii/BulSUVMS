@@ -23,67 +23,19 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="assets/css/MainStyle.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        /* Add some basic styling for the search box and results */
-        #search-results {
-            border: .2px solid #ddd;
-            width: 70%;
-            max-height: 100px;
-            overflow-y: auto;
-        }
-        .search-item {
+        textarea {
+            resize: none; /* Prevent resizing of the box */
+            overflow-wrap: break-word; /* Ensures text wraps correctly */
+            white-space: pre-wrap; /* Preserves spaces and line breaks */
+            vertical-align: top; /* Aligns text to the top */
+            height: auto; /* You can adjust this based on your desired size */
+            width: 100%; /* Ensure the textarea occupies full width */
+            box-sizing: border-box; /* Ensures padding is included in the width */
             padding: 10px;
-            cursor: pointer;
-        }
-        .search-item:hover {
-            background-color: #f0f0f0;
-        }
-        #student_search {
-            width: 70%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        .scroll-container {
-            max-width: 100vw; /* Set max width for the container */
-            overflow-x: auto; /* Enable horizontal scrolling */
-            margin-top: 20px;
-            /* border: 1px solid #ccc; */
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        #violation {
-            padding: 5px;
             border: 1px solid #ccc;
-            width: 98%; /* Adjust as needed */
-            text-align: left;
-            padding: 10px;
-        }
-        #no_of_offense {
-            padding: 5px;
-            border: 1px solid #ccc;
-            width: 50%; /* Adjust as needed */
-            text-align: left;
-            padding: 10px;
-        }
-        #date_of_violation {
-            padding: 5px;
-            border: 1px solid #ccc;
-            width: 20%; /* Adjust as needed */
-            padding: 10px;
-        }
-        .LO, .LGO, .GO, .DAP{
-            text-align: left;
-        }
-        .LO {
-            background-color: rgba(255, 252, 127, 0.5);
-        }
-        .LGO {
-            background-color: rgb(255, 165, 0, 0.5);
-        }
-        .GO {
-            background-color: rgb(255, 0, 0, 0.5);
-        }
-        .DAP {
-            background-color: rgba(173, 216, 230, 0.5);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 10px;
         }
     </style>
     <script>
@@ -131,7 +83,12 @@ if ($_SESSION['role'] !== 'admin') {
         <div class="logo-container">
             <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
-        <div class="company-name">BulSU Meneses Violation Management System</div>
+        <div class="company-name">
+            <div class="company-name-container">
+                <h1 class="company-name1">BULACAN STATE UNIVERSITY MENESES</h1>
+                <h2 class="company-name2">VIOLATION MANAGEMENT SYSTEM</h2>
+            </div>
+        </div>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
@@ -162,61 +119,75 @@ if ($_SESSION['role'] !== 'admin') {
                 </ul>
             </div>
         </div>
-        <div class="content">
-            <!-- Content of the dashboard page goes here -->
-            <h1>Welcome to the CreateReport!</h1>
-            <p>This is a simple CreateReport page.</p>
-            <div class="scroll-container">
-                <form action="php/createreport_process.php" method="post">
-                    <label for="student_search">Search Student:</label><br>
-                    <input type="text" id="student_search" name="student_search" autocomplete="off" placeholder="Name or Student number">
-                    <div id="search-results"></div><br>
+        <div class="MainContainer">
+            <div class="WelcomeMessage">
+                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+            </div>
+            <div class="CreateReportContent">
+                <div class="ReportFormContainer">
+                    <form class="CreateReportForm" action="php/createreport_process.php" method="post">
+                        <div class="ReportForm">
+                            <div class="LeftSideForm">
+                                <label for="student_search">Search Student:</label>
+                                <input type="text" id="student_search" name="student_search" autocomplete="off" placeholder="Name or Student number">
+                                <div id="search-results" class="search-results"></div>
 
-                    <input type="hidden" id="student_number" name="student_number">
+                                <input type="hidden" id="student_number" name="student_number">
+                            </div>
+                            <div class="RightSideForm">
+                                <label for="violation">Violation:</label>
+                                <select id="violation" name="violation" required>
+                                    <option value="" disabled selected>--Select an violation--</option>
+                                    <option class="LO" value="Light Offenses: Littering or distribution of unauthorized printed material">Light Offenses: Littering or distribution of unauthorized printed material</option>
+                                    <option class="LO" value="Light Offenses: Vandalism or unauthorized posting of printed materials">Light Offenses: Vandalism or unauthorized posting of printed materials</option>
+                                    <option class="LO" value="Light Offenses: Disturbance or disruption of the educational environment, classes or any education related programs or activities">Light Offenses: Disturbance or disruption of the educational environment, classes or any education related programs or activities</option>
+                                    <option class="LO" value="Light Offenses: Unauthorized solicitation of funds or selling of any ticket">Light Offenses: Unauthorized solicitation of funds or selling of any ticket</option>
+                                    <option class="LGO" value="Less Grave Offenses: Smoking, gambling or being under the influence of alcohol within the university premises">Less Grave Offenses: Smoking, gambling or being under the influence of alcohol within the university premises</option>
+                                    <option class="LGO" value="Less Grave Offenses: Malicious or unfounded accusation towards any member of the academic community">Less Grave Offenses: Malicious or unfounded accusation towards any member of the academic community</option>
+                                    <option class="LGO" value="Less Grave Offenses: Deception, Impersonation, or Fraud">Less Grave Offenses: Deception, Impersonation, or Fraud</option>
+                                    <option class="LGO" value="Less Grave Offenses: Disrespectful behavior in words and in deeds or refusal to comply with directions of the University officials and employees acting in the performance of their duties">Less Grave Offenses: Disrespectful behavior in words and in deeds or refusal to comply with directions of the University officials and employees acting in the performance of their duties</option>
+                                    <option class="LGO" value="Less Grave Offenses: Damage or unauthorized presence in or use of University premises, facilities or property, in violation of posted signs, when closed, or after normal operating hours">Less Grave Offenses: Damage or unauthorized presence in or use of University premises, facilities or property, in violation of posted signs, when closed, or after normal operating hours</option>
+                                    <option class="GO" value="Grave Offenses: Theft, attempted theft, and/or unauthorized possession or use of property/services belonging to the University or a member of the University community">Grave Offenses: Theft, attempted theft, and/or unauthorized possession or use of property/services belonging to the University or a member of the University community</option>
+                                    <option class="GO" value="Grave Offenses: Indecency in any form of obscene or lewd behavior (necking, petting or torrid kissing or other sexual act) inside the university premises">Grave Offenses: Indecency in any form of obscene or lewd behavior (necking, petting or torrid kissing or other sexual act) inside the university premises</option>
+                                    <option class="GO" value="Grave Offenses: Physical/verbal/sexual/mental/emotional abuse, threat, harassment, cyber bullying, hazing, coercion and/or other conduct that threatens or endangers the health or safety of any person">Grave Offenses: Physical/verbal/sexual/mental/emotional abuse, threat, harassment, cyber bullying, hazing, coercion and/or other conduct that threatens or endangers the health or safety of any person</option>
+                                    <option class="GO" value="Grave Offenses: Possession, use, sale or purchase of any illegal drugs inside the university premises">Grave Offenses: Possession, use, sale or purchase of any illegal drugs inside the university premises</option>
+                                    <option class="GO" value="Grave Offenses: Carrying of firearms and other weapons within the University campuses and premises">Grave Offenses: Carrying of firearms and other weapons within the University campuses and premises</option>
+                                    <option class="DAP" value="Dishonesty on Academic Pursuits: Academic misconduct: Cheating">Dishonesty on Academic Pursuits: Academic misconduct: Cheating</option>
+                                    <option class="DAP" value="Dishonesty on Academic Pursuits: Academic misconduct: Plagiarism in theses, literary and creative works">Dishonesty on Academic Pursuits: Academic misconduct: Plagiarism in theses, literary and creative works</option>
+                                    <option class="DAP" value="Dishonesty on Academic Pursuits: Falsification or forging of academic records and official documents">Dishonesty on Academic Pursuits: Falsification or forging of academic records and official documents</option>
+                                </select>
 
-                    <label for="violation">Violation:</label><br>
-                    <select id="violation" name="violation" required>
-                        <option value="" disabled selected>--Select an violation--</option>
-                        <option class="LO" value="Light Offenses: Littering or distribution of unauthorized printed material">Light Offenses: Littering or distribution of unauthorized printed material</option>
-                        <option class="LO" value="Light Offenses: Vandalism or unauthorized posting of printed materials">Light Offenses: Vandalism or unauthorized posting of printed materials</option>
-                        <option class="LO" value="Light Offenses: Disturbance or disruption of the educational environment, classes or any education related programs or activities">Light Offenses: Disturbance or disruption of the educational environment, classes or any education related programs or activities</option>
-                        <option class="LO" value="Light Offenses: Unauthorized solicitation of funds or selling of any ticket">Light Offenses: Unauthorized solicitation of funds or selling of any ticket</option>
-                        <option class="LGO" value="Less Grave Offenses: Smoking, gambling or being under the influence of alcohol within the university premises">Less Grave Offenses: Smoking, gambling or being under the influence of alcohol within the university premises</option>
-                        <option class="LGO" value="Less Grave Offenses: Malicious or unfounded accusation towards any member of the academic community">Less Grave Offenses: Malicious or unfounded accusation towards any member of the academic community</option>
-                        <option class="LGO" value="Less Grave Offenses: Deception, Impersonation, or Fraud">Less Grave Offenses: Deception, Impersonation, or Fraud</option>
-                        <option class="LGO" value="Less Grave Offenses: Disrespectful behavior in words and in deeds or refusal to comply with directions of the University officials and employees acting in the performance of their duties">Less Grave Offenses: Disrespectful behavior in words and in deeds or refusal to comply with directions of the University officials and employees acting in the performance of their duties</option>
-                        <option class="LGO" value="Less Grave Offenses: Damage or unauthorized presence in or use of University premises, facilities or property, in violation of posted signs, when closed, or after normal operating hours">Less Grave Offenses: Damage or unauthorized presence in or use of University premises, facilities or property, in violation of posted signs, when closed, or after normal operating hours</option>
-                        <option class="GO" value="Grave Offenses: Theft, attempted theft, and/or unauthorized possession or use of property/services belonging to the University or a member of the University community">Grave Offenses: Theft, attempted theft, and/or unauthorized possession or use of property/services belonging to the University or a member of the University community</option>
-                        <option class="GO" value="Grave Offenses: Indecency in any form of obscene or lewd behavior (necking, petting or torrid kissing or other sexual act) inside the university premises">Grave Offenses: Indecency in any form of obscene or lewd behavior (necking, petting or torrid kissing or other sexual act) inside the university premises</option>
-                        <option class="GO" value="Grave Offenses: Physical/verbal/sexual/mental/emotional abuse, threat, harassment, cyber bullying, hazing, coercion and/or other conduct that threatens or endangers the health or safety of any person">Grave Offenses: Physical/verbal/sexual/mental/emotional abuse, threat, harassment, cyber bullying, hazing, coercion and/or other conduct that threatens or endangers the health or safety of any person</option>
-                        <option class="GO" value="Grave Offenses: Possession, use, sale or purchase of any illegal drugs inside the university premises">Grave Offenses: Possession, use, sale or purchase of any illegal drugs inside the university premises</option>
-                        <option class="GO" value="Grave Offenses: Carrying of firearms and other weapons within the University campuses and premises">Grave Offenses: Carrying of firearms and other weapons within the University campuses and premises</option>
-                        <option class="DAP" value="Dishonesty on Academic Pursuits: Academic misconduct: Cheating">Dishonesty on Academic Pursuits: Academic misconduct: Cheating</option>
-                        <option class="DAP" value="Dishonesty on Academic Pursuits: Academic misconduct: Plagiarism in theses, literary and creative works">Dishonesty on Academic Pursuits: Academic misconduct: Plagiarism in theses, literary and creative works</option>
-                        <option class="DAP" value="Dishonesty on Academic Pursuits: Falsification or forging of academic records and official documents">Dishonesty on Academic Pursuits: Falsification or forging of academic records and official documents</option>
-                    </select><br><br>
-                    <label for="no_of_offense">Number of Offenses:</label><br>
-                    <select id="no_of_offense" name="no_of_offense" required>
-                    <option value="" disabled selected>--Select no. of offense--</option>
-                        <option value="1st offense">1st Offense</option>
-                        <option value="2nd offense">2nd Offense</option>
-                        <option value="3rd offense">3rd Offense</option>
-                        <option value="Other">Others(Specify on report summary)</option>
-                    </select><br><br>
-                    <label for="detailed_report">Report Summary:</label><br>
-                    <textarea id="detailed_report" name="detailed_report" rows="4" required></textarea><br><br>
+                                <div class="TwoFill">
+                                    <div class="Fill1">
+                                        <label for="no_of_offense">Number of Offenses:</label>
+                                        <select id="no_of_offense" name="no_of_offense" required>
+                                        <option value="" disabled selected>--Select no. of offense--</option>
+                                            <option value="1st offense">1st Offense</option>
+                                            <option value="2nd offense">2nd Offense</option>
+                                            <option value="3rd offense">3rd Offense</option>
+                                            <option value="Other">Others(Specify on report summary)</option>
+                                        </select>
+                                    </div>
+                                    <div class="Fill2">
+                                        <label for="date_of_violation">Date of Violation:</label>
+                                        <input type="date" id="date_of_violation" name="date_of_violation" required>
+                                    </div>
+ 
+                                </div>
+                                
+                                <label for="action_taken">Action Taken:</label>
+                                <input type="text" id="action_taken" name="action_taken" required>
 
-                    <label for="date_of_violation">Date of Violation:</label><br>
-                    <input type="date" id="date_of_violation" name="date_of_violation" required><br><br>
+                                <label for="detailed_report">Report Summary:</label>
+                                <textarea class="Summary" id="detailed_report" name="detailed_report" rows="5" cols="23"></textarea>
 
-                    <label for="action_taken">Action Taken:</label><br>
-                    <input type="text" id="action_taken" name="action_taken" required><br><br>
-
-                    <!-- Hidden field to store the user ID -->
-                    <input type="hidden" name="created_by" value="<?php echo $_SESSION['display_name']; ?>">
-
-                    <input type="submit" value="Create Report">
-                </form>
+                                <!-- Hidden field to store the user ID -->
+                                <input type="hidden" name="created_by" value="<?php echo $_SESSION['display_name']; ?>">
+                            </div>
+                        </div>
+                        <button type="submit">Create Report</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

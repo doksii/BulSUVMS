@@ -6,7 +6,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 // Check if the user has the appropriate role (e.g., 'admin')
-if ($_SESSION['super_admin'] !== 'yes') {
+if ($_SESSION['owner'] !== 'yes') {
     // Redirect to a different page or show an error message
     header("Location: Settings.php?status=failed");
     echo "Access denied. You do not have the necessary permissions to view this page.";
@@ -45,7 +45,12 @@ if ($_SESSION['super_admin'] !== 'yes') {
         <div class="logo-container">
             <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
-        <div class="company-name">BulSU Meneses Violation Management System</div>
+        <div class="company-name">
+            <div class="company-name-container">
+                <h1 class="company-name1">BULACAN STATE UNIVERSITY MENESES</h1>
+                <h2 class="company-name2">VIOLATION MANAGEMENT SYSTEM</h2>
+            </div>
+        </div>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
@@ -76,30 +81,36 @@ if ($_SESSION['super_admin'] !== 'yes') {
                 </ul>
             </div>
         </div>
-        <div class="content">
+        <div class="MainContainer">
             <!-- Content of the dashboard page goes here -->
-            <h1>Welcome to the create acc!</h1>
-            <p>This is a simple Settings page.</p>
-            <form action="php/createaccount_process.php" method="POST">
-                <label for="display_name">Display Name:</label>
-                <input type="text" id="display_name" name="display_name" required><br>
+            <div class="WelcomeMessage">
+                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+            </div>
+            <div class="CreateAccountContent">
+                <div class="FormContainer">
+                    <form action="php/createaccount_process.php" method="POST">
+                        <label for="display_name">Display Name:</label>
+                        <input type="text" id="display_name" name="display_name" placeholder="Enter Name" required>
 
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required><br>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" placeholder="Enter Username" required>
 
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required><br>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" placeholder="Enter Password" required>
 
-                <label for="confirm_password">Confirm Password:</label>
-                <input type="password" id="confirm_password" name="confirm_password" required><br>
+                        <label for="confirm_password">Confirm Password:</label>
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Enter Password Again" required>
 
-                <label for="role">Role:</label>
-                <select id="role" name="role" required>
-                    <option value="admin">Admin</option>
-                    <option value="super_admin">Super Admin</option>
-                </select><br>
-                <input type="submit" value="Create Account">
-            </form>
+                        <label for="role">Role:</label>
+                        <select id="role" name="role" required>
+                            <option value="" disabled selected>--Select Role--</option>
+                            <option value="admin">Admin</option>
+                            <option value="super_admin">Super Admin</option>
+                        </select><br>
+                        <button type="submit">Create Account</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <script src="js/script.js"></script>

@@ -58,3 +58,28 @@ function sortTable(n) {
         }
     }
 }
+function viewReport(reportId) {
+    // Make an AJAX request to fetch the report details
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'php/get_report_details.php?id=' + reportId, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var report = JSON.parse(xhr.responseText);
+            // Fill the pop-up with report details
+            document.getElementById('popupStudentName').textContent = report.student_name;
+            document.getElementById('popupViolation').textContent = report.violation;
+            document.getElementById('popupOffenses').textContent = report.no_of_offense;
+            document.getElementById('popupDetailedReport').textContent = report.detailed_report;
+            document.getElementById('popupDate').textContent = report.date_of_violation;
+            document.getElementById('popupActionTaken').textContent = report.action_taken;
+            document.getElementById('popupCreatedBy').textContent = report.created_by;
+            // Show the pop-up
+            document.getElementById('reportPopup').style.display = 'block';
+        }
+    };
+    xhr.send();
+}
+
+function closePopup() {
+    document.getElementById('reportPopup').style.display = 'none';
+}

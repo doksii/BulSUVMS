@@ -41,7 +41,12 @@ if ($_SESSION['role'] !== 'admin') {
         <div class="logo-container">
             <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
-        <div class="company-name">BulSU Meneses Violation Management System</div>
+        <div class="company-name">
+            <div class="company-name-container">
+                <h1 class="company-name1">BULACAN STATE UNIVERSITY MENESES</h1>
+                <h2 class="company-name2">VIOLATION MANAGEMENT SYSTEM</h2>
+            </div>
+        </div>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
@@ -72,33 +77,43 @@ if ($_SESSION['role'] !== 'admin') {
                 </ul>
             </div>
         </div>
-        <div class="content">
-            <!-- Content of the dashboard page goes here -->
-            <h1>Welcome to the AddStudents!</h1>
-            <p>This is a simple AddStudents page.</p>
-            <form action="php/addstudent_process.php" method="post">
-                <label for="name">Name: (Lastname, Firstname MI)</label><br>
-                <input type="text" id="name" name="name" required><br><br>
+        <div class="MainContainer">
+             <div class="WelcomeMessage">
+                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+             </div>
+            <div class="AddStudentContent">
+                <div class="FormContainer">
+                    <h2>Student Information</h2>
+                    <p>Please fill the information needed.</p>
+                    <form action="php/addstudent_process.php" method="post">
+                        <label for="name">Name: (Lastname, Firstname MI)</label>
+                        <input type="text" id="name" name="name" placeholder="Enter student name" required>
 
-                <label for="student_number">Student Number:</label><br>
-                <input type="text" id="student_number" name="student_number" required><br><br>
+                        <label for="student_number">Student Number:</label>
+                        <input type="text" id="student_number" name="student_number" placeholder="Enter student number" required>
 
-                <label for="gender">Gender:</label><br>
-                <select id="gender" name="gender" required>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select><br><br>
+                        <label for="gender">Gender:</label><br>
+                        <select id="gender" name="gender" required>
+                        <option value="" disabled selected>--Select Gender--</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
 
-                <label for="department">Department:</label><br>
-                <select id="department" name="department" required>
-                    <option value="BIT">BIT Department</option>
-                    <option value="BSIT">BSIT Department</option>
-                    <option value="CPE">CPE Department</option>
-                </select><br><br>
+                        <label for="department">Department:</label><br>
+                        <select id="department" name="department" required>
+                            <option value="" disabled selected>--Select Department--</option>
+                            <option value="BIT">BIT Department</option>
+                            <option value="BSIT">BSIT Department</option>
+                            <option value="CPE">CPE Department</option>
+                        </select>
 
-                <input type="submit" value="Add Student">
-            </form>
+                        <button type="submit">Add Student</button>
+                    </form>
+                </div>
+            </div>
+            
+            
         </div>
     </div>
 

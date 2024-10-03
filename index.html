@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,18 +17,31 @@
                     alert('Invalid username or password. Please try again.');
                 }
             }
-        };
+        }
     </script>
 </head>
+
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form action="php/login.php" method="POST">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-        <p id="error-message"></p>
+
+    <div class="LogInContainer">
+        <div class="title-container">
+            <img src="assets\img\BMCLogo.png" alt="Meneses Logo" width="150" height="150" class="Logo">
+            <h1>Bulacan State University Meneses<br>Violation Management System</h1>
+            <img src="assets\img\BulSULogo.png" alt="Main Logo" width="150" height="150" class="Logo">
+        </div>
+        <div class="login-container">
+            <h2>Login To Your Account</h2>
+            <form action="php/login.php" method="POST">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="error-message"></p>
+        </div>
     </div>
+    
+
 </body>
 </html>
+
+

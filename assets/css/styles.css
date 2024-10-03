@@ -1,3 +1,6 @@
+/* *{
+    outline: dotted red;
+} */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -5,43 +8,142 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    background-image: url("../img/BMCLoginWP.png");
+    background-size: cover;
+    background-position: center;
+}
+.LogInContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title-container {
+    display: flex;
+    align-items: center;
+    height: fit-content;
 }
 
+.Logo {
+    margin-left: 20px;
+    margin-right: 20px;
+}
 .login-container {
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 330px;
+    padding: 15px;
+    border: 2px solid rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(2px);
+    margin-top: 100px;
+
 }
 
 h2 {
-    text-align: center;
+    text-align: left;
+    color: white;
+    font-size: 15px;
 }
 
 input[type="text"],
-input[type="password"],
+input[type="password"] {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none; 
+    border-radius: 5px; 
+    background-color: transparent; 
+    box-sizing: border-box; 
+    
+}
+
+input::placeholder {
+    color:rgb(220, 213, 213);
+}
+
 button {
     display: block;
     width: 100%;
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #FC55FF; 
     border-radius: 5px;
     box-sizing: border-box;
-}
-
-button {
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
+    background-color: #FC55FF;
+    color:white;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: white;
+    color: black;
+    border:1px solid white;
 }
 
 #error-message {
     color: red;
     text-align: center;
+}
+
+input {
+    border: none;
+    border-bottom: 2px solid rgb(124, 124, 124); 
+    background: transparent; 
+    color: rgb(255, 255, 255); 
+    padding: 10px 0;
+    font-size: 13px;
+    width: 100%;
+}
+
+input::placeholder {
+    color: white; 
+    opacity: 1;   
+}
+
+input:focus {
+    outline: none; 
+    border-bottom: 2px solid lightgray; 
+}
+
+h1 {
+    font-family: 'Arial', sans-serif; 
+    font-size: 40px; 
+    color: white; 
+    text-align: center; 
+    color: #f8f8f8;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    text-shadow: 
+        1px 1px 2px #000, 
+        0 0 25px #080505, 
+        0 0 5px #333;  
+    
+}
+.title-container {
+    text-align: center;
+}
+
+.logo-container {
+    display: flex;
+    align-content: center; 
+    margin-bottom: 300px; 
+}
+
+.logo-container img {
+    margin: 0 10px; 
+}
+
+.title-container h1 {
+    margin-bottom: 5px;
+    
+}
+
+.LogInContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-bottom: 20px;
 }

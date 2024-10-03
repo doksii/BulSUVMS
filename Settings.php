@@ -38,7 +38,12 @@ if ($_SESSION['role'] !== 'admin') {
         <div class="logo-container">
             <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
-        <div class="company-name">BulSU Meneses Violation Management System</div>
+        <div class="company-name">
+            <div class="company-name-container">
+                <h1 class="company-name1">BULACAN STATE UNIVERSITY MENESES</h1>
+                <h2 class="company-name2">VIOLATION MANAGEMENT SYSTEM</h2>
+            </div>
+        </div>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
@@ -69,15 +74,21 @@ if ($_SESSION['role'] !== 'admin') {
                 </ul>
             </div>
         </div>
-        <div class="content">
+        <div class="MainContainer">
             <!-- Content of the dashboard page goes here -->
-            <h1>Settings</h1>
-            <div class="settings-buttons">
-                <button onclick="location.href='AccountSettings.php'">Account Settings</button>
-                <button onclick="location.href='CreateAccount.php'">Create Account</button>
-                <button onclick="location.href='ManageAccounts.php'">Manage Accounts</button>
-                <button onclick="location.href='ManageStudents.php'">Manage Students</button>
+            <div class="WelcomeMessage">
+                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
+            <div class="SettingsContent">
+                <div class="settings-buttons">
+                    <h2>Settings</h2>
+                    <button onclick="location.href='AccountSettings.php'">Account Settings</button>
+                    <button onclick="location.href='CreateAccount.php'">Create Account</button>
+                    <button onclick="location.href='ManageAccounts.php'">Manage Accounts</button>
+                    <button onclick="location.href='ManageReports.php'">Manage Reports</button>
+                </div>
+            </div>
+            
         </div>
     </div>
 

@@ -1,15 +1,18 @@
-
-/* * {
+/* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     outline: red dotted 2px;
-  } */
-
+} */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
 }
+tr {
+    border: 1px solid#000;
+}
 table {
     width: 100%;
-    border-collapse: collapse;
 }
 table, th, td {
     border: 1px solid black;
@@ -19,9 +22,62 @@ th, td {
     text-align: center;
 }
 th {
-    background-color: #f2f2f2;
+    position: sticky;
+    top: 0;
+    background-color: #F0A8D0;
+    z-index: 1;
+    padding: 10px;
+}
+
+.FormContainer {
+    margin-top: 30px;
+    background-color: #D8CFC4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 6px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+  
+.FormContainer h2 {
+    text-align: center;
+}
+  
+.FormContainer input, .FormContainer select, .FormContainer button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.FormContainer input {
+      width: 94%
+}
+
+.FormContainer button {
+    background-color: #333333;
+    color: white;
     cursor: pointer;
 }
+  
+.FormContainer button:hover {
+    background-color: #4e4d4d;
+}
+
+.scroll-container {
+    max-height: 65vh;
+    overflow-y: auto;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.searchBar {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
 /* Start of Header */
 
 .header {
@@ -32,9 +88,9 @@ th {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: salmon;
-    color: #fff;
-    z-index: 1000;
+    background-color: #F0A8D0;
+    color: #333333;
+    z-index: 1002;
 }
 
 .logo-container {
@@ -49,9 +105,38 @@ th {
 }
 
 .company-name {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+}
+
+.company-name-container {
+    text-align: center;
+}
+
+.company-name1, .company-name2 {
+    margin: 0;
+    color: #FFFFF0;
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    text-shadow: 
+        1px 1px 2px #000, 
+        0 0 25px #777, 
+        0 0 5px #333;
+}
+.company-name1 {
+    font-size: 1.25rem;
+}
+
+.company-name2 {
+    margin-top: 5px;
     flex-grow: 1;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.25em;
 }
 
 .dropdown {
@@ -60,20 +145,25 @@ th {
 }
 
 .dropbtn {
-    background-color: salmon;
+    margin: 0;
+    background-color: #F0A8D0;
     color: white;
     padding: 10px 20px;
     font-size: 16px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    text-shadow: 
+        1px 1px 2px #000, 
+        0 0 25px #777, 
+        0 0 5px #333;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
     right: 0;
-    background-color: #f9f9f9;
+    background-color: #FFFFF0;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -95,7 +185,7 @@ th {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: rgb(247, 159, 150);
+    background-color: #F7B5CA;
 }
 
 /* End of Header */
@@ -124,8 +214,8 @@ th {
     left: 0; /* Hide sidebar by default */
     width: 200px;
     height: calc(100% - 50px); /* Adjusted to account for the header height */
-    background-color: #333;
-    color: #fff;
+    background-color: #333333;
+    color: #C0C0C0;
     padding: 20px;
     transition: left 0.3s ease;
     display: flex;
@@ -133,13 +223,15 @@ th {
     justify-content: center;
     align-items: center;
     text-align: center;
+    z-index: 1001;
 }
 
 .sidebar.hidden {
-    left: -240px; /* Sidebar is hidden */
+    left: -240px;
 }
+
 .sidebar .menu {
-    margin-top: 10%;
+    margin-top: 0;
     padding: 0;
 }
 
@@ -157,77 +249,78 @@ th {
 
 .sidebar ul li a {
     display: block;
-    color: #fff;
+    color: #FFFFF0;
     text-decoration: none;
     padding: 10px;
     padding-left: 25px;
     padding-right: 25px;
     margin: 15px;
-    outline: solid pink;
+    outline: solid #F0A8D0;
     border-radius: 30px;
 }
 
 .sidebar ul li a:hover {
-    background-color: #555;
+    background-color: #4e4d4d;
 }
 
 /* End of Sidebar */
 
 /* Start of Settings */
 
-.settings-buttons {
+.SettingsContent {
+    padding: 0; 
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+    justify-content: center;
+    align-items: center; 
+}
+
+.settings-buttons h2 {
+    text-align: center;
+}
+
+.settings-buttons {
+    margin-top: 30px;
+    background-color: #D8CFC4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 6px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px;
 }
 
 .settings-buttons button {
-    background-color: #4CAF50; /* Green */
+    background-color: #333333;
     border: none;
-    color: white;
+    color: #FFFFF0;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 10px 0;
+    margin: 20px 0;
     cursor: pointer;
     border-radius: 8px;
-    width: 200px;
+    width: 100%;
 }
 
 .settings-buttons button:hover {
-    background-color: #45a049;
+    background-color: #4e4d4d;
 }
 
-.content {
-    /* outline: solid salmon; */
-    margin-left: 250px;
-    margin-right: 10px;
-    text-align: left;
-}
+
 /* End of Settings */
+
 /* start of dashboard */
 
-.dashboardContainer {
-    /* outline: solid salmon; */
+.MainContainer {
     margin-left: 250px;
     margin-right: 10px;
     margin-top: 50px;
     text-align: left;
 }
-.dashboardMessage {
-    font-family: Arial, Helvetica, sans-serif;
-}
+
 .dashboardContent {
     display: flex;
-    height: 70vh; /* Full height of the viewport */
-}
-.container {
-    display: flex;
-    height: 100vh; /* Full height of the viewport */
-    background-color: #e2baba;
+    height: 70vh; 
 }
 
 .left {
@@ -247,7 +340,7 @@ th {
 
 .tile1, .tile2  {
     margin: 5px;
-    background-color: beige;
+    background-color: #D8CFC4;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -257,7 +350,7 @@ th {
 .tile3 {
     margin: 5px;
     width: 50%;
-    background-color: beige;
+    background-color: #D8CFC4;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -265,56 +358,286 @@ th {
 }
 
 /* end of dashboard */
+
+/* start of recent report */
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 700px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.popup button {
+    padding: 8px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    position: relative;
+    left: 90%;
+}
+
+/* end of recent report */
+
+/* start of create report */
+
+.CreateReportContent {
+    padding: 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.search-results {
+    border: .2px solid #ddd;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.search-item {
+    padding: 10px;
+    cursor: pointer;
+}
+.search-item:hover {
+    background-color: #f0f0f0;
+}
+
+.ReportFormContainer {
+    margin-top: 30px;
+    background-color: #D8CFC4;
+    border-radius: 10px;
+    box-shadow: 6px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 950px;
+}
+  
+.ReportFormContainer h2 {
+    text-align: center;
+}
+  
+.ReportFormContainer input, .ReportFormContainer select, .ReportFormContainer button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.ReportFormContainer input {
+      width: 96.5%
+}
+.ReportFormContainer button {
+    background-color: #333333;
+    color: white;
+    cursor: pointer;
+    width: 100%
+}
+  
+.ReportFormContainer button:hover {
+    background-color: #4e4d4d;
+}
+
+.CreateReportForm {
+    padding: 20px;
+    background-color: #D8CFC4;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 100%;
+    margin: auto;
+}
+
+.ReportForm {
+    display: flex;
+    justify-content: space-between;
+}
+
+.LeftSideForm {
+    flex-basis: 30%;
+    padding-right: 20px;
+}
+
+.RightSideForm {
+    flex-basis: 68%;
+}
+
+.TwoFill {
+    display: flex;
+    width: 98%;
+    justify-content: space-between;
+}
+
+.Fill1 {
+    flex-basis: 50%;
+    padding-right: 20px;
+}
+
+.Fill2 {
+    flex-basis: 50%;
+}
+
+.ReportBox {
+    height: 90px;
+}
+
+.LO, .LGO, .GO, .DAP{
+    text-align: left;
+}
+.LO {
+    background-color: rgba(255, 252, 127, 0.5);
+}
+.LGO {
+    background-color: rgb(255, 165, 0, 0.5);
+}
+.GO {
+    background-color: rgb(255, 0, 0, 0.5);
+}
+.DAP {
+    background-color: rgba(173, 216, 230, 0.5);
+}
+/* end of create report */
+
+/* start of list of student */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1005;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-height: 100%;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-add-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+/* Style for the report table inside the modal */
+.reports-table {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 5px;
+}
+
+.searchReports {
+    width: 98%;
+    padding: 10px;
+}
+
+/* end of list of student */
+
+/* start of add student */
+
+.AddStudentContent {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* end of start student */
+
+/* start of create account */
+
+.CreateAccountContent {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* end of create account */
+
+/* start of account setting */
+
+.AccountSettingContent {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* end of account setting */
+
+/* start of manage account */
+
+.ManageAccountContent {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* end of manage account */
+
+/* start of settings */
+
+.SettingsContent {
+    display: flex;
+    height: 70vh;
+}
+
+/* end of settings */
+
 @media (max-width: 768px) {
+    
     .sidebar {
         width: 100%;
         left: -100%;
         padding: 0px;
     }
+
     .sidebar.hidden {
-        left: 0px; /* Sidebar is hidden */
+        left: 0px;
     }
+
     .hamburger-menu {
-        z-index: 1001;
+        z-index: 1003;
     }
-    .content {
+
+    .MainContainer {
         margin-left: 10px;
         margin-right: 10px;
+        margin-top: 50px;
+        text-align: left;
     }
-}
-.School
-{
-    position: relative;
-	margin: 10px;
-	overflow: hidden;
-}
-.School img
-{
-	width: 400px;
-	height: 240px;
-	object-fit: cover;
-	transition: transform 0.3s ease;
-    border:3px solid goldenrod;
-    border-radius: 10px;
-}
-.School:hover img
-{
-    transform: scale(1.2);
-}
-.credsinfo
-{
-    position: absolute;
-	top: 0;
-	left: 0;
-	background-color: rgba(0, 0, 0, 0.5);
-	color: #fff;
-	padding: 20px;
-	width: 100%;
-	height: 100%;
-	opacity: 0;
-	transition: opacity 0.3s ease;
-}
-.School:hover .credsinfo
-{
-    opacity: 1;
 }

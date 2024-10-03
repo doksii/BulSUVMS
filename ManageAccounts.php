@@ -24,23 +24,6 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
-    <style>
-        /* Basic CSS for layout */
-        /* table {
-            width: 90%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            border: 1px solid black;
-        }
-        th, td {
-            border: 3px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        } */
-    </style>
     <script>
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -70,7 +53,12 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
         <div class="logo-container">
             <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
-        <div class="company-name">BulSU Meneses Violation Management System</div>
+        <div class="company-name">
+            <div class="company-name-container">
+                <h1 class="company-name1">BULACAN STATE UNIVERSITY MENESES</h1>
+                <h2 class="company-name2">VIOLATION MANAGEMENT SYSTEM</h2>
+            </div>
+        </div>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
@@ -101,8 +89,10 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
                 </ul>
             </div>
         </div>
-        <div class="content">
-            <h1>Manage Accounts</h1>
+        <div class="MainContainer">
+            <div class="WelcomeMessage">
+                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+            </div>
             <form method="POST" action="php/update_role.php" id="updateForm">
                 <table border="1">
                     <thead>

@@ -20,158 +20,20 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="icon" href="assets\img\BMCLogo.png" type="image/png">
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets\css\MainStyle.css">
-    <link rel="stylesheet" href="assets\css\search-students.css">
-    <style>
-        .content {
-            flex: 1;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow: hidden; /* Prevent content from overflowing */
-        }
-        .scroll-container {
-            max-height: 60vh; /* Set max height for the container */
-            overflow-y: auto; /* Enable vertical scrolling */
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        /* table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-            cursor: pointer;
-        } */
-        #searchBar {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-height: 100%;
-            overflow-y: auto;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            text-align: left;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .modal-add-btn {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-        }
-        /* Style for the report table inside the modal */
-        .reports-table {
-            max-height: 200px;
-            overflow-y: auto;
-            margin-top: 5px;
-        }
-
-        #searchReports {
-            width: 98%;
-            padding: 10px;
-        }
-    </style>
-    <script>
-        function viewStudent(studentNumber) {
-            // Fetch student and report information using AJAX
-            fetch(`php/fetch_student_info.php?student_number=${studentNumber}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Populate the modal with student information
-                    const studentInfo = `
-                        <p><strong>Student Name:</strong>${data.student.name}</p>
-                        <p><strong>Student Number:</strong> ${data.student.student_number}</p>
-                        <p><strong>Gender:</strong> ${data.student.gender}</p>
-                        <p><strong>Department:</strong> ${data.student.department}</p>
-                    `;
-                    document.getElementById('studentInfo').innerHTML = studentInfo;
-
-                    // Populate the modal with reports
-                    let reportsHTML = '<table><tr><th>Violation</th><th>No of Offenses</th><th>Detailed Report</th><th>Date of Violation</th><th>Action Taken</th></tr>';
-                    data.reports.forEach(report => {
-                        reportsHTML += `<tr><td>${report.violation}</td><td>${report.no_of_offense}</td><td>${report.detailed_report}</td><td>${report.date_of_violation}</td><td>${report.action_taken}</td></tr>`;
-                    });
-                    reportsHTML += '</table>';
-                    document.getElementById('reportsTable').innerHTML = reportsHTML;
-
-                    // Show the modal
-                    document.getElementById('studentModal').style.display = 'block';
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-        function closeModal() {
-            document.getElementById('studentModal').style.display = 'none';
-        }
-
-        function filterReports() {
-            const input = document.getElementById("searchReports");
-            const filter = input.value.toLowerCase();
-            const table = document.querySelector("#reportsTable table");
-            const tr = table.getElementsByTagName("tr");
-
-            for (let i = 1; i < tr.length; i++) {
-                const tdArray = tr[i].getElementsByTagName("td");
-                let found = false;
-                for (let j = 0; j < tdArray.length; j++) {
-                    if (tdArray[j]) {
-                        if (tdArray[j].innerHTML.toLowerCase().indexOf(filter) > -1) {
-                            found = true;
-                            break;
-                        }
-                    }
-                }
-                tr[i].style.display = found ? "" : "none";
-            }
-        }
-    </script>
+    <script src="js/search-students.js"></script>
+    <script src="js/script.js"></script>
 </head>
 <body>
     <header class="header">
         <div class="logo-container">
             <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
-        <div class="company-name">BulSU Meneses Violation Management System</div>
+        <div class="company-name">
+            <div class="company-name-container">
+                <h1 class="company-name1">BULACAN STATE UNIVERSITY MENESES</h1>
+                <h2 class="company-name2">VIOLATION MANAGEMENT SYSTEM</h2>
+            </div>
+        </div>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
@@ -202,9 +64,11 @@ if ($_SESSION['role'] !== 'admin') {
                 </ul>
             </div>
         </div>
-        <div class="content">
-            <h1>Search Students</h1>
-            <input type="text" id="searchBar" onkeyup="filterTable()" placeholder="Search for students..">
+        <div class="MainContainer">
+            <div class="WelcomeMessage">
+                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+            </div>
+            <input type="text" id="searchBar" class="searchBar" onkeyup="filterTable()" placeholder="Search for students..">
             <div class="scroll-container">
                 <table id="studentTable">
                     <thead>
@@ -251,7 +115,7 @@ if ($_SESSION['role'] !== 'admin') {
                         <span class="close" onclick="closeModal()">&times;</span>
                         <div id="studentInfo"></div>
                         <h3>Assiociated violations:</h3>
-                        <input type="text" id="searchReports" onkeyup="filterReports()" placeholder="Search for reports..">
+                        <input type="text" class="searchReports" id="searchReports" onkeyup="filterReports()" placeholder="Search for reports..">
                         <div id="reportsTable" class="reports-table"></div><br><br>
                         <button onclick="location.href='CreateReport.php'" class="modal-add-btn">Add report</button>
                     </div>
@@ -259,8 +123,5 @@ if ($_SESSION['role'] !== 'admin') {
             </div>
         </div>
     </div>
-
-    <script src="js/search-students.js"></script>
-    <script src="js/script.js"></script>
 </body>
 </html>

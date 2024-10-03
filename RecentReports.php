@@ -20,103 +20,20 @@ if ($_SESSION['role'] !== 'admin') {
     <link rel="icon" href="assets\img\BMCLogo.png" type="image/png">
     <title>BulSUVMS</title>
     <link rel="stylesheet" href="assets\css\MainStyle.css">
-    <link rel="stylesheet" href="assets\css\search-reports.css">
-    <style>
-        .content {
-            flex: 1;
-            padding: 20px;
-            box-sizing: border-box;
-            overflow: hidden; /* Prevent content from overflowing */
-        }
-        .scroll-container {
-            max-height: 60vh; /* Set max height for the container */
-            overflow-y: auto; /* Enable vertical scrolling */
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        #searchBar {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
-        /* table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-        } */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            width: 700px;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        .popup button {
-            padding: 8px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 20px;
-            position: relative;
-            left: 90%;
-            /* transform: translateX(-50%); */
-        }
-    </style>
-    <script>
-        function viewReport(reportId) {
-            // Make an AJAX request to fetch the report details
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'php/get_report_details.php?id=' + reportId, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var report = JSON.parse(xhr.responseText);
-                    // Fill the pop-up with report details
-                    document.getElementById('popupStudentName').textContent = report.student_name;
-                    document.getElementById('popupViolation').textContent = report.violation;
-                    document.getElementById('popupOffenses').textContent = report.no_of_offense;
-                    document.getElementById('popupDetailedReport').textContent = report.detailed_report;
-                    document.getElementById('popupDate').textContent = report.date_of_violation;
-                    document.getElementById('popupActionTaken').textContent = report.action_taken;
-                    document.getElementById('popupCreatedBy').textContent = report.created_by;
-                    // Show the pop-up
-                    document.getElementById('reportPopup').style.display = 'block';
-                }
-            };
-            xhr.send();
-        }
-
-        function closePopup() {
-            document.getElementById('reportPopup').style.display = 'none';
-        }
-    </script>
+    <script src="js/script.js"></script>
+    <script src="js/search-reports.js"></script>
 </head>
 <body>
     <header class="header">
         <div class="logo-container">
             <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
         </div>
-        <div class="company-name">BulSU Meneses Violation Management System</div>
+        <div class="company-name">
+            <div class="company-name-container">
+                <h1 class="company-name1">BULACAN STATE UNIVERSITY MENESES</h1>
+                <h2 class="company-name2">VIOLATION MANAGEMENT SYSTEM</h2>
+            </div>
+        </div>
         <div class="dropdown">
             <button class="dropbtn">My Account</button>
             <div class="dropdown-content">
@@ -147,9 +64,11 @@ if ($_SESSION['role'] !== 'admin') {
                 </ul>
             </div>
         </div>
-        <div class="content">
-            <h1>Recent Reports</h1>
-            <input type="text" id="searchBar" onkeyup="filterTable()" placeholder="Search for reports..">
+        <div class="MainContainer">
+            <div class="WelcomeMessage">
+                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+            </div>
+            <input type="text" id="searchBar" class="searchBar" onkeyup="filterTable()" placeholder="Search for reports..">
             <div class="scroll-container">
                 <table id="reportTable">
                     <thead>
@@ -206,8 +125,5 @@ if ($_SESSION['role'] !== 'admin') {
         <p><strong>Created By:</strong> <span id="popupCreatedBy"></span></p>
         <button onclick="closePopup()">Close</button>
     </div>
-
-    <script src="js/script.js"></script>
-    <script src="js/search-reports.js"></script>
 </body>
 </html>
