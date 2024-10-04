@@ -402,7 +402,7 @@ th {
 
 .search-results {
     border: .2px solid #ddd;
-    max-height: 300px;
+    max-height: 275px;
     overflow-y: auto;
 }
 .search-item {
