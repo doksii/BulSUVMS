@@ -104,9 +104,9 @@ if ($_SESSION['owner'] !== 'yes') {
                         <label for="role">Role:</label>
                         <select id="role" name="role" required>
                             <option value="" disabled selected>--Select Role--</option>
-                            <option value="admin">Admin</option>
-                            <option value="super_admin">Super Admin</option>
-                        </select><br>
+                            <option value="admin">Operator</option>
+                            <option value="super_admin">Admin</option>
+                        </select>
                         <button type="submit">Create Account</button>
                     </form>
                 </div>

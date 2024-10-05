@@ -7,7 +7,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 // Check if the user has the appropriate role (e.g., 'admin')
-if ($_SESSION['owner'] !== 'yes') {
+if ($_SESSION['super_admin'] !== 'yes') {
     // Redirect to a different page or show an error message
     header("Location: Settings.php?status=failed");
     echo "Access denied. You do not have the necessary permissions to view this page.";
@@ -112,15 +112,15 @@ if ($_SESSION['owner'] !== 'yes') {
                 </table>
             </div>
               <!-- Export Button -->
-            <button id="exportBtn">Export Selected Reports as PDF</button>
+            <button class="UnivButton" id="exportBtn">Export Selected Reports as PDF</button>
 
             <!-- Modal for confirmation -->
             <div id="exportModal" class="modal">
                 <div class="modal-content">
                     <h3>Confirm Export</h3>
                     <p>Please enter your password to confirm the export:</p>
-                    <button id="confirmExportBtn">Confirm Export</button>
-                    <button id="cancelBtn">Cancel</button>
+                    <button class="UnivButton" id="confirmExportBtn">Confirm Export</button>
+                    <button class="UnivButton" id="cancelBtn">Cancel</button>
                 </div>
             </div>
 

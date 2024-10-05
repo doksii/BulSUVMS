@@ -66,7 +66,7 @@ th {
 }
 
 .scroll-container {
-    max-height: 65vh;
+    max-height: 63vh;
     overflow-y: auto;
     margin-top: 10px;
     border: 1px solid #ccc;
@@ -372,14 +372,14 @@ th {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    z-index: 1005;
     width: 700px;
     max-height: 400px;
     overflow-y: auto;
 }
 .popup button {
     padding: 8px 20px;
-    background-color: #4CAF50;
+    background-color: #333333;
     color: white;
     border: none;
     border-radius: 4px;
@@ -388,7 +388,32 @@ th {
     position: relative;
     left: 90%;
 }
+.popup button:hover {
+    background-color: #4e4d4d;
+}
 
+.UnivButton {
+    padding: 8px 20px;
+    background-color: #333333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    position: relative;
+}
+.UnivButton:hover {
+    background-color: #4e4d4d;
+}
+
+.MAinput {
+    display: block;
+    width: 200px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 /* end of recent report */
 
 /* start of create report */
@@ -525,14 +550,18 @@ th {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    width: 500px;
     max-height: 100%;
     overflow-y: auto;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     text-align: left;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: auto;
+    
 }
 .close {
     color: #aaa;

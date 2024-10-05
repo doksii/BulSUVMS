@@ -121,8 +121,8 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
                                     echo "<td>" . htmlspecialchars($row['display_name']) . "</td>";
                                     echo "<td>";
                                     echo "<select name='super_admin[" . htmlspecialchars($row['username']) . "]'>";
-                                    echo "<option value='no'" . ($row['super_admin'] == 'no' ? " selected" : "") . ">Admin</option>";
-                                    echo "<option value='yes'" . ($row['super_admin'] == 'yes' ? " selected" : "") . ">Super Admin</option>";
+                                    echo "<option value='no'" . ($row['super_admin'] == 'no' ? " selected" : "") . ">Operator</option>";
+                                    echo "<option value='yes'" . ($row['super_admin'] == 'yes' ? " selected" : "") . ">Admin</option>";
                                     echo "</select>";
                                     echo "</td>";
                                     echo "</tr>";
@@ -138,10 +138,10 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
                         ?>
                     </tbody>
                 </table>
-                <input type="password" name="current_password" placeholder="Enter your password to confirm" required><br>
-                <button type="submit">Save Changes</button>
+                <input type="password" class="MAinput" name="current_password" placeholder="Enter your password to confirm" required>
+                <button type="submit" class="UnivButton">Save Changes</button>
             </form>
-            <button onclick="confirmDelete()">Delete Selected Users</button>
+            <button onclick="confirmDelete()" class="UnivButton">Delete Selected Users</button>
         </div>
     </div>
     <script src="js/script.js"></script>

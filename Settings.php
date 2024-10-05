@@ -83,9 +83,9 @@ if ($_SESSION['role'] !== 'admin') {
                 <div class="settings-buttons">
                     <h2>Settings</h2>
                     <button onclick="location.href='AccountSettings.php'">Account Settings</button>
+                    <button onclick="location.href='ManageReports.php'">Manage Reports</button>
                     <button onclick="location.href='CreateAccount.php'">Create Account</button>
                     <button onclick="location.href='ManageAccounts.php'">Manage Accounts</button>
-                    <button onclick="location.href='ManageReports.php'">Manage Reports</button>
                 </div>
             </div>
             

@@ -104,8 +104,10 @@ if ($_SESSION['role'] !== 'admin') {
                         <select id="department" name="department" required>
                             <option value="" disabled selected>--Select Department--</option>
                             <option value="BIT">BIT Department</option>
-                            <option value="BSIT">BSIT Department</option>
-                            <option value="CPE">CPE Department</option>
+                            <option value="BSBA">BSBA Department</option>
+                            <option value="BSCpE">BSCpE Department</option>
+                            <option value="BSED">BSED Department</option>
+                            <option value="BSHM">BSHM Department</option>
                         </select>
 
                         <button type="submit">Add Student</button>
