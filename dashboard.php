@@ -1,31 +1,96 @@
 <?php
 session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (!isset($_SESSION['username'])) {
-    // Redirect to login page if user is not logged in
     header("Location: index.html");
     exit();
 }
-// Check if the user has the appropriate role (e.g., 'admin')
 if ($_SESSION['role'] !== 'admin') {
-    // Redirect to a different page or show an error message
     echo "Access denied. You do not have the necessary permissions to view this page.";
     exit();
 }
+
+// Database connection
+$servername = "localhost"; // Replace with your server name
+$username = "root"; // Default username for XAMPP
+$password = ""; // Default password for XAMPP
+$dbname = "bulsuvms"; // Replace with your database name
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+
+// number of students that is has reports
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'get_violations') {
+    $sql = "SELECT COUNT(violation) AS total_unique_offenses FROM reports"; // Ensure 'reports' is the correct table name
+    if ($result = $conn->query($sql)) {
+        $row = $result->fetch_assoc();
+        $totalViolations = $row['total_unique_offenses'];
+        echo json_encode(['totalViolations' => $totalViolations]);
+    } else {
+        echo json_encode(['error' => 'SQL error: ' . $conn->error]);
+        exit(); // Ensure you exit after sending an error response
+    }
+
+    $conn->close();
+    exit(); // End the script after handling the AJAX request
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'get_num_students_violations') {
+    $sql = "SELECT COUNT(DISTINCT student_name) AS total_students_with_violations FROM reports"; // Ensure 'reports' is the correct table name
+    if ($result = $conn->query($sql)) {
+        $row = $result->fetch_assoc();
+        $totalStudentsViolations = $row['total_students_with_violations']; // Corrected variable name
+        echo json_encode(['totalStudentsViolations' => $totalStudentsViolations]);
+    } else {
+        echo json_encode(['error' => 'SQL error: ' . $conn->error]);
+        exit(); // Ensure you exit after sending an error response
+    }
+
+    $conn->close();
+    exit(); // End the script after handling the AJAX request
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BulSUVMS</title>
-    <link rel="icon" href="assets\img\BMCLogo.png" type="image/png">
+    <link rel="icon" href="assets/img/BMCLogo.png" type="image/png">
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        .info-box {
+            border: 1px solid #e0e0e0;
+            border-radius: 0.5rem;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .info-box-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
+
 <body>
     <header class="header">
         <div class="logo-container">
-            <img src="assets\img\BMCLogo.png" alt="Company Logo" class="logo">
+            <img src="assets/img/BMCLogo.png" alt="Company Logo" class="logo">
         </div>
         <div class="company-name">
             <div class="company-name-container">
@@ -67,19 +132,119 @@ if ($_SESSION['role'] !== 'admin') {
             <div class="WelcomeMessage">
                 <h2>Welcome back, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
-            <div class="dashboardContent">
-                <div class="left">
-                    <div class="tile1">Tile 1</div>
-                    <div class="tile2">Tile 2</div>
+            <div class="container mt-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mb-4">DASHBOARD</h4>
+                        <div class="row">
+                            <div class="col-12 col-md-4 mb-3">
+                                <a href="#" class="text-decoration-none text-dark">
+                                    <div class="info-box d-flex align-items-center">
+                                        <span class="info-box-icon bg-custom elevation-1 me-3">
+                                            <i class="fas fa-key"></i>
+                                        </span>
+                                        <div class="info-box-content">
+                                            <h4 class="info-box-text">Total Violations</h4>
+                                            <p id="total-violations">Loading...</p> <!-- Placeholder -->
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-4 mb-3">
+                                <a href="#" class="text-decoration-none text-dark">
+                                    <div class="info-box d-flex align-items-center">
+                                        <span class="info-box-icon bg-custom elevation-1 me-3">
+                                            <i class="fas fa-id-card"></i>
+                                        </span>
+                                        <div class="info-box-content">
+                                            <h4 class="info-box-text">Total Students with Violations</h4>
+                                            <p id="total-students-violations">Loading...</p> <!-- Placeholder for total students with violations -->
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="col-12 col-md-4 mb-3">
+                                <a href="#" class="text-decoration-none text-dark">
+                                    <div class="info-box d-flex align-items-center">
+                                        <span class="info-box-icon bg-custom elevation-1 me-3">
+                                            <i class="fas fa-briefcase"></i>
+                                        </span>
+                                        <div class="info-box-content">
+                                            <h4 class="info-box-text">School Year</h4>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <a href="#" class="text-decoration-none text-dark">
+                                    <img src="assets/img/BMCLoginWP.jpg" alt="BMC Login" class="img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="tile3">Tile 3</div>
             </div>
-            
+            <script>
+                function fetchTotalViolations() {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'dashboard.php?action=get_violations', true);
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            const data = JSON.parse(xhr.responseText);
+                            if (data.error) {
+                                console.error(data.error);
+                                document.getElementById('total-violations').innerText = 'Error loading data';
+                            } else {
+                                document.getElementById('total-violations').innerText = data.totalViolations;
+                            }
+                        } else {
+                            console.error('Error fetching data');
+                            document.getElementById('total-violations').innerText = 'Error loading data';
+                        }
+                    };
+                    xhr.onerror = function() {
+                        console.error('Request failed');
+                        document.getElementById('total-violations').innerText = 'Error loading data';
+                    };
+                    xhr.send();
+                }
+                function fetchTotalStudentsViolations() {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'dashboard.php?action=get_num_students_violations', true); // Corrected request URL
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            const data = JSON.parse(xhr.responseText);
+                            if (data.error) {
+                                console.error(data.error);
+                                document.getElementById('total-students-violations').innerText = 'Error loading data';
+                            } else {
+                                document.getElementById('total-students-violations').innerText = data.totalStudentsViolations;
+                            }
+                        } else {
+                            console.error('Error fetching data');
+                            document.getElementById('total-students-violations').innerText = 'Error loading data';
+                        }
+                    };
+                    xhr.onerror = function() {
+                        console.error('Request failed');
+                        document.getElementById('total-students-violations').innerText = 'Error loading data';
+                    };
+                    xhr.send();
+                }
+
+                // Fetch the total violations and students with violations when the page loads
+                window.onload = function() {
+                    fetchTotalViolations();
+                    fetchTotalStudentsViolations();
+                };
+            </script>
+            <script src="js/script.js"></script>
         </div>
     </div>
-    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
-
-
-<!-- jason -->
