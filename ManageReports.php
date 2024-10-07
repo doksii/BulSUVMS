@@ -116,7 +116,7 @@ if ($_SESSION['super_admin'] !== 'yes') {
 
             <!-- Modal for confirmation -->
             <div id="exportModal" class="modal">
-                <div class="modal-content">
+                <div class="modal-content2">
                     <h3>Confirm Export</h3>
                     <p>Please enter your password to confirm the export:</p>
                     <button class="UnivButton" id="confirmExportBtn">Confirm Export</button>

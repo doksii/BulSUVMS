@@ -11,9 +11,9 @@ if (isset($_POST['report_ids'])) {
         // Page header
         public function Header() {
             // Use absolute path to the header image
-            $header_image_file = realpath('..\assets\img\header.png'); // Ensure correct path
+            $header_image_file = realpath('..\assets\img\header.jpg'); // Ensure correct path
             if ($header_image_file) {
-                $this->Image($header_image_file, 0, 0, 210, 50, 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false); // 210 mm width
+                $this->Image($header_image_file, 0, 0, 210, 50, 'jpg', '', 'T', false, 300, '', false, false, 0, false, false, false); // 210 mm width
             } else {
                 $this->SetFont('helvetica', 'B', 10);
                 $this->Cell(0, 10, 'Header Image Not Found', 0, 1, 'C');
@@ -24,10 +24,10 @@ if (isset($_POST['report_ids'])) {
         // Page footer
         public function Footer() {
             // Absolute path to the footer image
-            $footer_image_file = realpath('../assets/img/footer.png');
+            $footer_image_file = realpath('../assets/img/footer.jpg');
             if ($footer_image_file) {
                 $this->SetY(-30); // Position footer 30mm from bottom
-                $this->Image($footer_image_file, 0, $this->GetY(), 210, 30, 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false); // 210 mm width
+                $this->Image($footer_image_file, 0, $this->GetY(), 210, 30, 'jpg', '', 'T', false, 300, '', false, false, 0, false, false, false); // 210 mm width
             } else {
                 // Debugging: check if the path is incorrect
                 $this->SetFont('helvetica', 'B', 10);
