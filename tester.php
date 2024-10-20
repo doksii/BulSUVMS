@@ -70,10 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <script>
         function fetchTotalViolations() {
             const xhr = new XMLHttpRequest();
@@ -121,23 +118,152 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
             };
             xhr.send();
         }
+
         // Fetch the total violations and students with violations when the page loads
         window.onload = function() {
             fetchTotalViolations();
             fetchTotalStudentsViolations();
         };
     </script>
+    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
         body {
             background-image: url("assets/img/BMCLoginWP.png");
             background-size: cover;
             background-position: center;
         }
+        .WelcomeMessage {
+            color: white;
+        }
+        .button-tiles {
+            display: flex;
+            flex-direction: row;
+            padding: 10px;
+        }
+        .button-tile {
+            height: 100px;
+            width: 50%;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            margin: 10px;
+            border: 2px solid rgba(255, 255, 255, 0);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.5); 
+            backdrop-filter: blur(2px);
+        }
+        .link {
+            text-decoration: none;
+        }
+        .info-box {
+            display:flex;
+            flex-direction: row;
+            text-decoration: none;
+            color: white;
+            text-align: left;
+            font-size: 16px;
+        }
+        .icons {
+            width: 100px;
+            height: 100px;
+        }
+        .info-box-content {   
+            width: 100%;
+            display:flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px;
+        }
+        .dashboardContent2 {
+            height: 100%;
+        }
+        .left {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 300px;
+        }
+
+        .tile1 {
+            /* flex: 1; */
+            margin: 5px;
+            letter-spacing: 2px;
+            font-size: 18px;
+            word-spacing: 3px;
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            width: 50%;
+            padding: 0;
+        }
+        .tile1-left, .tile1-right {
+            flex: 1;
+            margin: 0;
+            padding: 5px;
+            border: 2px solid rgba(255, 255, 255, 0);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.5); 
+            backdrop-filter: blur(2px);
+            text-align: center;
+            padding: 10px;
+            color: white;
+        }
+        .tile1-left {
+            margin-right: 10px;
+        }
+        .tile2 {
+            /* flex: 1; */
+            display: flex;
+            justify-content: center;
+            margin: 5px;
+            border: 2px solid rgba(255, 255, 255, 0);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.5); 
+            backdrop-filter: blur(2px);
+            letter-spacing: 2px;
+            height: 100%;
+            text-align: center;
+            width: 50%;
+            padding: 0;
+            color: white;
+        }
+        .tile2-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            margin: 0;
+            text-align: center;
+            padding: 10px;
+        }
+        .soarList {
+            align-self: center;
+            margin: 5px;
+        }
+        .tile2 li {
+            padding: 5px;
+            text-align: left;
+            list-style: none;
+            font-size: 18px;
+        }
+        .tile2 span {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 25px;
+            text-shadow: 1px 2px 4px white;
+        }
     </style>
 </head>
 
 <body>
-<header class="header">
+    <header class="header">
         <div class="logo-container">
             <img src="assets/img/BMCLogo.png" alt="Company Logo" class="logo">
         </div>
@@ -234,9 +360,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
                             </div>
                         </div>
                     </div>
+                    <!-- <div class="tile3">
+                        <h2>GOALS</h2>
+                        <li>Quality and Excellence. Promoting quality and relevant educational programs that meet international standards.</li>
+                        <li>Relevance and Responsiveness. Generation and dissemination of knowledge in the broad range of disciplines relevant and responsive to the dynamically changing domestic and international environments.</li>
+                        <li>Access and Equity. Broadening the access of deserving and qualified students to educational opportunities.</li>
+                        <li>Efficiency and Effectiveness. Optimizing of social, institutional and individual returns and benefits derived from the utilization of higher education resources.</li>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
 </body>
+
 </html>

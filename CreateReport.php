@@ -69,6 +69,7 @@ if ($_SESSION['role'] !== 'admin') {
                 const status = urlParams.get('status');
                 if (status === 'success') {
                     alert('Report created successfully.');
+                    window.location.href = "RecentReports.php";
                 } else if (status === 'error') {
                     alert('There was an error creating the report. Please try again.');
                 } else if (status === 'student_not_found') {
