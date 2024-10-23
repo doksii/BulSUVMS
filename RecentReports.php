@@ -80,31 +80,61 @@ if ($_SESSION['role'] !== 'admin') {
                 }
             }
         }
-        function viewReport(reportId) {
-            // Make an AJAX request to fetch the report details
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'php/get_report_details.php?id=' + reportId, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var report = JSON.parse(xhr.responseText);
-                    // Fill the pop-up with report details
-                    document.getElementById('popupStudentName').textContent = report.student_name;
-                    document.getElementById('popupViolation').textContent = report.violation;
-                    document.getElementById('popupOffenses').textContent = report.no_of_offense;
-                    document.getElementById('popupDetailedReport').textContent = report.detailed_report;
-                    document.getElementById('popupDate').textContent = report.date_of_violation;
-                    document.getElementById('popupActionTaken').textContent = report.action_taken;
-                    document.getElementById('popupCreatedBy').textContent = report.created_by;
-                    // Show the pop-up
-                    document.getElementById('reportPopup').style.display = 'block';
-                }
-            };
-            xhr.send();
-        }
+        function viewStudent(studentNumber) {
+            // Fetch student and report information using AJAX
+            fetch(`php/fetch_student_info.php?student_number=${studentNumber}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Populate the modal with student information
+                    const studentInfo = `
+                        <p><strong>Student Name:</strong>${data.student.name}</p>
+                        <p><strong>Student Number:</strong> ${data.student.student_number}</p>
+                        <p><strong>Gender:</strong> ${data.student.gender}</p>
+                        <p><strong>Department:</strong> ${data.student.department}</p>
+                    `;
+                    document.getElementById('studentInfo').innerHTML = studentInfo;
 
-        function closePopup() {
-            document.getElementById('reportPopup').style.display = 'none';
+                    // Populate the modal with reports
+                    let reportsHTML = '<table><tr><th>Violation</th><th>No of Offenses</th><th>Detailed Report</th><th>Date of Violation</th><th>Action Taken</th></tr>';
+                    data.reports.forEach(report => {
+                        reportsHTML += `<tr><td>${report.violation}</td><td>${report.no_of_offense}</td><td>${report.detailed_report}</td><td>${report.date_of_violation}</td><td>${report.action_taken}</td></tr>`;
+                    });
+                    reportsHTML += '</table>';
+                    document.getElementById('reportsTable').innerHTML = reportsHTML;
+
+                    // Show the modal
+                    document.getElementById('studentModal').style.display = 'block';
+                })
+                .catch(error => console.error('Error:', error));
         }
+        function closeModal() {
+            document.getElementById('studentModal').style.display = 'none';
+        }
+        // function viewReport(reportId) {
+        //     // Make an AJAX request to fetch the report details
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.open('GET', 'php/get_report_details.php?id=' + reportId, true);
+        //     xhr.onreadystatechange = function () {
+        //         if (xhr.readyState == 4 && xhr.status == 200) {
+        //             var report = JSON.parse(xhr.responseText);
+        //             // Fill the pop-up with report details
+        //             document.getElementById('popupStudentName').textContent = report.student_name;
+        //             document.getElementById('popupViolation').textContent = report.violation;
+        //             document.getElementById('popupOffenses').textContent = report.no_of_offense;
+        //             document.getElementById('popupDetailedReport').textContent = report.detailed_report;
+        //             document.getElementById('popupDate').textContent = report.date_of_violation;
+        //             document.getElementById('popupActionTaken').textContent = report.action_taken;
+        //             document.getElementById('popupCreatedBy').textContent = report.created_by;
+        //             // Show the pop-up
+        //             document.getElementById('reportPopup').style.display = 'block';
+        //         }
+        //     };
+        //     xhr.send();
+        // }
+
+        // function closePopup() {
+        //     document.getElementById('reportPopup').style.display = 'none';
+        // }
     </script>
 </head>
 <body>
@@ -150,7 +180,7 @@ if ($_SESSION['role'] !== 'admin') {
         </div>
         <div class="MainContainer">
             <div class="WelcomeMessage">
-                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+                <h2>Welcome to Recent Reports, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
             <input type="text" id="searchBar" class="searchBar" onkeyup="filterTable()" placeholder="Search for reports..">
             <div class="scroll-container">
@@ -162,7 +192,8 @@ if ($_SESSION['role'] !== 'admin') {
                             <th onclick="sortTable(2)">violation</th>
                             <th onclick="sortTable(3)">Date Created</th>
                             <th onclick="sortTable(4)">Created By</th>
-                            <th>Action</th>
+                            <!-- <th>Action</th> -->
+                            <!-- <td><button onclick='viewReport(" . $row["id"]. ")'>View</button></td> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -171,7 +202,7 @@ if ($_SESSION['role'] !== 'admin') {
                         require_once 'php/db.php'; // Adjust path as per your file structure
 
                         // Fetch report records
-                        $sql = "SELECT id, student_name, violation, created_at, created_by FROM reports ORDER BY created_at DESC";
+                        $sql = "SELECT id, student_number, student_name, violation, created_at, created_by FROM reports ORDER BY created_at DESC";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -179,11 +210,10 @@ if ($_SESSION['role'] !== 'admin') {
                             while($row = $result->fetch_assoc()) {
                                 echo "<tr>
                                         <td>" . $row["id"]. "</td>
-                                        <td>" . htmlspecialchars($row["student_name"]). "</td>
+                                        <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["student_name"]). "</td>
                                         <td>" . htmlspecialchars($row["violation"]). "</td>
                                         <td>" . htmlspecialchars($row["created_at"]). "</td>
                                         <td>" . htmlspecialchars($row["created_by"]). "</td>
-                                        <td><button onclick='viewReport(" . $row["id"]. ")'>View</button></td>
                                     </tr>";
                             }
                         } else {
@@ -208,6 +238,16 @@ if ($_SESSION['role'] !== 'admin') {
         <p><strong>Detailed Report:</strong> <span id="popupDetailedReport"></span></p>
         <p><strong>Created By:</strong> <span id="popupCreatedBy"></span></p>
         <button onclick="closePopup()">Close</button>
+    </div>
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="studentInfo"></div>
+            <h3>Assiociated violations:</h3>
+            <input type="text" class="searchReports" id="searchReports" onkeyup="filterReports()" placeholder="Search for reports..">
+            <div id="reportsTable" class="reports-table"></div><br><br>
+            <button onclick="location.href='CreateReport.php'" class="modal-add-btn">Add report</button>
+        </div>
     </div>
 </body>
 </html>

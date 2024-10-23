@@ -84,7 +84,7 @@ if ($_SESSION['owner'] !== 'yes') {
         <div class="MainContainer">
             <!-- Content of the dashboard page goes here -->
             <div class="WelcomeMessage">
-                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+                <h2>Welcome to Create Account, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
             <div class="CreateAccountContent">
                 <div class="FormContainer">

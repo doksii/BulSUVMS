@@ -177,7 +177,7 @@ if ($_SESSION['role'] !== 'admin') {
         </div>
         <div class="MainContainer">
             <div class="WelcomeMessage">
-                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+                <h2>Welcome to List of Students, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
             <input type="text" id="searchBar" class="searchBar" onkeyup="filterTable()" placeholder="Search for students..">
             <div class="scroll-container">
@@ -188,7 +188,8 @@ if ($_SESSION['role'] !== 'admin') {
                             <th onclick="sortTable(1)">Name</th>
                             <th onclick="sortTable(2)">Gender</th>
                             <th onclick="sortTable(3)">Department</th>
-                            <th>Action</th>
+                            <!-- <th>Action</th> -->
+                            <!-- <td><button onclick=\"viewStudent('" . $row['student_number'] . "')\">View</button></td> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -203,11 +204,11 @@ if ($_SESSION['role'] !== 'admin') {
                             // Output data of each row
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>
-                                        <td>" . $row["student_number"] . "</td>
-                                        <td>" . $row["name"] . "</td>
+                                        <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . $row["student_number"] . "</td>
+                                        <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . $row["name"] . "</td>
                                         <td>" . $row["gender"] . "</td>
                                         <td>" . $row["department"] . "</td>
-                                        <td><button onclick=\"viewStudent('" . $row['student_number'] . "')\">View</button></td>
+                                        
                                     </tr>";
                             }
                         } else {

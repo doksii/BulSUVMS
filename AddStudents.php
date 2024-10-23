@@ -79,7 +79,7 @@ if ($_SESSION['role'] !== 'admin') {
         </div>
         <div class="MainContainer">
              <div class="WelcomeMessage">
-                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+                <h2>Welcome to Add Student, <?php echo $_SESSION['display_name']; ?>!</h2>
              </div>
             <div class="AddStudentContent">
                 <div class="FormContainer">

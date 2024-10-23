@@ -179,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
         </div>
         <div class="MainContainer">
             <div class="WelcomeMessage">
-                <h2>Welcome back, <?php echo $_SESSION['display_name']; ?>!</h2>
+                <h2 style="color:white;">Welcome back, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
             <div class="dashboardContainer">
                 <div class="button-tiles">

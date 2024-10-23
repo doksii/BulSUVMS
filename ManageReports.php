@@ -66,7 +66,7 @@ if ($_SESSION['super_admin'] !== 'yes') {
         </div>
         <div class="MainContainer">
             <div class="WelcomeMessage">
-                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+                <h2>Welcome to Manage Reports, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
             <input type="text" class="searchBar" id="searchBar" onkeyup="filterTable()" placeholder="Search for students..">
             <div class="scroll-container">
