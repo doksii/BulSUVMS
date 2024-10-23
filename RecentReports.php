@@ -209,11 +209,11 @@ if ($_SESSION['role'] !== 'admin') {
                             // Output data of each row
                             while($row = $result->fetch_assoc()) {
                                 echo "<tr>
-                                        <td>" . $row["id"]. "</td>
+                                        <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . $row["id"]. "</td>
                                         <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["student_name"]). "</td>
-                                        <td>" . htmlspecialchars($row["violation"]). "</td>
-                                        <td>" . htmlspecialchars($row["created_at"]). "</td>
-                                        <td>" . htmlspecialchars($row["created_by"]). "</td>
+                                        <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["violation"]). "</td>
+                                        <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["created_at"]). "</td>
+                                        <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["created_by"]). "</td>
                                     </tr>";
                             }
                         } else {

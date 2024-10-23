@@ -206,8 +206,8 @@ if ($_SESSION['role'] !== 'admin') {
                                 echo "<tr>
                                         <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . $row["student_number"] . "</td>
                                         <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . $row["name"] . "</td>
-                                        <td>" . $row["gender"] . "</td>
-                                        <td>" . $row["department"] . "</td>
+                                        <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . $row["gender"] . "</td>
+                                        <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . $row["department"] . "</td>
                                         
                                     </tr>";
                             }

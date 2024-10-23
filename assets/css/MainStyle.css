@@ -21,6 +21,9 @@ th, td {
     padding: 8px;
     text-align: center;
 }
+tr:hover {
+    background-color: #ccc;
+}
 th {
     position: sticky;
     top: 0;
