@@ -202,7 +202,7 @@ if ($_SESSION['role'] !== 'admin') {
                         require_once 'php/db.php'; // Adjust path as per your file structure
 
                         // Fetch report records
-                        $sql = "SELECT id, student_number, student_name, violation, created_at, created_by FROM reports ORDER BY created_at DESC";
+                        $sql = "SELECT id, student_number, student_name, violation, created_at, created_by FROM reports ORDER BY id DESC";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
