@@ -110,6 +110,26 @@ if ($_SESSION['role'] !== 'admin') {
         function closeModal() {
             document.getElementById('studentModal').style.display = 'none';
         }
+        function filterReports() {
+            const input = document.getElementById("searchReports");
+            const filter = input.value.toLowerCase();
+            const table = document.querySelector("#reportsTable table");
+            const tr = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < tr.length; i++) {
+                const tdArray = tr[i].getElementsByTagName("td");
+                let found = false;
+                for (let j = 0; j < tdArray.length; j++) {
+                    if (tdArray[j]) {
+                        if (tdArray[j].innerHTML.toLowerCase().indexOf(filter) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                tr[i].style.display = found ? "" : "none";
+            }
+        }
         // function viewReport(reportId) {
         //     // Make an AJAX request to fetch the report details
         //     var xhr = new XMLHttpRequest();
@@ -187,7 +207,7 @@ if ($_SESSION['role'] !== 'admin') {
                 <table id="reportTable">
                     <thead>
                         <tr>
-                            <th>Incident no.</th>
+                            <th onclick="sortTable(0)">Incident no.</th>
                             <th onclick="sortTable(1)">Student Name</th>
                             <th onclick="sortTable(2)">violation</th>
                             <th onclick="sortTable(3)">Date Created</th>
