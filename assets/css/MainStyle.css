@@ -731,16 +731,6 @@ th {
 
 /* end of manage account */
 
-/* start of settings */
-
-.SettingsContent {
-    display: flex;
-    height: 70vh;
-}
-
-/* end of settings */
-
-
 /* start of manage report */
 
 .modal-content2 {
