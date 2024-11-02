@@ -25,6 +25,7 @@ if ($_SESSION['role'] !== 'admin') {
                 const status = urlParams.get('status');
                 if (status === 'success') {
                     alert('Student added successfully.');
+                    window.location.href = "SearchStudents.php";
                 } else if (status === 'error') {
                     alert('There was an error adding the student. Student number already exist. Please try again.');
                 } 
