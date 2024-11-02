@@ -138,7 +138,7 @@ if (isset($_POST['report_ids'])) {
     }
 
     // Close and output PDF document
-    $pdf->Output('BulSUVMS-reports.pdf', 'D'); // 'D' for download
+    $pdf->Output('BulSUSDMS-reports.pdf', 'D'); // 'D' for download
 } else {
     echo 'Invalid request.';
 }

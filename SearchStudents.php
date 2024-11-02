@@ -1,13 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    // Redirect to login page if user is not logged in
     header("Location: index.html");
     exit();
 }
-// Check if the user has the appropriate role (e.g., 'admin')
+
 if ($_SESSION['role'] !== 'admin') {
-    // Redirect to a different page or show an error message
     echo "Access denied. You do not have the necessary permissions to view this page.";
     exit();
 }
@@ -18,7 +16,7 @@ if ($_SESSION['role'] !== 'admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets\img\BMCLogo.png" type="image/png">
-    <title>BulSUVMS</title>
+    <title>BulSUSDMS</title>
     <link rel="stylesheet" href="assets\css\MainStyle.css">
     <script src="js/script.js"></script>
     <script>
@@ -81,11 +79,11 @@ if ($_SESSION['role'] !== 'admin') {
             }
         }
         function viewStudent(studentNumber) {
-            // Fetch student and report information using AJAX
+
             fetch(`php/fetch_student_info.php?student_number=${studentNumber}`)
                 .then(response => response.json())
                 .then(data => {
-                    // Populate the modal with student information
+
                     const studentInfo = `
                         <p><strong>Student Name:</strong>${data.student.name}</p>
                         <p><strong>Student Number:</strong> ${data.student.student_number}</p>
@@ -94,7 +92,6 @@ if ($_SESSION['role'] !== 'admin') {
                     `;
                     document.getElementById('studentInfo').innerHTML = studentInfo;
 
-                    // Populate the modal with reports
                     let reportsHTML = '<table><tr><th>Violation</th><th>No of Offenses</th><th>Detailed Report</th><th>Date of Violation</th><th>Action Taken</th></tr>';
                     data.reports.forEach(report => {
                         reportsHTML += `<tr><td>${report.violation}</td><td>${report.no_of_offense}</td><td>${report.detailed_report}</td><td>${report.date_of_violation}</td><td>${report.action_taken}</td></tr>`;
@@ -102,7 +99,6 @@ if ($_SESSION['role'] !== 'admin') {
                     reportsHTML += '</table>';
                     document.getElementById('reportsTable').innerHTML = reportsHTML;
 
-                    // Show the modal
                     document.getElementById('studentModal').style.display = 'block';
                 })
                 .catch(error => console.error('Error:', error));
@@ -142,7 +138,7 @@ if ($_SESSION['role'] !== 'admin') {
         <div class="company-name">
             <div class="company-name-container">
                 <h1 class="company-name1">BULACAN STATE UNIVERSITY MENESES</h1>
-                <h2 class="company-name2">VIOLATION MANAGEMENT SYSTEM</h2>
+                <h2 class="company-name2">STUDENT DISCIPLINE MANAGEMENT SYSTEM</h2>
             </div>
         </div>
         <div class="dropdown">
@@ -169,7 +165,7 @@ if ($_SESSION['role'] !== 'admin') {
                     <li><a href="CreateReport.php">Create Report</a></li>
                     <p>Students</p>
                     <li><a href="SearchStudents.php">List of Students</a></li>
-                    <li><a href="AddStudents.php">Add Students</a></li>
+                    <li><a href="AddStudents.php">Add Student</a></li>
                     <p>Option</p>
                     <li><a href="Settings.php">Settings</a></li>
                 </ul>
@@ -194,14 +190,12 @@ if ($_SESSION['role'] !== 'admin') {
                     </thead>
                     <tbody>
                         <?php
-                        require_once 'php/db.php'; // Adjust path as per your file structure
+                        require_once 'php/db.php';
 
-                        // Fetch student records
                         $sql = "SELECT student_number, name, gender, department FROM students";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
-                            // Output data of each row
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>
                                         <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . $row["student_number"] . "</td>
@@ -215,13 +209,11 @@ if ($_SESSION['role'] !== 'admin') {
                             echo "<tr><td colspan='5'>No students found</td></tr>";
                         }
 
-                        // Close connection
                         $conn->close();
                         ?>
                     </tbody>
                 </table>
 
-                <!-- Pop-up Modal -->
                 <div id="studentModal" class="modal">
                     <div class="modal-content">
                         <span class="close" onclick="closeModal()">&times;</span>

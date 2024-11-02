@@ -13,49 +13,45 @@ if ($_SESSION['role'] !== 'admin') {
     exit();
 }
 
-// Database connection
-$servername = "localhost"; // Replace with your server name
-$username = "root"; // Default username for XAMPP
-$password = ""; // Default password for XAMPP
-$dbname = "bulsuvms"; // Replace with your database name
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "bulsuvms";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
-// number of students that is has reports
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'get_violations') {
-    $sql = "SELECT COUNT(violation) AS total_unique_offenses FROM reports"; // Ensure 'reports' is the correct table name
+    $sql = "SELECT COUNT(violation) AS total_unique_offenses FROM reports";
     if ($result = $conn->query($sql)) {
         $row = $result->fetch_assoc();
         $totalViolations = $row['total_unique_offenses'];
         echo json_encode(['totalViolations' => $totalViolations]);
     } else {
         echo json_encode(['error' => 'SQL error: ' . $conn->error]);
-        exit(); // Ensure you exit after sending an error response
+        exit();
     }
 
     $conn->close();
-    exit(); // End the script after handling the AJAX request
+    exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'get_num_students_violations') {
-    $sql = "SELECT COUNT(DISTINCT student_name) AS total_students_with_violations FROM reports"; // Ensure 'reports' is the correct table name
+    $sql = "SELECT COUNT(DISTINCT student_name) AS total_students_with_violations FROM reports";
     if ($result = $conn->query($sql)) {
         $row = $result->fetch_assoc();
-        $totalStudentsViolations = $row['total_students_with_violations']; // Corrected variable name
+        $totalStudentsViolations = $row['total_students_with_violations'];
         echo json_encode(['totalStudentsViolations' => $totalStudentsViolations]);
     } else {
         echo json_encode(['error' => 'SQL error: ' . $conn->error]);
-        exit(); // Ensure you exit after sending an error response
+        exit();
     }
 
     $conn->close();
-    exit(); // End the script after handling the AJAX request
+    exit();
 }
 ?>
 
@@ -65,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BulSUVMS</title>
+    <title>BulSUSDMS</title>
     <link rel="icon" href="assets/img/BMCLogo.png" type="image/png">
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
@@ -121,7 +117,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
             };
             xhr.send();
         }
-        // Fetch the total violations and students with violations when the page loads
         window.onload = function() {
             fetchTotalViolations();
             fetchTotalStudentsViolations();
@@ -144,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
         <div class="company-name">
             <div class="company-name-container">
                 <h1 class="company-name1">BULACAN STATE UNIVERSITY MENESES</h1>
-                <h2 class="company-name2">VIOLATION MANAGEMENT SYSTEM</h2>
+                <h2 class="company-name2">STUDENT DISCIPLINE MANAGEMENT SYSTEM</h2>
             </div>
         </div>
         <div class="dropdown">
@@ -171,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
                     <li><a href="CreateReport.php">Create Report</a></li>
                     <p>Students</p>
                     <li><a href="SearchStudents.php">List of Students</a></li>
-                    <li><a href="AddStudents.php">Add Students</a></li>
+                    <li><a href="AddStudents.php">Add Student</a></li>
                     <p>Option</p>
                     <li><a href="Settings.php">Settings</a></li>
                 </ul>
@@ -191,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
                                 </div>
                                 <div class="info-box-content">
                                     <h2 class="info-box-text">Number of Recorded Violation</h2>
-                                    <h2 id="total-violations">Loading...</h2> <!-- Placeholder -->
+                                    <h2 id="total-violations">Loading...</h2>
                                 </div>
                             </div>
                         </a>
@@ -204,7 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
                                 </div>
                                 <div class="info-box-content">
                                     <h2 class="info-box-text">Number of Student with Violation</h2>
-                                    <h2 id="total-students-violations">Loading...</h2> <!-- Placeholder for total students with violations -->
+                                    <h2 id="total-students-violations">Loading...</h2>
                                 </div>
                             </div>
                         </a>
