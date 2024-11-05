@@ -1,13 +1,10 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    // Redirect to login page if user is not logged in
     header("Location: index.html");
     exit();
 }
-// Check if the user has the appropriate role (e.g., 'admin')
 if ($_SESSION['owner'] !== 'yes') {
-    // Redirect to a different page or show an error message
     header("Location: Settings.php?status=failed");
     echo "Access denied. You do not have the necessary permissions to view this page.";
     exit();
@@ -19,7 +16,7 @@ if ($_SESSION['owner'] !== 'yes') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets\img\BMCLogo.png" type="image/png">
-    <title>BulSUVMS</title>
+    <title>BulSU-MC-SDMS</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
     <script>
@@ -48,7 +45,7 @@ if ($_SESSION['owner'] !== 'yes') {
         <div class="company-name">
             <div class="company-name-container">
                 <h1 class="company-name1">BULACAN STATE UNIVERSITY MENESES</h1>
-                <h2 class="company-name2">VIOLATION MANAGEMENT SYSTEM</h2>
+                <h2 class="company-name2">STUDENT DISCIPLINE MANAGEMENT SYSTEM</h2>
             </div>
         </div>
         <div class="dropdown">
@@ -75,16 +72,15 @@ if ($_SESSION['owner'] !== 'yes') {
                     <li><a href="CreateReport.php">Create Report</a></li>
                     <p>Students</p>
                     <li><a href="SearchStudents.php">List of Students</a></li>
-                    <li><a href="AddStudents.php">Add Students</a></li>
+                    <li><a href="AddStudents.php">Add Student</a></li>
                     <p>Option</p>
                     <li><a href="Settings.php">Settings</a></li>
                 </ul>
             </div>
         </div>
         <div class="MainContainer">
-            <!-- Content of the dashboard page goes here -->
             <div class="WelcomeMessage">
-                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+                <h2>Welcome to Create Account, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
             <div class="CreateAccountContent">
                 <div class="FormContainer">
@@ -104,9 +100,9 @@ if ($_SESSION['owner'] !== 'yes') {
                         <label for="role">Role:</label>
                         <select id="role" name="role" required>
                             <option value="" disabled selected>--Select Role--</option>
-                            <option value="admin">Admin</option>
-                            <option value="super_admin">Super Admin</option>
-                        </select><br>
+                            <option value="admin">Operator</option>
+                            <option value="super_admin">Admin</option>
+                        </select>
                         <button type="submit">Create Account</button>
                     </form>
                 </div>

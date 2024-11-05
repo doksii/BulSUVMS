@@ -1,14 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
-    // Redirect to login page if user is not logged in
     header("Location: index.html");
     exit();
 }
 
-// Check if the user has the appropriate role (e.g., 'admin')
-if ($_SESSION['owner'] !== 'yes') {
-    // Redirect to a different page or show an error message
+if ($_SESSION['super_admin'] !== 'yes') {
     header("Location: Settings.php?status=failed");
     echo "Access denied. You do not have the necessary permissions to view this page.";
     exit();
@@ -20,7 +17,7 @@ if ($_SESSION['owner'] !== 'yes') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets\img\BMCLogo.png" type="image/png">
-    <title>BulSUVMS</title>
+    <title>BulSU-MC-SDMS</title>
     <link rel="stylesheet" href="assets\css\MainStyle.css">
 </head>
 <body>
@@ -31,7 +28,7 @@ if ($_SESSION['owner'] !== 'yes') {
         <div class="company-name">
             <div class="company-name-container">
                 <h1 class="company-name1">BULACAN STATE UNIVERSITY MENESES</h1>
-                <h2 class="company-name2">VIOLATION MANAGEMENT SYSTEM</h2>
+                <h2 class="company-name2">STUDENT DISCIPLINE MANAGEMENT SYSTEM</h2>
             </div>
         </div>
         <div class="dropdown">
@@ -58,7 +55,7 @@ if ($_SESSION['owner'] !== 'yes') {
                     <li><a href="CreateReport.php">Create Report</a></li>
                     <p>Students</p>
                     <li><a href="SearchStudents.php">List of Students</a></li>
-                    <li><a href="AddStudents.php">Add Students</a></li>
+                    <li><a href="AddStudents.php">Add Student</a></li>
                     <p>Option</p>
                     <li><a href="Settings.php">Settings</a></li>
                 </ul>
@@ -66,7 +63,7 @@ if ($_SESSION['owner'] !== 'yes') {
         </div>
         <div class="MainContainer">
             <div class="WelcomeMessage">
-                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+                <h2>Welcome to Manage Reports, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
             <input type="text" class="searchBar" id="searchBar" onkeyup="filterTable()" placeholder="Search for students..">
             <div class="scroll-container">
@@ -83,11 +80,9 @@ if ($_SESSION['owner'] !== 'yes') {
                     </thead>
                     <tbody id="reportsBody">
                         <?php
-                        // Include database connection
                         require_once 'php/db.php';
 
-                        // Fetch report records
-                        $sql = "SELECT id, student_name, violation, created_at, created_by FROM reports ORDER BY created_at DESC";
+                        $sql = "SELECT id, student_name, violation, created_at, created_by FROM reports ORDER BY id DESC";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -105,22 +100,20 @@ if ($_SESSION['owner'] !== 'yes') {
                             echo "<tr><td colspan='6'>No reports found</td></tr>";
                         }
 
-                        // Close connection
                         $conn->close();
                         ?>
                     </tbody>
                 </table>
             </div>
-              <!-- Export Button -->
-            <button id="exportBtn">Export Selected Reports as PDF</button>
 
-            <!-- Modal for confirmation -->
+            <button class="UnivButton" id="exportBtn">Export Selected Reports as PDF</button>
+
             <div id="exportModal" class="modal">
-                <div class="modal-content">
+                <div class="modal-content2">
                     <h3>Confirm Export</h3>
                     <p>Please enter your password to confirm the export:</p>
-                    <button id="confirmExportBtn">Confirm Export</button>
-                    <button id="cancelBtn">Cancel</button>
+                    <button class="UnivButton" id="confirmExportBtn">Confirm Export</button>
+                    <button class="UnivButton" id="cancelBtn">Cancel</button>
                 </div>
             </div>
 
@@ -161,26 +154,25 @@ if ($_SESSION['owner'] !== 'yes') {
                 const checkboxes = document.querySelectorAll('.reportSelect');
                 const rows = document.querySelectorAll('#reportsBody tr');
 
-                // Check or uncheck checkboxes based on the Select All checkbox
                 checkboxes.forEach(checkbox => {
-                    if (checkbox.closest('tr').style.display !== 'none') { // Only toggle visible checkboxes
+                    if (checkbox.closest('tr').style.display !== 'none') {
                         checkbox.checked = selectAllCheckbox.checked;
                     }
                 });
             }
 
             document.getElementById('exportBtn').addEventListener('click', function() {
-                // Open the modal when the Export button is clicked
+
                 document.getElementById('exportModal').style.display = 'block';
             });
 
             document.getElementById('cancelBtn').addEventListener('click', function() {
-                // Close the modal when Cancel button is clicked
+
                 document.getElementById('exportModal').style.display = 'none';
             });
 
             document.getElementById('confirmExportBtn').addEventListener('click', function() {
-                // Collect selected report IDs
+
                 let selectedReports = [];
                 document.querySelectorAll('input[class="reportSelect"]:checked').forEach(checkbox => {
                     selectedReports.push(checkbox.value);
@@ -191,10 +183,8 @@ if ($_SESSION['owner'] !== 'yes') {
                     return;
                 }
 
-                // Send the selected report IDs and password to the server via POST
                 const formData = new FormData();
                 formData.append('report_ids', JSON.stringify(selectedReports));
-                // formData.append('password', password1);
 
                 fetch('php/export_report_process.php', {
                     method: 'POST',
@@ -202,13 +192,11 @@ if ($_SESSION['owner'] !== 'yes') {
                 })
                 .then(response => response.blob())
                 .then(blob => {
-                    // Close the modal
-                    document.getElementById('exportModal').style.display = 'none';
 
-                    // Download the PDF
+                    document.getElementById('exportModal').style.display = 'none';
                     const link = document.createElement('a');
                     link.href = window.URL.createObjectURL(blob);
-                    link.download = 'BulSUVMS-reports.pdf';
+                    link.download = 'BulSUSDMS-reports.pdf';
                     link.click();
                 })
                 .catch(error => {
@@ -216,8 +204,8 @@ if ($_SESSION['owner'] !== 'yes') {
                     alert('Failed to export reports.');
                 });
                 setTimeout(() => {
-                    location.reload(); // Reload the current page
-                }, 1000); // Adjust time if necessary
+                    location.reload();
+                }, 2500);
             });
         </script>
         <script src="js\script.js"></script>

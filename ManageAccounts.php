@@ -1,19 +1,17 @@
 <?php
 session_start();
-require_once 'php/db.php'; // Ensure this path is correct
+require_once 'php/db.php';
 if (!isset($_SESSION['username'])) {
-    // Redirect to login page if user is not logged in
     header("Location: index.html");
     exit();
 }
-// Check if the user has the appropriate role (e.g., 'admin')
+
 if ($_SESSION['owner'] !== 'yes') {
-    // Redirect to a different page or show an error message
     header("Location: Settings.php?status=failed");
     echo "Access denied. You do not have the necessary permissions to view this page. Only owner can access this page";
     exit();
 }
-$current_username = $_SESSION['username']; // Assuming username is stored in the session
+$current_username = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +19,7 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets\img\BMCLogo.png" type="image/png">
-    <title>BulSUVMS</title>
+    <title>BulSU-MC-SDMS</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
     <script>
@@ -56,7 +54,7 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
         <div class="company-name">
             <div class="company-name-container">
                 <h1 class="company-name1">BULACAN STATE UNIVERSITY MENESES</h1>
-                <h2 class="company-name2">VIOLATION MANAGEMENT SYSTEM</h2>
+                <h2 class="company-name2">STUDENT DISCIPLINE MANAGEMENT SYSTEM</h2>
             </div>
         </div>
         <div class="dropdown">
@@ -83,7 +81,7 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
                     <li><a href="CreateReport.php">Create Report</a></li>
                     <p>Students</p>
                     <li><a href="SearchStudents.php">List of Students</a></li>
-                    <li><a href="AddStudents.php">Add Students</a></li>
+                    <li><a href="AddStudents.php">Add Student</a></li>
                     <p>Option</p>
                     <li><a href="Settings.php">Settings</a></li>
                 </ul>
@@ -91,7 +89,7 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
         </div>
         <div class="MainContainer">
             <div class="WelcomeMessage">
-                <h2>Welcome, <?php echo $_SESSION['display_name']; ?>!</h2>
+                <h2>Welcome to Manage Accounts, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
             <form method="POST" action="php/update_role.php" id="updateForm">
                 <table border="1">
@@ -105,7 +103,6 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
                     </thead>
                     <tbody>
                         <?php
-                        // Fetch all users except the currently logged-in user
                         $sql = "SELECT username, display_name, role, super_admin FROM users WHERE username != ?";
                         $stmt = $conn->prepare($sql);
                         if ($stmt) {
@@ -121,8 +118,8 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
                                     echo "<td>" . htmlspecialchars($row['display_name']) . "</td>";
                                     echo "<td>";
                                     echo "<select name='super_admin[" . htmlspecialchars($row['username']) . "]'>";
-                                    echo "<option value='no'" . ($row['super_admin'] == 'no' ? " selected" : "") . ">Admin</option>";
-                                    echo "<option value='yes'" . ($row['super_admin'] == 'yes' ? " selected" : "") . ">Super Admin</option>";
+                                    echo "<option value='no'" . ($row['super_admin'] == 'no' ? " selected" : "") . ">Operator</option>";
+                                    echo "<option value='yes'" . ($row['super_admin'] == 'yes' ? " selected" : "") . ">Admin</option>";
                                     echo "</select>";
                                     echo "</td>";
                                     echo "</tr>";
@@ -138,10 +135,10 @@ $current_username = $_SESSION['username']; // Assuming username is stored in the
                         ?>
                     </tbody>
                 </table>
-                <input type="password" name="current_password" placeholder="Enter your password to confirm" required><br>
-                <button type="submit">Save Changes</button>
+                <input type="password" class="MAinput" name="current_password" placeholder="Enter your password to confirm" required>
+                <button type="submit" class="UnivButton">Save Changes</button>
             </form>
-            <button onclick="confirmDelete()">Delete Selected Users</button>
+            <button onclick="confirmDelete()" class="UnivButton">Delete Selected Users</button>
         </div>
     </div>
     <script src="js/script.js"></script>

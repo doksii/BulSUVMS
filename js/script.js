@@ -10,12 +10,3 @@ function toggleSidebar() {
         content.classList.add("full");
     }
 }
-
-document.getElementById("students-menu").addEventListener("click", function() {
-    var submenu = this.querySelector(".submenu");
-    if (submenu.style.display === "block") {
-        submenu.style.display = "none";
-    } else {
-        submenu.style.display = "block";
-    }
-});

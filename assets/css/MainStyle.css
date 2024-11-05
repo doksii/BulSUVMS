@@ -21,6 +21,9 @@ th, td {
     padding: 8px;
     text-align: center;
 }
+tr:hover {
+    background-color: #ccc;
+}
 th {
     position: sticky;
     top: 0;
@@ -66,7 +69,7 @@ th {
 }
 
 .scroll-container {
-    max-height: 65vh;
+    max-height: 63vh;
     overflow-y: auto;
     margin-top: 10px;
     border: 1px solid #ccc;
@@ -310,7 +313,9 @@ th {
 /* End of Settings */
 
 /* start of dashboard */
-
+.dashboardContent h2 {
+    text-shadow: 1px 2px 4px #00000096;
+}
 .MainContainer {
     margin-left: 250px;
     margin-right: 10px;
@@ -320,43 +325,132 @@ th {
 
 .dashboardContent {
     display: flex;
-    height: 70vh; 
+    height: 60vh; 
+    padding: 40px 90px;
 }
-
+.WelcomeMessage {
+    color: black;
+}
+.button-tiles {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+.button-tile {
+    height: 100px;
+    width: 50%;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+    border: 2px solid rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(2px);
+}
+.link {
+    text-decoration: none;
+}
+.info-box {
+    display:flex;
+    flex-direction: row;
+    text-decoration: none;
+    color: white;
+    text-align: left;
+    font-size: 16px;
+}
+.icons {
+    width: 100px;
+    height: 100px;
+}
+.info-box-content {   
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+}
+.dashboardContent2 {
+    height: 100%;
+}
 .left {
     display: flex;
-    flex-direction: column;
-    width: 50%;
+    flex-direction: row;
+    width: 100%;
+    height: 300px;
 }
-
-.tile1, .tile2 {
+.tile1 {
+    /* flex: 1; */
+    margin: 5px;
+    letter-spacing: 2px;
+    font-size: 18px;
+    word-spacing: 3px;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 50%;
+    padding: 0;
+}
+.tile1-left, .tile1-right {
     flex: 1;
-    margin: 5px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    padding: 5px;
+    border: 2px solid rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(2px);
+    text-align: center;
+    padding: 10px;
+    color: white;
 }
-
-.tile1, .tile2  {
-    margin: 5px;
-    background-color: #D8CFC4;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.tile1-left {
+    margin-right: 10px;
 }
-
-.tile3 {
+.tile2 {
+    /* flex: 1; */
+    display: flex;
+    justify-content: center;
     margin: 5px;
+    border: 2px solid rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(2px);
+    letter-spacing: 2px;
+    height: 100%;
+    text-align: center;
     width: 50%;
-    background-color: #D8CFC4;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    color: white;
 }
-
+.tile2-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0;
+    text-align: center;
+    padding: 10px;
+}
+.soarList {
+    align-self: center;
+    margin: 5px;
+}
+.tile2 li {
+    padding: 5px;
+    text-align: left;
+    list-style: none;
+    font-size: 18px;
+}
+.tile2 span {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    text-shadow: 1px 2px 4px white;
+}
 /* end of dashboard */
 
 /* start of recent report */
@@ -372,14 +466,14 @@ th {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    z-index: 1005;
     width: 700px;
     max-height: 400px;
     overflow-y: auto;
 }
 .popup button {
     padding: 8px 20px;
-    background-color: #4CAF50;
+    background-color: #333333;
     color: white;
     border: none;
     border-radius: 4px;
@@ -388,7 +482,32 @@ th {
     position: relative;
     left: 90%;
 }
+.popup button:hover {
+    background-color: #4e4d4d;
+}
 
+.UnivButton {
+    padding: 8px 20px;
+    background-color: #333333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    position: relative;
+}
+.UnivButton:hover {
+    background-color: #4e4d4d;
+}
+
+.MAinput {
+    display: block;
+    width: 200px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 /* end of recent report */
 
 /* start of create report */
@@ -402,7 +521,7 @@ th {
 
 .search-results {
     border: .2px solid #ddd;
-    max-height: 300px;
+    max-height: 275px;
     overflow-y: auto;
 }
 .search-item {
@@ -525,14 +644,17 @@ th {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
     padding: 20px;
-    border: 1px solid #888;
     width: 80%;
     max-height: 100%;
     overflow-y: auto;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     text-align: left;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: auto;   
 }
 .close {
     color: #aaa;
@@ -609,14 +731,27 @@ th {
 
 /* end of manage account */
 
-/* start of settings */
+/* start of manage report */
 
-.SettingsContent {
-    display: flex;
-    height: 70vh;
+.modal-content2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: 500px;
+    max-height: 100%;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: auto;   
 }
 
-/* end of settings */
+/* end of manage report */
 
 @media (max-width: 768px) {
     

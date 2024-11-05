@@ -24,10 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $student_name = $row['name'];
 
         // Insert the report into the reports table
-        $sql_insert = "INSERT INTO reports (id, student_name, violation, no_of_offense, detailed_report, date_of_violation, action_taken, created_by)
-                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql_insert = "INSERT INTO reports (id, student_number, student_name, violation, no_of_offense, detailed_report, date_of_violation, action_taken, created_by)
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt_insert = $conn->prepare($sql_insert);
-        $stmt_insert->bind_param("isssssss", $id, $student_name, $violation, $no_of_offense, $detailed_report, $date_of_violation, $action_taken, $created_by);
+        $stmt_insert->bind_param("issssssss", $id, $student_number, $student_name, $violation, $no_of_offense, $detailed_report, $date_of_violation, $action_taken, $created_by);
 
         if ($stmt_insert->execute()) {
             // Success
