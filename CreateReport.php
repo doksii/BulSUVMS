@@ -16,7 +16,6 @@ if ($_SESSION['role'] !== 'admin') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets\img\BMCLogo.png" type="image/png">
     <title>BulSU-MC-SDMS</title>
-    <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>

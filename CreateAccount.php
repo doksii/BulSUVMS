@@ -17,7 +17,6 @@ if ($_SESSION['owner'] !== 'yes') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets\img\BMCLogo.png" type="image/png">
     <title>BulSU-MC-SDMS</title>
-    <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="assets/css/MainStyle.css">
     <script>
         window.onload = function() {

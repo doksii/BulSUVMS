@@ -184,8 +184,6 @@ if ($_SESSION['role'] !== 'admin') {
                             <th onclick="sortTable(1)">Name</th>
                             <th onclick="sortTable(2)">Gender</th>
                             <th onclick="sortTable(3)">Department</th>
-                            <!-- <th>Action</th> -->
-                            <!-- <td><button onclick=\"viewStudent('" . $row['student_number'] . "')\">View</button></td> -->
                         </tr>
                     </thead>
                     <tbody>
