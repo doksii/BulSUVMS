@@ -93,7 +93,6 @@ if ($_SESSION['role'] !== 'admin') {
                         <option value="" disabled selected>--Select Gender--</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
-                            <option value="Other">Other</option>
                         </select>
 
                         <label for="department">Department:</label><br>
@@ -113,6 +112,9 @@ if ($_SESSION['role'] !== 'admin') {
             </div>
         </div>
     </div>
+    <footer class="footer">
+        © 2024 AITS BulSU Meneses Campus. All rights reserved. Group Members: <span>Jerick De Guzman</span>, <span>Rick Jason Garcia</span>, <span>Andro Marc Valdez</span>, <span>Angelo Velasco</span>
+    </footer>
     <script src="js/script.js"></script>
 </body>
 </html>

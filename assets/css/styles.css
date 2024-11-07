@@ -12,12 +12,15 @@ body {
     background-size: cover;
     background-position: center;
 }
+
 .LogInContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center; 
+    margin-bottom: 20px;
 }
+
 .title-container {
     display: flex;
     align-items: center;
@@ -141,9 +144,32 @@ h1 {
     
 }
 
-.LogInContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    margin-bottom: 20px;
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 2px 0;
+    font-size: 0.8em;
+    white-space: nowrap;
+    z-index: 2000;
+}
+
+.footer span {
+    font-weight: normal;
+}
+
+/* Optional link styling */
+.footer a {
+    color: #ddd;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer a:hover {
+    color: #fff;
+    text-decoration: underline;
 }

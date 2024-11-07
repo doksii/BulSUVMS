@@ -86,7 +86,9 @@ if ($_SESSION['role'] !== 'admin') {
             </div>
         </div>
     </div>
-
+    <footer class="footer">
+        © 2024 AITS BulSU Meneses Campus. All rights reserved. Group Members: <span>Jerick De Guzman</span>, <span>Rick Jason Garcia</span>, <span>Andro Marc Valdez</span>, <span>Angelo Velasco</span>
+    </footer>
     <script src="js/script.js"></script>
 </body>
 </html>

@@ -36,7 +36,16 @@ if ($_SESSION['role'] !== 'admin') {
     </style>
     <script>
         $(document).ready(function() {
-            $('#student_search').on('input', function() {
+            function debounce(func, delay) {
+                let timeout;
+                return function(...args) {
+                    const context = this;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => func.apply(context, args), delay);
+                };
+            }
+
+            $('#student_search').on('input', debounce(function() {
                 let query = $(this).val();
                 if (query.length > 0) {
                     $.ajax({
@@ -45,12 +54,16 @@ if ($_SESSION['role'] !== 'admin') {
                         data: {query: query},
                         success: function(data) {
                             $('#search-results').html(data);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error('AJAX error: ', textStatus, errorThrown);
                         }
                     });
                 } else {
                     $('#search-results').html('');
                 }
-            });
+            }, 300));
+
             $(document).on('click', '.search-item', function() {
                 let studentNumber = $(this).data('student-number');
                 let studentName = $(this).text();
@@ -187,7 +200,9 @@ if ($_SESSION['role'] !== 'admin') {
             </div>
         </div>
     </div>
-
+    <footer class="footer">
+        © 2024 AITS BulSU Meneses Campus. All rights reserved. Group Members: <span>Jerick De Guzman</span>, <span>Rick Jason Garcia</span>, <span>Andro Marc Valdez</span>, <span>Angelo Velasco</span>
+    </footer>
     <script src="js/script.js"></script>
 </body>
 </html>

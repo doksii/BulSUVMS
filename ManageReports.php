@@ -116,7 +116,9 @@ if ($_SESSION['super_admin'] !== 'yes') {
                     <button class="UnivButton" id="cancelBtn">Cancel</button>
                 </div>
             </div>
-
+            <footer class="footer">
+                © 2024 AITS BulSU Meneses Campus. All rights reserved. Group Members: <span>Jerick De Guzman</span>, <span>Rick Jason Garcia</span>, <span>Andro Marc Valdez</span>, <span>Angelo Velasco</span>
+            </footer>
         <script>
             window.onload = function() {
                 const urlParams = new URLSearchParams(window.location.search);
