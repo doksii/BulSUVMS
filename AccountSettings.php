@@ -87,7 +87,7 @@ if ($_SESSION['role'] !== 'admin') {
                     <form id="accountSettingsForm" action="php/accountsettings_process.php" method="POST">
 
                         <label for="new_display_name">Display Name:</label>
-                        <h3><?php echo $_SESSION['display_name']; ?></h3>
+                        <input type="text" id="new_display_name" readonly="readonly" name="new_display_name" value="<?php echo $_SESSION['display_name']; ?>">
 
                         <label for="new_username">Username:</label>
                         <input type="text" id="new_username" name="new_username" value="<?php echo $_SESSION['username']; ?>">
