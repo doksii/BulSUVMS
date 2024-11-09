@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
             <div class="menu" id="menu">
                 <ul>
                     <p>Home</p>
-                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="dashboard.php" style="background-color: #4e4d4d;">Dashboard</a></li>
                     <p>Reports</p>
                     <li><a href="RecentReports.php">Recent Reports</a></li>
                     <li><a href="CreateReport.php">Create Report</a></li>

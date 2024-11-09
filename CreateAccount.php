@@ -73,7 +73,7 @@ if ($_SESSION['owner'] !== 'yes') {
                     <li><a href="SearchStudents.php">List of Students</a></li>
                     <li><a href="AddStudents.php">Add Student</a></li>
                     <p>Option</p>
-                    <li><a href="Settings.php">Settings</a></li>
+                    <li><a href="Settings.php" style="background-color: #4e4d4d;">Settings</a></li>
                 </ul>
             </div>
         </div>

@@ -120,7 +120,7 @@ if ($_SESSION['role'] !== 'admin') {
                     <li><a href="dashboard.php">Dashboard</a></li>
                     <p>Reports</p>
                     <li><a href="RecentReports.php">Recent Reports</a></li>
-                    <li><a href="CreateReport.php">Create Report</a></li>
+                    <li><a href="CreateReport.php" style="background-color: #4e4d4d;">Create Report</a></li>
                     <p>Students</p>
                     <li><a href="SearchStudents.php">List of Students</a></li>
                     <li><a href="AddStudents.php">Add Student</a></li>
