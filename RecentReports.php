@@ -124,6 +124,36 @@ if ($_SESSION['role'] !== 'admin') {
                 tr[i].style.display = found ? "" : "none";
             }
         }
+        function saveChanges() {
+            const statusElements = document.querySelectorAll('.status-dropdown');
+            const updates = [];
+
+            // Gather all changed status values
+            statusElements.forEach(element => {
+                const reportId = element.getAttribute('data-report-id');
+                const status = element.value;
+                updates.push({ report_id: reportId, status: status });
+            });
+
+            // Send AJAX request to update statuses in the database
+            fetch('php/update_status.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ updates: updates })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Updated successfully!');
+                    location.reload(); // Reload the page to reflect changes
+                } else {
+                    alert('Error executing changes.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
     </script>
 </head>
 <body>
@@ -181,13 +211,14 @@ if ($_SESSION['role'] !== 'admin') {
                             <th onclick="sortTable(2)">Violation</th>
                             <th onclick="sortTable(3)">Date Created</th>
                             <th onclick="sortTable(4)">Created By</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         require_once 'php/db.php';
 
-                        $sql = "SELECT id, student_number, student_name, violation, created_at, created_by FROM reports ORDER BY id DESC";
+                        $sql = "SELECT id, student_number, student_name, violation, created_at, created_by, status FROM reports ORDER BY id DESC";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -198,6 +229,12 @@ if ($_SESSION['role'] !== 'admin') {
                                         <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["violation"]). "</td>
                                         <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["created_at"]). "</td>
                                         <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["created_by"]). "</td>
+                                        <td>
+                                            <select name='status' class='status-dropdown' data-report-id='" . $row["id"] . "'>
+                                                <option value='Pending'" . ($row["status"] == 'Pending' ? ' selected' : '') . ">Pending</option>
+                                                <option value='Resolved'" . ($row["status"] == 'Resolved' ? ' selected' : '') . ">Resolved</option>
+                                            </select>
+                                        </td>
                                     </tr>";
                             }
                         } else {
@@ -209,6 +246,7 @@ if ($_SESSION['role'] !== 'admin') {
                     </tbody>
                 </table>
             </div>
+            <button onclick="saveChanges()" class="UnivButton">Save Changes</button>
         </div>
     </div>
     <div id="reportPopup" class="popup">

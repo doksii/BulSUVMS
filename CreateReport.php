@@ -148,6 +148,7 @@ if ($_SESSION['role'] !== 'admin') {
                                 <label for="violation">Violation:</label>
                                 <select id="violation" name="violation" required>
                                     <option value="" disabled selected>--Select an violation--</option>
+                                    <option class="NO" value="Dress Code Infraction: Failure to Wear Prescribed Uniform, Civilian Clothing, Absence of Physical Education Uniform, and Improper Clothing">Dress Code Infraction: Failure to Wear Prescribed Uniform, Civilian Clothing, Absence of Physical Education Uniform, and Improper Clothing</option>
                                     <option class="LO" value="Light Offenses: Littering or distribution of unauthorized printed material">Light Offenses: Littering or distribution of unauthorized printed material</option>
                                     <option class="LO" value="Light Offenses: Vandalism or unauthorized posting of printed materials">Light Offenses: Vandalism or unauthorized posting of printed materials</option>
                                     <option class="LO" value="Light Offenses: Disturbance or disruption of the educational environment, classes or any education related programs or activities">Light Offenses: Disturbance or disruption of the educational environment, classes or any education related programs or activities</option>
@@ -175,6 +176,7 @@ if ($_SESSION['role'] !== 'admin') {
                                             <option value="1st offense">1st Offense</option>
                                             <option value="2nd offense">2nd Offense</option>
                                             <option value="3rd offense">3rd Offense</option>
+                                            <option value="4th offense">4th Offense</option>
                                             <option value="Other">Others(Specify on report summary)</option>
                                         </select>
                                     </div>
