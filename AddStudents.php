@@ -93,6 +93,7 @@ if ($_SESSION['role'] !== 'admin') {
                         <option value="" disabled selected>--Select Gender--</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
+                            <option value="Not Specified">Not Specified</option>
                         </select>
 
                         <label for="department">Department:</label><br>
@@ -104,6 +105,7 @@ if ($_SESSION['role'] !== 'admin') {
                             <option value="BSED">BSED Department</option>
                             <option value="BSHM">BSHM Department</option>
                             <option value="BSIT">BSIT Department</option>
+                            <option value="Not Specified">Not Specified</option>
                         </select>
 
                         <button type="submit">Add Student</button>

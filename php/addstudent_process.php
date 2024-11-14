@@ -17,10 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_check->execute();
     $stmt_check->store_result();
 
-    if ($stmt_check->num_rows > 0) {
-        // Duplicate student number
-        header("Location: ../AddStudents.php?status=error");
-    } else {
+    // if ($stmt_check->num_rows > 0) {
+    //     // Duplicate student number
+    //     header("Location: ../AddStudents.php?status=error");
+    // } else {
         // Prepare and bind SQL statement to insert into `students` table
         $sql_insert = "INSERT INTO students (name, student_number, gender, department) VALUES (?, ?, ?, ?)";
         $stmt_insert = $conn->prepare($sql_insert);
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         // Close statement
         $stmt_insert->close();
-    }
+    // }
 
     // Close connection
     $stmt_check->close();
