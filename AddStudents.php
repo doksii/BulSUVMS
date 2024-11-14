@@ -86,14 +86,14 @@ if ($_SESSION['role'] !== 'admin') {
                         <input type="text" id="name" name="name" placeholder="Enter student name" required>
 
                         <label for="student_number">Student Number:</label>
-                        <input type="text" id="student_number" name="student_number" placeholder="Enter student number" required>
+                        <input type="text" id="student_number" name="student_number" placeholder="Enter student number/Copy name if N/A" required>
 
                         <label for="gender">Gender:</label><br>
                         <select id="gender" name="gender" required>
                         <option value="" disabled selected>--Select Gender--</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
-                            <option value="Not Specified">Not Specified</option>
+                            <option value="Null">Not Specified</option>
                         </select>
 
                         <label for="department">Department:</label><br>
