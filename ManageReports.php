@@ -74,15 +74,15 @@ if ($_SESSION['super_admin'] !== 'yes') {
                             <th>Incident no.</th>
                             <th>Student Name</th>
                             <th>Violation</th>
-                            <th>Date Created</th>
-                            <th>Created By</th>
+                            <th>Date of Violation</th>
+                            <th>No. of Offense</th>
                         </tr>
                     </thead>
                     <tbody id="reportsBody">
                         <?php
                         require_once 'php/db.php';
 
-                        $sql = "SELECT id, student_name, violation, created_at, created_by FROM reports ORDER BY id DESC";
+                        $sql = "SELECT id, student_name, violation, date_of_violation, no_of_offense FROM reports ORDER BY id DESC";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -92,8 +92,8 @@ if ($_SESSION['super_admin'] !== 'yes') {
                                         <td>" . $row["id"]. "</td>
                                         <td>" . $row["student_name"]. "</td>
                                         <td>" . $row["violation"]. "</td>
-                                        <td>" . $row["created_at"]. "</td>
-                                        <td>" . $row["created_by"]. "</td>
+                                        <td>" . $row["date_of_violation"]. "</td>
+                                        <td>" . $row["no_of_offense"]. "</td>
                                     </tr>";
                             }
                         } else {

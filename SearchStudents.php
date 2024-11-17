@@ -92,9 +92,9 @@ if ($_SESSION['role'] !== 'admin') {
                     `;
                     document.getElementById('studentInfo').innerHTML = studentInfo;
 
-                    let reportsHTML = '<table><tr><th>Violation</th><th>No of Offenses</th><th>Detailed Report</th><th>Date of Violation</th><th>Action Taken</th></tr>';
+                    let reportsHTML = '<table><tr><th>Violation</th><th>Detailed Report</th><th>Action Taken</th><th>No. of Offense</th><th>Created By</th></tr>';
                     data.reports.forEach(report => {
-                        reportsHTML += `<tr><td>${report.violation}</td><td>${report.no_of_offense}</td><td>${report.detailed_report}</td><td>${report.date_of_violation}</td><td>${report.action_taken}</td></tr>`;
+                        reportsHTML += `<tr><td>${report.violation}</td><td>${report.detailed_report}</td><td>${report.action_taken}</td><td>${report.no_of_offense}</td><td>${report.created_by}</td></tr>`;
                     });
                     reportsHTML += '</table>';
                     document.getElementById('reportsTable').innerHTML = reportsHTML;

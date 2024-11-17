@@ -13,7 +13,7 @@ if (isset($_GET['student_number'])) {
     $student = $result_student->fetch_assoc();
 
     // Fetch associated reports
-    $sql_reports = "SELECT violation, no_of_offense, detailed_report, date_of_violation, action_taken FROM reports WHERE student_name = ?";
+    $sql_reports = "SELECT no_of_offense, violation, created_by, detailed_report, created_at, action_taken FROM reports WHERE student_name = ?";
     $stmt_reports = $conn->prepare($sql_reports);
     $stmt_reports->bind_param("s", $student['name']);
     $stmt_reports->execute();

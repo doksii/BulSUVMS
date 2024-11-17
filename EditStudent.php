@@ -105,9 +105,9 @@ if ($_SESSION['role'] !== 'admin') {
                     document.getElementById('editGender').value = data.student.gender;
                     document.getElementById('editDepartment').value = data.student.department;
 
-                    let reportsHTML = '<table><tr><th>Violation</th><th>No of Offenses</th><th>Detailed Report</th><th>Date of Violation</th><th>Action Taken</th></tr>';
+                    let reportsHTML = '<table><tr><th>Violation</th><th>Detailed Report</th><th>Action Taken</th><th>No. of Offense</th><th>Created By</th></tr>';
                     data.reports.forEach(report => {
-                        reportsHTML += `<tr><td>${report.violation}</td><td>${report.no_of_offense}</td><td>${report.detailed_report}</td><td>${report.date_of_violation}</td><td>${report.action_taken}</td></tr>`;
+                        reportsHTML += `<tr><td>${report.violation}</td><td>${report.detailed_report}</td><td>${report.action_taken}</td><td>${report.no_of_offense}</td><td>${report.created_by}</td></tr>`;
                     });
                     reportsHTML += '</table>';
                     document.getElementById('reportsTable').innerHTML = reportsHTML;
@@ -244,7 +244,7 @@ if ($_SESSION['role'] !== 'admin') {
         </div>
         <div class="MainContainer">
             <div class="WelcomeMessage">
-                <h2>Welcome to List of Students, <?php echo $_SESSION['display_name']; ?>!</h2>
+                <h2>Welcome to Edit Student Information, <?php echo $_SESSION['display_name']; ?>!</h2>
             </div>
             <input type="text" id="searchBar" class="searchBar" onkeyup="filterTable()" placeholder="Search for students..">
             <div class="scroll-container">

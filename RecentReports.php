@@ -90,9 +90,9 @@ if ($_SESSION['role'] !== 'admin') {
                     `;
                     document.getElementById('studentInfo').innerHTML = studentInfo;
 
-                    let reportsHTML = '<table><tr><th>Violation</th><th>No of Offenses</th><th>Detailed Report</th><th>Date of Violation</th><th>Action Taken</th></tr>';
+                    let reportsHTML = '<table><tr><th>Violation</th><th>Detailed Report</th><th>Action Taken</th><th>Created By</th><th>Date Created</th></tr>';
                     data.reports.forEach(report => {
-                        reportsHTML += `<tr><td>${report.violation}</td><td>${report.no_of_offense}</td><td>${report.detailed_report}</td><td>${report.date_of_violation}</td><td>${report.action_taken}</td></tr>`;
+                        reportsHTML += `<tr><td>${report.violation}</td><td>${report.detailed_report}</td><td>${report.action_taken}</td><td>${report.created_by}</td><td>${report.created_at}</td></tr>`;
                     });
                     reportsHTML += '</table>';
                     document.getElementById('reportsTable').innerHTML = reportsHTML;
@@ -209,8 +209,8 @@ if ($_SESSION['role'] !== 'admin') {
                             <th onclick="sortTable(0)">Incident no.</th>
                             <th onclick="sortTable(1)">Student Name</th>
                             <th onclick="sortTable(2)">Violation</th>
-                            <th onclick="sortTable(3)">Date Created</th>
-                            <th onclick="sortTable(4)">Created By</th>
+                            <th onclick="sortTable(3)">Date of Violation</th>
+                            <th onclick="sortTable(4)">No. of Offense</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -218,7 +218,7 @@ if ($_SESSION['role'] !== 'admin') {
                         <?php
                         require_once 'php/db.php';
 
-                        $sql = "SELECT id, student_number, student_name, violation, created_at, created_by, status FROM reports ORDER BY id DESC";
+                        $sql = "SELECT id, student_number, student_name, violation, date_of_violation, no_of_offense, status FROM reports ORDER BY id DESC";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -227,8 +227,8 @@ if ($_SESSION['role'] !== 'admin') {
                                         <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . $row["id"]. "</td>
                                         <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["student_name"]). "</td>
                                         <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["violation"]). "</td>
-                                        <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["created_at"]). "</td>
-                                        <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["created_by"]). "</td>
+                                        <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["date_of_violation"]). "</td>
+                                        <td onclick=\"viewStudent('" . $row['student_number'] . "')\">" . htmlspecialchars($row["no_of_offense"]). "</td>
                                         <td>
                                             <select name='status' class='status-dropdown' data-report-id='" . $row["id"] . "'>
                                                 <option value='Pending'" . ($row["status"] == 'Pending' ? ' selected' : '') . ">Pending</option>
