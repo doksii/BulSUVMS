@@ -5,7 +5,8 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-if ($_SESSION['role'] !== 'admin') {
+if ($_SESSION['super_admin'] !== 'yes') {
+    header("Location: Settings.php?status=failed");
     echo "Access denied. You do not have the necessary permissions to view this page.";
     exit();
 }
