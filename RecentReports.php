@@ -78,16 +78,35 @@ if ($_SESSION['role'] !== 'admin') {
                 }
             }
         }
+        // A mapping of department codes to their full forms
+        const departmentMapping = {
+            "BIT": "Bachelor in Industrial Technology",
+            "BSBA": "Bachelor of Science in Business Administration",
+            "BSCpE": "Bachelor of Science in Computer Engineering",
+            "BSED": "Bachelor of Secondary Education",
+            "BSHM": "Bachelor of Science in Hospitality Management",
+            "BSIT": "Bachelor of Science in Information Technology"
+        };
+        // A function to get the full department name
+        const getFullDepartmentName = (shortCode) => {
+            return departmentMapping[shortCode] || shortCode; // Fallback to shortCode if no mapping found
+        };
         function viewStudent(studentNumber) {
             fetch(`php/fetch_student_info.php?student_number=${studentNumber}`)
                 .then(response => response.json())
                 .then(data => {
                     const studentInfo = `
-                        <p><strong>Student Name:</strong>${data.student.name}</p>
-                        <p><strong>Student Number:</strong> ${data.student.student_number}</p>
-                        <p><strong>Gender:</strong> ${data.student.gender}</p>
-                        <p><strong>Department:</strong> ${data.student.department}</p>
-                        <p><strong>Year level:</strong> ${data.student.year_lvl}</p>
+                        <div style="display: flex; flex-direction: row;">
+                            <div style="width: 50%">
+                                <p><strong>Student Name:</strong> ${data.student.name}</p>
+                                <p><strong>Student Number:</strong> ${data.student.student_number}</p>
+                                <p><strong>Gender:</strong> ${data.student.gender}</p>
+                            </div>
+                            <div>
+                                <p><strong>Department:</strong> ${getFullDepartmentName(data.student.department)}</p>
+                                <p><strong>Year level:</strong> ${data.student.year_lvl}</p>
+                            </div>
+                        </div>
                     `;
                     document.getElementById('studentInfo').innerHTML = studentInfo;
 
