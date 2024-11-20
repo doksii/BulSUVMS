@@ -59,7 +59,6 @@ if ($_SESSION['super_admin'] !== 'yes') {
                 }
             }
         }
-
         function sortTable(n) {
             var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
             table = document.getElementById("reportTable");
@@ -100,12 +99,15 @@ if ($_SESSION['super_admin'] !== 'yes') {
             fetch(`php/fetch_student_info.php?student_number=${studentNumber}`)
                 .then(response => response.json())
                 .then(data => {
+                    // Populate student fields
                     document.getElementById('editStudentName').value = data.student.name;
                     document.getElementById('editStudentNumber').value = data.student.student_number;
-                    document.getElementById('originalStudentNumber').value = data.student.student_number;  // Set original student number to hidden input
+                    document.getElementById('originalStudentNumber').value = data.student.student_number; // Hidden input
                     document.getElementById('editGender').value = data.student.gender;
                     document.getElementById('editDepartment').value = data.student.department;
+                    document.getElementById('editYearLvl').value = data.student.year_lvl; // Populate Year Level
 
+                    // Populate associated reports
                     let reportsHTML = '<table><tr><th>Violation</th><th>Detailed Report</th><th>Action Taken</th><th>No. of Offense</th><th>Created By</th></tr>';
                     data.reports.forEach(report => {
                         reportsHTML += `<tr><td>${report.violation}</td><td>${report.detailed_report}</td><td>${report.action_taken}</td><td>${report.no_of_offense}</td><td>${report.created_by}</td></tr>`;
@@ -117,7 +119,6 @@ if ($_SESSION['super_admin'] !== 'yes') {
                 })
                 .catch(error => console.error('Error:', error));
         }
-
         function closeModal() {
             document.getElementById('editStudentModal').style.display = 'none';
         }
@@ -176,11 +177,12 @@ if ($_SESSION['super_admin'] !== 'yes') {
             const confirmation = confirm("Are you sure you want to save the changes?");
             if (confirmation) {
                 const updatedData = {
-                    original_student_number: document.getElementById('originalStudentNumber').value,  // Get the value from the hidden input
+                    original_student_number: document.getElementById('originalStudentNumber').value, // Hidden input
                     student_number: document.getElementById('editStudentNumber').value,
                     name: document.getElementById('editStudentName').value,
                     gender: document.getElementById('editGender').value,
-                    department: document.getElementById('editDepartment').value
+                    department: document.getElementById('editDepartment').value,
+                    year_lvl: document.getElementById('editYearLvl').value // Added year level
                 };
 
                 fetch('php/update_student_info.php', {
@@ -261,7 +263,7 @@ if ($_SESSION['super_admin'] !== 'yes') {
                     <tbody>
                         <?php
                         require_once 'php/db.php';
-                        $sql = "SELECT student_number, name, gender, department FROM students";
+                        $sql = "SELECT student_number, name, gender, department FROM students  ORDER BY id DESC";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -298,23 +300,40 @@ if ($_SESSION['super_admin'] !== 'yes') {
                                 <input type="text" id="editStudentNumber" name="editStudentNumber">
                             </div>
                             <div class="r">
-                                <label for="editGender">Gender:</label>
-                                <select id="editGender">
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Null">Not Specified</option>
-                                </select>
-
-                                <label for="editDepartment">Department:</label>
-                                <select id="editDepartment" name="editDepartment" required>
-                                    <option value="BIT">BIT Department</option>
-                                    <option value="BSBA">BSBA Department</option>
-                                    <option value="BSCpE">BSCpE Department</option>
-                                    <option value="BSED">BSED Department</option>
-                                    <option value="BSHM">BSHM Department</option>
-                                    <option value="BSIT">BSIT Department</option>
-                                    <option value="Not Specified">Not Specified</option>
-                                </select>
+                                <div>
+                                    <label for="editGender">Gender:</label>
+                                    <select id="editGender" style="width: 90%" >
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Null">Not Specified</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="lr" style="display: flex; Flex-direction: row; justify-content: space-between;">
+                                    <div style="width: 50%">
+                                        <label for="editDepartment">Department:</label>
+                                        <select id="editDepartment" name="editDepartment" required>
+                                            <option value="BIT">BIT Department</option>
+                                            <option value="BSBA">BSBA Department</option>
+                                            <option value="BSCpE">BSCpE Department</option>
+                                            <option value="BSED">BSED Department</option>
+                                            <option value="BSHM">BSHM Department</option>
+                                            <option value="BSIT">BSIT Department</option>
+                                            <option value="Not Specified">Not Specified</option>
+                                        </select>
+                                    </div>
+                                    <div style="width: 50%">
+                                        <label for="editYearLvl">Year level:</label><br>
+                                        <select id="editYearLvl" name="editYearLvl" required>
+                                            <option value="Not Specified">Not Specified</option>
+                                            <option value="1st Year">1st Year</option>
+                                            <option value="2nd Year">2nd Year</option>
+                                            <option value="3rd Year">3rd Year</option>
+                                            <option value="4th Year">4th Year</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                         

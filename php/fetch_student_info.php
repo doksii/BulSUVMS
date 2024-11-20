@@ -5,7 +5,7 @@ if (isset($_GET['student_number'])) {
     $student_number = $_GET['student_number'];
 
     // Fetch student information
-    $sql_student = "SELECT student_number, name, gender, department FROM students WHERE student_number = ?";
+    $sql_student = "SELECT student_number, name, gender, department, year_lvl FROM students WHERE student_number = ?";
     $stmt_student = $conn->prepare($sql_student);
     $stmt_student->bind_param("s", $student_number);
     $stmt_student->execute();

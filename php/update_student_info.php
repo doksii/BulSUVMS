@@ -13,7 +13,7 @@ require_once 'db.php';
 $data = json_decode(file_get_contents("php://input"), true);
 
 // Check if the required fields are present
-if (!isset($data['original_student_number'], $data['student_number'], $data['name'], $data['gender'], $data['department'])) {
+if (!isset($data['original_student_number'], $data['student_number'], $data['name'], $data['gender'], $data['department'], $data['year_lvl'])) {
     echo json_encode(['success' => false, 'message' => 'Missing required fields.']);
     exit();
 }
@@ -24,15 +24,16 @@ $student_number = $data['student_number'];
 $name = $data['name'];
 $gender = $data['gender'];
 $department = $data['department'];
+$year_lvl = $data['year_lvl']; // New field for year level
 
 // Start a transaction to ensure all updates happen atomically
 $conn->begin_transaction();
 
 try {
     // Update the student information in the students table
-    $sql = "UPDATE students SET student_number = ?, name = ?, gender = ?, department = ? WHERE student_number = ?";
+    $sql = "UPDATE students SET student_number = ?, name = ?, gender = ?, department = ?, year_lvl = ? WHERE student_number = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $student_number, $name, $gender, $department, $original_student_number);
+    $stmt->bind_param("ssssss", $student_number, $name, $gender, $department, $year_lvl, $original_student_number);
     $stmt->execute();
 
     // Update the student_number in all associated reports
@@ -50,3 +51,4 @@ try {
     $conn->rollback();
     echo json_encode(['success' => false, 'message' => 'Error updating student information and reports: ' . $e->getMessage()]);
 }
+?>

@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $student_number = $_POST['student_number'];
     $gender = $_POST['gender'];
     $department = $_POST['department'];
+    $year_lvl = $_POST['year_lvl']; // New field for year level
 
     // Check if student number already exists
     $sql_check = "SELECT id FROM students WHERE student_number = ?";
@@ -22,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../AddStudents.php?status=error");
     } else {
         // Prepare and bind SQL statement to insert into `students` table
-        $sql_insert = "INSERT INTO students (name, student_number, gender, department) VALUES (?, ?, ?, ?)";
+        $sql_insert = "INSERT INTO students (name, student_number, gender, department, year_lvl) VALUES (?, ?, ?, ?, ?)";
         $stmt_insert = $conn->prepare($sql_insert);
-        $stmt_insert->bind_param("ssss", $name, $student_number, $gender, $department);
+        $stmt_insert->bind_param("sssss", $name, $student_number, $gender, $department, $year_lvl);
 
         // Execute insertion
         if ($stmt_insert->execute()) {

@@ -123,14 +123,6 @@ if ($_SESSION['role'] !== 'admin') {
                         <input type="text" id="student_number" name="student_number" placeholder="Enter student number/Copy name if N/A" required>
                         <div style="display: flex; Flex-direction: row; justify-content: space-between;">
                             <div style="width: 48%">
-                                <label for="gender">Gender:</label><br>
-                                <select id="gender" name="gender" required>
-                                    <option value="Null">Not Specified</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                            </div>
-                            <div style="width: 48%">
                                 <label for="department">Department:</label><br>
                                 <select id="department" name="department" required>
                                     <option value="Not Specified">Not Specified</option>
@@ -142,8 +134,26 @@ if ($_SESSION['role'] !== 'admin') {
                                     <option value="BSIT">BSIT Department</option>
                                 </select>
                             </div>
+                            <div style="width: 48%">
+                                <label for="year_lvl">Year level:</label><br>
+                                <select id="year_lvl" name="year_lvl" required>
+                                    <option value="Not Specified">Not Specified</option>
+                                    <option value="1st Year">1st Year</option>
+                                    <option value="2nd Year">2nd Year</option>
+                                    <option value="3rd Year">3rd Year</option>
+                                    <option value="4th Year">4th Year</option>
+                                </select>
+                            </div>
+                            
                         </div>
-                        
+                        <div style="width: 100%">
+                            <label for="gender">Gender:</label><br>
+                            <select id="gender" name="gender" required>
+                                <option value="Null">Not Specified</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
 
                         <button type="submit">Add Student</button>
                     </form>

@@ -89,6 +89,7 @@ if ($_SESSION['role'] !== 'admin') {
                         <p><strong>Student Number:</strong> ${data.student.student_number}</p>
                         <p><strong>Gender:</strong> ${data.student.gender}</p>
                         <p><strong>Department:</strong> ${data.student.department}</p>
+                        <p><strong>Year level:</strong> ${data.student.year_lvl}</p>
                     `;
                     document.getElementById('studentInfo').innerHTML = studentInfo;
 
@@ -190,7 +191,7 @@ if ($_SESSION['role'] !== 'admin') {
                         <?php
                         require_once 'php/db.php';
 
-                        $sql = "SELECT student_number, name, gender, department FROM students";
+                        $sql = "SELECT student_number, name, gender, department FROM students ORDER BY id DESC";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -216,7 +217,7 @@ if ($_SESSION['role'] !== 'admin') {
                     <div class="modal-content">
                         <span class="close" onclick="closeModal()">&times;</span>
                         <div id="studentInfo"></div>
-                        <h3>Assiociated violations:</h3>
+                        <h3>Associated violations:</h3>
                         <input type="text" class="searchReports" id="searchReports" onkeyup="filterReports()" placeholder="Search for reports..">
                         <div id="reportsTable" class="reports-table"></div><br><br>
                         <button onclick="location.href='CreateReport.php'" class="modal-add-btn">Add report</button>
